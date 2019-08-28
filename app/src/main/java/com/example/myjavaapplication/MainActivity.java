@@ -50,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     Uri originImageUri = data.getData();
-
-                    CropPhoto(originImageUri);
+                    //分享
+                    Intent shareImageIntent = new Intent(Intent.ACTION_SEND);
+                    shareImageIntent.putExtra(Intent.EXTRA_STREAM,originImageUri);
+                    shareImageIntent.setType("image/*");
+                    startActivity(Intent.createChooser(shareImageIntent,"分享到"));
+                    //CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
                     PhotoCropInCamera();
