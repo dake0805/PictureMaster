@@ -20,6 +20,7 @@
             android:baselineAligned="false"
             android:maxWidth="512pt"
             android:maxHeight="512pt"
+            android:onClick="SharePic"
             android:scaleType="fitCenter"
             tools:srcCompat="@tools:sample/avatars" />
 

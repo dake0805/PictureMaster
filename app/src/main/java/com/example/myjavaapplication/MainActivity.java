@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -26,11 +28,38 @@ public class MainActivity extends AppCompatActivity {
 
     private File photoFile;
 
+    private ImageView imageView;
+    private ImageView cropImage ;
+    private Uri originImageUri;
+    private Uri destinationUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        imageView = findViewById(R.id.imageView);
+        cropImage = findViewById(R.id.imageView2);
+    }
 
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    //分享函数
+    public void SharePic(){
+        Intent shareImageIntent = new Intent(Intent.ACTION_SEND);
+        shareImageIntent.putExtra(Intent.EXTRA_STREAM,originImageUri);
+        shareImageIntent.setType("image/*");
+        startActivity(Intent.createChooser(shareImageIntent,"分享到"));
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.share:
+                SharePic();
+            default:break;
+        }
+        return true;
     }
 
     //Button SELECT
@@ -43,19 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        ImageView imageView = findViewById(R.id.imageView);
-        ImageView cropImage = findViewById(R.id.imageView2);
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
-                    Uri originImageUri = data.getData();
-                    //分享
-                    Intent shareImageIntent = new Intent(Intent.ACTION_SEND);
-                    shareImageIntent.putExtra(Intent.EXTRA_STREAM,originImageUri);
-                    shareImageIntent.setType("image/*");
-                    startActivity(Intent.createChooser(shareImageIntent,"分享到"));
-                    //CropPhoto(originImageUri);
+                    originImageUri = data.getData();
+//                    //分享
+//                    Intent shareImageIntent = new Intent(Intent.ACTION_SEND);
+//                    shareImageIntent.putExtra(Intent.EXTRA_STREAM,originImageUri);
+//                    shareImageIntent.setType("image/*");
+//                    startActivity(Intent.createChooser(shareImageIntent,"分享到"));
+                    CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
                     PhotoCropInCamera();
@@ -71,8 +98,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //处理照片
     private void CropPhoto(Uri originPhoto) {
-        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
+        destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
 
         UCrop.of(originPhoto, destinationUri)
                 .withMaxResultSize(1920, 1080)
@@ -80,14 +108,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void PhotoCropInCamera() {
-        ImageView imageView = findViewById(R.id.imageView);
-
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
 
         Uri originPhoto = Uri.fromFile(photoFile);
         CropPhoto(originPhoto);
     }
 
+    //CAMERA button 绑定函数
     public void cameraShotPhoto(View view) {
 //        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        if (intent.resolveActivity(getPackageManager()) != null) {
@@ -139,10 +166,13 @@ public class MainActivity extends AppCompatActivity {
         return image;
     }
 
+    //CLEAR button绑定函数
     public void ClearPhoto(View view) {
         ImageView imageView = findViewById(R.id.imageView);
         ImageView imageView2 = findViewById(R.id.imageView2);
         imageView.setImageURI(null);
         imageView2.setImageURI(null);
     }
+
+
 }
