@@ -1,8 +1,10 @@
 package com.example.myjavaapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 
@@ -17,6 +20,13 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+/**
+ * to do
+ * 存储空间权限申请
+ * 保存图片
+ */
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
     private File photoFile;
 
+    private ImageView cropImage;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        cropImage = findViewById(R.id.imageView);
     }
 
     //Button SELECT
@@ -43,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        ImageView imageView = findViewById(R.id.imageView);
-        ImageView cropImage = findViewById(R.id.imageView2);
+//        ImageView imageView = findViewById(R.id.imageView);
+        ImageView cropImage = findViewById(R.id.imageView);
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
@@ -58,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case UCrop.REQUEST_CROP:
                     Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
-                    cropImage.setImageURI(null);
+                    cropImage.setImageURI(null);                //刷新ImageView
                     cropImage.setImageURI(cropPhoto);
                     break;
 
@@ -141,9 +154,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ClearPhoto(View view) {
+//        ImageView imageView2 = findViewById(R.id.imageView);
+        cropImage.setImageURI(null);
+//        imageView2.setImageURI(null);
+    }
+
+    public void SavePhoto(View view) {
         ImageView imageView = findViewById(R.id.imageView);
-        ImageView imageView2 = findViewById(R.id.imageView2);
-        imageView.setImageURI(null);
-        imageView2.setImageURI(null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Save Photo");
+        builder.setMessage("test");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
+
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
+
+                SavePhotoInStorage();
+            }
+        });
+        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+            }
+        });
+
+        AlertDialog b = builder.create();
+        b.show();
+
+    }
+
+    private void SavePhotoInStorage() throws IOException {
+//        File photo = createImageFile();
+//        if (photo != null) {
+//            cameraPhoto = FileProvider.getUriForFile(this,
+//                    "com.example.myjavaapplication",
+//                    photoFile);
+//        }
+
     }
 }
