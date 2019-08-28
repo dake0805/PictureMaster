@@ -28,7 +28,7 @@ import java.util.Date;
 /**
  * to do
  * 存储空间权限申请
- * 保存图片
+ * 保存图片 done
  * 明天带学生证
  */
 
@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 保存图片到外部存储    /storage/0/Picture/Save
      * 使用文件输入输出流
+     *
      * @throws IOException
      */
     private void SavePhotoInStorage() throws IOException {
