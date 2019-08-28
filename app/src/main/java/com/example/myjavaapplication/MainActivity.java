@@ -14,10 +14,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.roger.gifloadinglibrary.GifLoadingView;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,6 +29,7 @@ import java.util.Date;
  * to do
  * 存储空间权限申请
  * 保存图片
+ * 明天带学生证
  */
 
 
@@ -38,12 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView cropImage;
 
+    private Uri imageCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cropImage = findViewById(R.id.imageView);
+        GifLoadingView mGifLoadingView = new GifLoadingView();
     }
 
     //Button SELECT
@@ -71,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case UCrop.REQUEST_CROP:
                     Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
+                    imageCurrent = cropPhoto;
                     cropImage.setImageURI(null);                //刷新ImageView
                     cropImage.setImageURI(cropPhoto);
                     break;
@@ -170,7 +178,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface arg0, int arg1) {
                 Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
 
-                SavePhotoInStorage();
+                try {
+                    SavePhotoInStorage();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -184,13 +196,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void SavePhotoInStorage() throws IOException {
-//        File photo = createImageFile();
-//        if (photo != null) {
-//            cameraPhoto = FileProvider.getUriForFile(this,
-//                    "com.example.myjavaapplication",
-//                    photoFile);
-//        }
 
+    /**
+     * 保存图片到外部存储    /storage/0/Picture/Save
+     * 使用文件输入输出流
+     * @throws IOException
+     */
+    private void SavePhotoInStorage() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/Save");
+        if (!storageDir.exists()) {
+            storageDir.mkdir();
+        }
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        // Save a file: path for use with ACTION_VIEW intents
+
+        InputStream in = getContentResolver().openInputStream(imageCurrent);
+        OutputStream out = new FileOutputStream(new File(image.getPath()));
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        out.close();
+        in.close();
     }
+
 }
+
