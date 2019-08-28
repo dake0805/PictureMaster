@@ -6,10 +6,12 @@ import androidx.core.content.FileProvider;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private File photoFile;
 
-    private ImageView cropImage;
+    //private ImageView cropImage;
 
     private Uri imageCurrent;
 
@@ -49,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        cropImage = findViewById(R.id.imageView);
-        GifLoadingView mGifLoadingView = new GifLoadingView();
+        //cropImage = findViewById(R.id.imageView);
+        //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
 
+    //TODO 按钮的图片设置与排版
     //Button SELECT
     public void selectPhoto(View view) {
         Intent selectPhoto = new Intent();
@@ -61,55 +64,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
 
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        ImageView imageView = findViewById(R.id.imageView);
-        ImageView cropImage = findViewById(R.id.imageView);
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case CHOOSE_PICTURE:
-                    Uri originImageUri = data.getData();
-
-                    CropPhoto(originImageUri);
-                    break;
-                case CAMERA_PICTURE:
-                    PhotoCropInCamera();
-                    break;
-                case UCrop.REQUEST_CROP:
-                    Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
-                    imageCurrent = cropPhoto;
-                    cropImage.setImageURI(null);                //刷新ImageView
-                    cropImage.setImageURI(cropPhoto);
-                    break;
-
-            }
-        } else if (resultCode == UCrop.RESULT_ERROR) {
-            final Throwable cropError = UCrop.getError(data);
-        }
-    }
-
-    private void CropPhoto(Uri originPhoto) {
-        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
-
-        UCrop.of(originPhoto, destinationUri)
-                .withMaxResultSize(1920, 1080)
-                .start(this);
-    }
-
-    public void PhotoCropInCamera() {
-        ImageView imageView = findViewById(R.id.imageView);
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-        /**
-         * 注意修改文件名
-         */
-        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), timeStamp + "test.jpg"));
-
-        Uri originPhoto = Uri.fromFile(photoFile);
-        CropPhoto(originPhoto);
-    }
-
+    //Button CAMERA
     public void cameraShotPhoto(View view) {
 //        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        if (intent.resolveActivity(getPackageManager()) != null) {
@@ -139,6 +94,67 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void jointPhoto(View view){
+        Intent intent = new Intent(MainActivity.this,JointPhotoActivity.class);
+        startActivity(intent);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            //获得的Uri
+            Uri ImageUri;
+            Intent sendPicUriIntent = new Intent(MainActivity.this,PictureProcessActivity.class);
+            switch (requestCode) {
+                case CHOOSE_PICTURE:
+                    ImageUri = data.getData();
+                    sendPicUriIntent.putExtra("extra_uri",ImageUri.toString());
+                    startActivity(sendPicUriIntent);
+                    //CropPhoto(originImageUri);
+                    break;
+                case CAMERA_PICTURE:
+                    ImageUri = PhotoCropInCamera();
+                    sendPicUriIntent.putExtra("extra_uri",ImageUri.toString());
+                    startActivity(sendPicUriIntent);
+                    break;
+//                case UCrop.REQUEST_CROP:
+//                    Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
+//                    imageCurrent = cropPhoto;
+//                    cropImage.setImageURI(null);                //刷新ImageView
+//                    cropImage.setImageURI(cropPhoto);
+//                    break;
+            }
+
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable cropError = UCrop.getError(data);
+        }
+    }
+
+
+    private void CropPhoto(Uri originPhoto) {
+        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
+
+        UCrop.of(originPhoto, destinationUri)
+                .withMaxResultSize(1920, 1080)
+                .start(this);
+    }
+
+    public Uri PhotoCropInCamera() {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+        /**
+         * 注意修改文件名
+         */
+        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), timeStamp + "test.jpg"));
+
+        //获得Uri
+        Uri originPhoto = Uri.fromFile(photoFile);
+        //CropPhoto(originPhoto);
+        return originPhoto;
+    }
+
+
+
 
     //拍照前创建photo文件，在/mnt/sdcard/DCIM下
     private File createImageFile() throws IOException {
@@ -161,14 +177,12 @@ public class MainActivity extends AppCompatActivity {
         return image;
     }
 
-    public void ClearPhoto(View view) {
-//        ImageView imageView2 = findViewById(R.id.imageView);
-        cropImage.setImageURI(null);
-//        imageView2.setImageURI(null);
-    }
+//    public void ClearPhoto(View view) {
+//        cropImage.setImageURI(null);
+//    }
 
     public void SavePhoto(View view) {
-        ImageView imageView = findViewById(R.id.imageView);
+//        ImageView imageView = findViewById(R.id.imageView);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Save Photo");
         builder.setMessage("test");

@@ -32,6 +32,15 @@
                 android:resource="@xml/provide_file_paths" />
         </provider>
 
+        <activity android:name=".PictureProcessActivity">
+
+        </activity>
+        <activity android:name=".JointPhotoActivity">
+
+        </activity>
+        <activity android:name=".PhotoResultActivity">
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
