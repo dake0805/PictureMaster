@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case UCrop.REQUEST_CROP:
                     Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
+                    cropImage.setImageURI(null);
                     cropImage.setImageURI(cropPhoto);
                     break;
 
@@ -77,8 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void PhotoCropInCamera() {
         ImageView imageView = findViewById(R.id.imageView);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
+        /**
+         * 注意修改文件名
+         */
+        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), timeStamp + "test.jpg"));
 
         Uri originPhoto = Uri.fromFile(photoFile);
         CropPhoto(originPhoto);
