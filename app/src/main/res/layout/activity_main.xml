@@ -22,32 +22,6 @@
 <!--        app:layout_constraintVertical_bias="0.412"-->
 <!--        tools:srcCompat="@tools:sample/avatars" />-->
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="351dp"
-            android:layout_marginTop="16dp"
-            android:adjustViewBounds="true"
-            android:baselineAligned="false"
-            android:maxWidth="512pt"
-            android:maxHeight="512pt"
-            android:onClick="SharePic"
-            android:scaleType="fitCenter"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:adjustViewBounds="true"
-            android:baselineAligned="false"
-            android:maxWidth="512pt"
-            android:maxHeight="512pt"
-            android:scaleType="fitCenter"
-            tools:srcCompat="@tools:sample/avatars" />
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/button"
