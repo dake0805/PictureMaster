@@ -35,13 +35,20 @@ public class PictureProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_pic_process);
-        //刚开始按钮隐藏
+        //刚开始按钮隐藏sad
         doneButton = (Button)findViewById(R.id.done_button);
         doneButton.setVisibility(View.INVISIBLE);
         imageView = findViewById(R.id.imageView_process);
         Intent intent = getIntent();
-        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
-        imageView.setImageURI(imageUri);
+        if(intent.getStringExtra("extra_process_uri")!=null)
+        {
+            imageUri = Uri.parse(intent.getStringExtra("extra_process_uri"));
+            imageView.setImageURI(imageUri);
+        }
+        else
+        {
+            imageView.setImageResource(R.mipmap.joint_test);
+        }
     }
 
     protected void OnResume(){

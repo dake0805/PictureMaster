@@ -21,14 +21,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * to do
- * 存储空间权限申请 done
- * 保存图片 done
- * 明天带学生证   done
- */
-
-
 public class MainActivity extends AppCompatActivity {
 
     public static final int CHOOSE_PICTURE = 1;
@@ -125,13 +117,13 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     ImageUri = data.getData();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_process_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     //CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
                     ImageUri = getCameraPhotoUri();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_process_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
             }
