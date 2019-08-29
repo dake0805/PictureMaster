@@ -18,12 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static androidx.core.content.FileProvider.getUriForFile;
 
 public class PictureProcessActivity extends AppCompatActivity {
 
@@ -59,7 +62,17 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageView.setImageURI(imageUri);
                     break;
                 case UCrop.REQUEST_CROP:
-                    imageUri = UCrop.getOutput(data);          //得到的裁剪结果URI
+                    imageUri = UCrop.getOutput(data);
+                    File tempFile = new File(imageUri.getPath());
+
+                    try {
+                        imageUri = Uri.parse(
+                                android.provider.MediaStore.Images.Media.insertImage(
+                                        getContentResolver(),
+                                        tempFile.getAbsolutePath(), null, null));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     doneButton.setVisibility(View.VISIBLE);
@@ -74,11 +87,9 @@ public class PictureProcessActivity extends AppCompatActivity {
     public void EditClick(View view) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
 
-        //////////////Uri destinationUri格式:file://*
-
         UCrop.of(imageUri, destinationUri)
                 .withMaxResultSize(1920, 1080)
-                .start(this)
+                .start(this);
     }
 
     public void DoneClick(View view) {

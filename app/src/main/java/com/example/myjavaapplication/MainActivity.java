@@ -26,6 +26,7 @@ import java.util.Date;
  * 存储空间权限申请 done
  * 保存图片 done
  * 明天带学生证   done
+ * onNewIntent是什么
  */
 
 
