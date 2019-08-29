@@ -1,33 +1,23 @@
 package com.example.myjavaapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.roger.gifloadinglibrary.GifLoadingView;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -140,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     //CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
-                    ImageUri = PhotoCropInCamera();
+                    ImageUri = getCameraPhotoUri();
                     sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
@@ -151,20 +141,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public Uri PhotoCropInCamera() {
+    public Uri getCameraPhotoUri() {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
         /**
          * 注意修改文件名
          */
-        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), timeStamp + "test.jpg"));
+//        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), timeStamp + "test.jpg"));
 
         //获得Uri
-        Uri originPhoto = Uri.fromFile(photoFile);
+        Uri originPhoto = null;
         //CropPhoto(originPhoto);
-        return originPhoto;
-    }
+        if (photoFile != null) {
+            originPhoto = FileProvider.getUriForFile(this,
+                    "com.example.myjavaapplication",
+                    photoFile);
+        }
 
+        return originPhoto;
+
+    }
 
     //拍照前创建photo文件，在/mnt/sdcard/DCIM下
     private File createImageFile() throws IOException {

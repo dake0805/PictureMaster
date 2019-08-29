@@ -30,12 +30,12 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Uri imageUri;
     public static final int CHOOSE_PICTURE = 1;
 
-    protected void onCreate(Bundle savaInstanceState){
+    protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_pic_process);
         imageView = findViewById(R.id.imageView);
         Intent intent = getIntent();
-        imageUri =Uri.parse(intent.getStringExtra("extra_uri"));
+        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
         imageView.setImageURI(imageUri);
     }
 
@@ -55,7 +55,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
     }
 
-    public void EditClick(View view){
+    public void EditClick(View view) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
         UCrop.of(imageUri, destinationUri)
                 .withMaxResultSize(1920, 1080)
@@ -91,19 +91,16 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     //share button 绑定
-    public void SharePhoto(View view){
-        if(imageUri!=null)
-        {
-            Log.d("uri",imageUri.toString());
+    public void SharePhoto(View view) {
+        if (imageUri != null) {
+            //   Log.d("uri",imageUri.toString());
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.putExtra(Intent.EXTRA_STREAM,imageUri);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
             shareIntent.setType("image/*");
-            startActivity(Intent.createChooser(shareIntent,"分享到"));
-        }
-        else
-        {
-            Log.d("test","uri not exit");
+            startActivity(Intent.createChooser(shareIntent, "分享到"));
+        } else {
+            Log.d("test", "uri not exit");
         }
 
     }
@@ -114,6 +111,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         selectPhoto.setType("image/*");
         startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
+
     /**
      * 保存图片到外部存储    /storage/0/Picture/Save
      * 使用文件输入输出流
@@ -145,5 +143,4 @@ public class PictureProcessActivity extends AppCompatActivity {
         out.close();
         in.close();
     }
-
 }
