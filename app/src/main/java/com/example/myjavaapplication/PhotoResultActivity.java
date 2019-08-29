@@ -31,13 +31,13 @@ public class PhotoResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savaInstanceState){
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_photo_result);
-//        imageView = (ImageView)findViewById(R.id.imageResult);
-//        Intent intent = getIntent();
-//        originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
-//        if(originImageUri!=null)
-//        {
-//            imageView.setImageURI(originImageUri);
-//        }
+        imageView = (ImageView)findViewById(R.id.imageResult);
+        Intent intent = getIntent();
+        originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
+        if(originImageUri!=null)
+        {
+            imageView.setImageURI(originImageUri);
+        }
     }
 
     public void close_click(View view){

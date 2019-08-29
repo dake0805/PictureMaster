@@ -35,7 +35,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_pic_process);
-        //刚开始按钮隐藏sad
+        //刚开始按钮隐藏
         doneButton = (Button)findViewById(R.id.done_button);
         doneButton.setVisibility(View.INVISIBLE);
         imageView = findViewById(R.id.imageView_process);
