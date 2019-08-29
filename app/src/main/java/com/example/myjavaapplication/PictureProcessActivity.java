@@ -43,13 +43,20 @@ public class PictureProcessActivity extends AppCompatActivity {
         doneButton.setVisibility(View.INVISIBLE);
         imageView = findViewById(R.id.imageView_process);
         Intent intent = getIntent();
-        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
-        imageView.setImageURI(imageUri);
+        if(intent.getStringExtra("extra_uri")!=null)
+        {
+            imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
+            imageView.setImageURI(imageUri);
+        }
+        else
+        {
+            imageView.setImageResource(R.mipmap.joint_test);
+        }
     }
 
     protected void OnResume() {
         imageView.setImageURI(null);
-//        imageView.setImageURI(imageUri);
+        imageView.setImageURI(imageUri);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
