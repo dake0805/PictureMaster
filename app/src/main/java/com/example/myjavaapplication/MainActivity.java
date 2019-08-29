@@ -2,11 +2,15 @@ package com.example.myjavaapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,7 +33,7 @@ import java.util.Date;
 
 /**
  * to do
- * 存储空间权限申请
+ * 存储空间权限申请 done
  * 保存图片 done
  * 明天带学生证   done
  */
@@ -41,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     //    private static final int CROP_PICTURE = 2;
     private static final int CAMERA_PICTURE = 3;
 
+
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 7;
+
     private File photoFile;
 
     //private ImageView cropImage;
@@ -51,8 +58,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        CheckPermission();
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
+    }
+
+    //检查权限
+    private void CheckPermission() {
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+        }
     }
 
     //TODO 按钮的图片设置与排版
@@ -98,6 +117,19 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, JointPhotoActivity.class);
         startActivity(intent);
     }
+
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {// If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                return;
+            } else {
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+            return;
+        }
+    }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
