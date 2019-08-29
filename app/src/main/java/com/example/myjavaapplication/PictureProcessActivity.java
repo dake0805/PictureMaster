@@ -1,5 +1,6 @@
 package com.example.myjavaapplication;
 
+import android.app.WallpaperManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -45,6 +46,11 @@ public class PictureProcessActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     imageUri = data.getData();
+                    imageView.setImageURI(null);
+                    imageView.setImageURI(imageUri);
+                    break;
+                case UCrop.REQUEST_CROP:
+                    imageUri = UCrop.getOutput(data);          //得到的裁剪结果URI
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     break;
@@ -105,10 +111,27 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     }
 
-    public void SelectPhoto(View view) {
-
+    //select button 绑定
+    public void SelectPhoto_Pre(View view){
+        Intent selectPhoto = new Intent();
+        selectPhoto.setAction(Intent.ACTION_PICK);
+        selectPhoto.setType("image/*");
+        startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
 
+    //set wallpaper button 绑定
+    public void SetWallpaper(View view){
+        final WallpaperManager wpManager = WallpaperManager.getInstance(this);
+        try {
+            //wpManager.setResource(R.id.imageView); //墙纸
+            InputStream in = getContentResolver().openInputStream(imageUri);
+            wpManager.setStream(in);
+            in.close();
+            Toast.makeText(PictureProcessActivity.this, "更换壁纸成功", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * 保存图片到外部存储    /storage/0/Picture/Save
      * 使用文件输入输出流
