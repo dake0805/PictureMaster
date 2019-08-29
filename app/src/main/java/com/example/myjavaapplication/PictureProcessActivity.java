@@ -108,8 +108,11 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     }
 
-    public void SelectPhoto(View view){
-
+    public void SelectPhoto_Pre(View view){
+        Intent selectPhoto = new Intent();
+        selectPhoto.setAction(Intent.ACTION_PICK);
+        selectPhoto.setType("image/*");
+        startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
     /**
      * 保存图片到外部存储    /storage/0/Picture/Save
