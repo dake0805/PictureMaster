@@ -36,9 +36,11 @@
         <activity android:name=".PictureProcessActivity">
 
         </activity>
+
         <activity android:name=".JointPhotoActivity">
 
         </activity>
+
         <activity android:name=".PhotoResultActivity">
 
         </activity>

@@ -29,15 +29,24 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private Uri imageUri;
+    private Button doneButton;
     public static final int CHOOSE_PICTURE = 1;
 
     protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_pic_process);
-        imageView = findViewById(R.id.imageView);
+        //刚开始按钮隐藏
+        doneButton = (Button)findViewById(R.id.done_button);
+        doneButton.setVisibility(View.INVISIBLE);
+        imageView = findViewById(R.id.imageView_process);
         Intent intent = getIntent();
         imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
         imageView.setImageURI(imageUri);
+    }
+
+    protected void OnResume(){
+        imageView.setImageURI(null);
+//        imageView.setImageURI(imageUri);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -53,6 +62,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageUri = UCrop.getOutput(data);          //得到的裁剪结果URI
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
+                    doneButton.setVisibility(View.VISIBLE);
                     break;
             }
 
@@ -66,6 +76,20 @@ public class PictureProcessActivity extends AppCompatActivity {
         UCrop.of(imageUri, destinationUri)
                 .withMaxResultSize(1920, 1080)
                 .start(this);
+    }
+
+    public void DoneClick(View view){
+        Intent intent = new Intent(PictureProcessActivity.this,PhotoResultActivity.class);
+        intent.putExtra("extra_resultUri",imageUri);
+        startActivity(intent);
+    }
+
+    //select button 绑定
+    public void SelectPhoto_Pre(View view){
+        Intent selectPhoto = new Intent();
+        selectPhoto.setAction(Intent.ACTION_PICK);
+        selectPhoto.setType("image/*");
+        startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
 
     public void SavePhoto(View view) {
@@ -111,13 +135,7 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     }
 
-    //select button 绑定
-    public void SelectPhoto_Pre(View view){
-        Intent selectPhoto = new Intent();
-        selectPhoto.setAction(Intent.ACTION_PICK);
-        selectPhoto.setType("image/*");
-        startActivityForResult(selectPhoto, CHOOSE_PICTURE);
-    }
+
 
     //set wallpaper button 绑定
     public void SetWallpaper(View view){
