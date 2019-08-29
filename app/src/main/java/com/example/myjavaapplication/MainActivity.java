@@ -174,67 +174,6 @@ public class MainActivity extends AppCompatActivity {
 //        cropImage.setImageURI(null);
 //    }
 
-    public void SavePhoto(View view) {
-//        ImageView imageView = findViewById(R.id.imageView);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Save Photo");
-        builder.setMessage("test");
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
-
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
-
-                try {
-                    SavePhotoInStorage();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-            }
-        });
-
-        AlertDialog b = builder.create();
-        b.show();
-
-    }
-
-
-    /**
-     * 保存图片到外部存储    /storage/0/Picture/Save
-     * 使用文件输入输出流
-     *
-     * @throws IOException
-     */
-    private void SavePhotoInStorage() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/Save");
-        if (!storageDir.exists()) {
-            storageDir.mkdir();
-        }
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        // Save a file: path for use with ACTION_VIEW intents
-
-        InputStream in = getContentResolver().openInputStream(imageCurrent);
-        OutputStream out = new FileOutputStream(new File(image.getPath()));
-        byte[] buf = new byte[1024];
-        int len;
-        while ((len = in.read(buf)) > 0) {
-            out.write(buf, 0, len);
-        }
-        out.close();
-        in.close();
-    }
 
 }
 
