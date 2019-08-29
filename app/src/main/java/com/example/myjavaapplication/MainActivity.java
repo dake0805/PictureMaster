@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 //        if (intent.resolveActivity(getPackageManager()) != null) {
 //            startActivityForResult(intent, CAMERA_PICTURE);
 //        }
+        //test hrn
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
