@@ -45,6 +45,7 @@ public class PictureProcessActivity extends AppCompatActivity {
 //                    Intent intent = new Intent(PictureProcessActivity.this,PhotoResultActivity.class);
 //                    intent.putExtra("extra_uri",cropPhoto.toString());
 //                    startActivity(intent);
+                    imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     break;
             }
