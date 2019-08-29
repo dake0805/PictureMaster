@@ -31,7 +31,7 @@ import java.util.Date;
  * to do
  * 存储空间权限申请
  * 保存图片 done
- * 明天带学生证
+ * 明天带学生证   done
  */
 
 
@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void jointPhoto(View view){
-        Intent intent = new Intent(MainActivity.this,JointPhotoActivity.class);
+    public void jointPhoto(View view) {
+        Intent intent = new Intent(MainActivity.this, JointPhotoActivity.class);
         startActivity(intent);
     }
 
@@ -103,26 +103,21 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             //获得的Uri
+
             Uri ImageUri;
-            Intent sendPicUriIntent = new Intent(MainActivity.this,PictureProcessActivity.class);
+            Intent sendPicUriIntent = new Intent(MainActivity.this, PictureProcessActivity.class);
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     ImageUri = data.getData();
-                    sendPicUriIntent.putExtra("extra_uri",ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     //CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
                     ImageUri = PhotoCropInCamera();
-                    sendPicUriIntent.putExtra("extra_uri",ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
-//                case UCrop.REQUEST_CROP:
-//                    Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
-//                    imageCurrent = cropPhoto;
-//                    cropImage.setImageURI(null);                //刷新ImageView
-//                    cropImage.setImageURI(cropPhoto);
-//                    break;
             }
 
         } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -152,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
         //CropPhoto(originPhoto);
         return originPhoto;
     }
-
-
 
 
     //拍照前创建photo文件，在/mnt/sdcard/DCIM下
