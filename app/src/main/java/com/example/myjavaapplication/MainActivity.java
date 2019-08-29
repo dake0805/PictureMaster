@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -47,12 +49,40 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri imageCurrent;
 
+    private ImageView imageView;
+    private ImageView cropImage ;
+    private Uri originImageUri;
+    private Uri destinationUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
+        imageView = findViewById(R.id.imageView);
+        cropImage = findViewById(R.id.imageView2);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    //分享函数
+    public void SharePic(){
+        Intent shareImageIntent = new Intent(Intent.ACTION_SEND);
+        shareImageIntent.putExtra(Intent.EXTRA_STREAM,originImageUri);
+        shareImageIntent.setType("image/*");
+        startActivity(Intent.createChooser(shareImageIntent,"分享到"));
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.share:
+                SharePic();
+            default:break;
+        }
+        return true;
     }
 
     //TODO 按钮的图片设置与排版
@@ -65,6 +95,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Button CAMERA
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case CHOOSE_PICTURE:
+                    originImageUri = data.getData();
+//                    //分享
+//                    Intent shareImageIntent = new Intent(Intent.ACTION_SEND);
+//                    shareImageIntent.putExtra(Intent.EXTRA_STREAM,originImageUri);
+//                    shareImageIntent.setType("image/*");
+//                    startActivity(Intent.createChooser(shareImageIntent,"分享到"));
+                    CropPhoto(originImageUri);
+                    break;
+                case CAMERA_PICTURE:
+                    PhotoCropInCamera();
+                    break;
+                case UCrop.REQUEST_CROP:
+                    Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
+                    cropImage.setImageURI(cropPhoto);
+                    break;
+
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable cropError = UCrop.getError(data);
+        }
+    }
+
+    //处理照片
+    private void CropPhoto(Uri originPhoto) {
+        destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
+
+        UCrop.of(originPhoto, destinationUri)
+                .withMaxResultSize(1920, 1080)
+                .start(this);
+    }
+
+    public void PhotoCropInCamera() {
+        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
+
+        Uri originPhoto = Uri.fromFile(photoFile);
+        CropPhoto(originPhoto);
+    }
+
+    //CAMERA button 绑定函数
     public void cameraShotPhoto(View view) {
 //        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        if (intent.resolveActivity(getPackageManager()) != null) {
@@ -170,10 +245,13 @@ public class MainActivity extends AppCompatActivity {
         return image;
     }
 
-//    public void ClearPhoto(View view) {
-//        cropImage.setImageURI(null);
-//    }
+    //CLEAR button绑定函数
+    public void ClearPhoto(View view) {
+        ImageView imageView = findViewById(R.id.imageView);
+        ImageView imageView2 = findViewById(R.id.imageView2);
+        imageView.setImageURI(null);
+        imageView2.setImageURI(null);
+    }
 
 
 }
-
