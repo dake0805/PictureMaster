@@ -49,6 +49,11 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     break;
+                case UCrop.REQUEST_CROP:
+                    imageUri = UCrop.getOutput(data);          //得到的裁剪结果URI
+                    imageView.setImageURI(null);
+                    imageView.setImageURI(imageUri);
+                    break;
             }
 
         } else if (resultCode == UCrop.RESULT_ERROR) {
