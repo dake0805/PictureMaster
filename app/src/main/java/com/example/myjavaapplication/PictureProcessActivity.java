@@ -91,26 +91,24 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     //share button 绑定
-    public void SharePhoto(View view){
-        if(imageUri!=null)
-        {
-            Log.d("uri",imageUri.toString());
+    public void SharePhoto(View view) {
+        if (imageUri != null) {
+            //   Log.d("uri",imageUri.toString());
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.putExtra(Intent.EXTRA_STREAM,imageUri);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
             shareIntent.setType("image/*");
-            startActivity(Intent.createChooser(shareIntent,"分享到"));
-        }
-        else
-        {
-            Log.d("test","uri not exit");
+            startActivity(Intent.createChooser(shareIntent, "分享到"));
+        } else {
+            Log.d("test", "uri not exit");
         }
 
     }
 
-    public void SelectPhoto(View view){
+    public void SelectPhoto(View view) {
 
     }
+
     /**
      * 保存图片到外部存储    /storage/0/Picture/Save
      * 使用文件输入输出流
