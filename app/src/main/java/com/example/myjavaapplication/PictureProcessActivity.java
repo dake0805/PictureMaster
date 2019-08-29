@@ -27,12 +27,12 @@ public class PictureProcessActivity extends AppCompatActivity {
     private ImageView imageView;
     private Uri imageUri;
 
-    protected void onCreate(Bundle savaInstanceState){
+    protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_pic_process);
         imageView = findViewById(R.id.imageView);
         Intent intent = getIntent();
-        imageUri =Uri.parse(intent.getStringExtra("extra_uri"));
+        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
         imageView.setImageURI(imageUri);
     }
 
@@ -54,7 +54,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
     }
 
-    public void EditClick(View view){
+    public void EditClick(View view) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
         UCrop.of(imageUri, destinationUri)
                 .withMaxResultSize(1920, 1080)
@@ -121,5 +121,4 @@ public class PictureProcessActivity extends AppCompatActivity {
         out.close();
         in.close();
     }
-
 }
