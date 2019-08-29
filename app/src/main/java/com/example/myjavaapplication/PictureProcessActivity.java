@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private Uri imageUri;
+    public static final int CHOOSE_PICTURE = 1;
 
     protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
@@ -40,15 +43,13 @@ public class PictureProcessActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case UCrop.REQUEST_CROP:
-                    imageUri = UCrop.getOutput(data);          //得到的裁剪结果URI
-//                    Intent intent = new Intent(PictureProcessActivity.this,PhotoResultActivity.class);
-//                    intent.putExtra("extra_uri",cropPhoto.toString());
-//                    startActivity(intent);
+                case CHOOSE_PICTURE:
+                    imageUri = data.getData();
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     break;
             }
+
         } else if (resultCode == UCrop.RESULT_ERROR) {
             final Throwable cropError = UCrop.getError(data);
         }
@@ -89,7 +90,27 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     }
 
+    //share button 绑定
+    public void SharePhoto(View view){
+        if(imageUri!=null)
+        {
+            Log.d("uri",imageUri.toString());
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_STREAM,imageUri);
+            shareIntent.setType("image/*");
+            startActivity(Intent.createChooser(shareIntent,"分享到"));
+        }
+        else
+        {
+            Log.d("test","uri not exit");
+        }
 
+    }
+
+    public void SelectPhoto(View view){
+
+    }
     /**
      * 保存图片到外部存储    /storage/0/Picture/Save
      * 使用文件输入输出流
