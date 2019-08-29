@@ -4,20 +4,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.roger.gifloadinglibrary.GifLoadingView;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -55,15 +51,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView=findViewById(R.id.background);
-        imageView.setImageResource(R.drawable.mumu2);
+        switch((int) (1+Math.random()*(10-1+1))) {
+            case 1:imageView.setImageResource(R.drawable.p1);
+                break;
+            case 2:imageView.setImageResource(R.drawable.p2);
+                break;
+            case 3:imageView.setImageResource(R.drawable.p3);
+                break;
+            case 4:imageView.setImageResource(R.drawable.p4);
+                break;
+            case 5:imageView.setImageResource(R.drawable.p5);
+                break;
+            case 6:imageView.setImageResource(R.drawable.p6);
+                break;
+            case 7:imageView.setImageResource(R.drawable.p7);
+                break;
+            case 8:imageView.setImageResource(R.drawable.p8);
+                break;
+            case 9:imageView.setImageResource(R.drawable.p9);
+                break;
+            case 10:imageView.setImageResource(R.drawable.p10);
+                break;
+        }
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
     @Override
     protected void onResume(){
         super.onResume();
-        imageView=findViewById(R.id.background);
-        imageView.setImageResource(R.drawable.mumu1);
     }
     //TODO 按钮的图片设置与排版
     //Button SELECT
