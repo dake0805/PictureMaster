@@ -1,7 +1,6 @@
 package com.example.myjavaapplication;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +19,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savaInstanceState){
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_pic_process);
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.downloadImage);
         Intent intent = getIntent();
         ImageUri =Uri.parse(intent.getStringExtra("extra_uri"));
         imageView.setImageURI(ImageUri);

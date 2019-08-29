@@ -5,7 +5,7 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.example.myjavaapplication"
-        minSdkVersion 26
+        minSdkVersion 23//26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -28,5 +28,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.github.krokyze:ucrop:2.2.0-native'
     implementation 'com.roger.gifloadinglibrary:gifloadinglibrary:1.0.0'
+    implementation 'com.mcxiaoke.volley:library:1.0.19' //添加volley框架
 
 }

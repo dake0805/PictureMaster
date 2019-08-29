@@ -6,17 +6,18 @@ import androidx.core.content.FileProvider;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.roger.gifloadinglibrary.GifLoadingView;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -243,5 +244,17 @@ public class MainActivity extends AppCompatActivity {
         in.close();
     }
 
+    public void downloadImage_OnClicked(View view) {
+        //初始化控件
+        EditText uri = (EditText)findViewById(R.id.editText_Uri);
+        ImageView downloadImage = (ImageView)findViewById(R.id.downloadImage);
+        //创建请求队列
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //创建请求
+        ImageLoader imageLoader = new ImageLoader(requestQueue,new BitmapCache());
+        //加载不到图片，加载失败，采用默认图
+        ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(downloadImage, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
+        imageLoader.get(uri.getText().toString(),imageListener);
+    }
 }
 
