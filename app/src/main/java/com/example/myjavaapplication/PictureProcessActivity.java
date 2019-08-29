@@ -33,7 +33,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 case UCrop.REQUEST_CROP:
                     Uri cropPhoto = UCrop.getOutput(data);          //得到的裁剪结果URI
                     Intent intent = new Intent(PictureProcessActivity.this,PhotoResultActivity.class);
-                    intent.putExtra("extra_uri",ImageUri.toString());
+                    intent.putExtra("extra_uri",cropPhoto.toString());
                     startActivity(intent);
                     break;
             }
