@@ -118,7 +118,10 @@ public class PictureProcessActivity extends AppCompatActivity {
     public void SetWallpaper(View view){
         final WallpaperManager wpManager = WallpaperManager.getInstance(this);
         try {
-            wpManager.setResource(R.id.imageView); //墙纸
+            //wpManager.setResource(R.id.imageView); //墙纸
+            InputStream in = getContentResolver().openInputStream(imageUri);
+            wpManager.setStream(in);
+            in.close();
             Toast.makeText(PictureProcessActivity.this, "更换壁纸成功", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
