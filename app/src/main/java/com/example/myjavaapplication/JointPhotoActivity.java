@@ -20,6 +20,7 @@ public class JointPhotoActivity extends AppCompatActivity {
 
     public void ClickToResult(View view)
     {
+        //test wyw
         Intent intent = new Intent(JointPhotoActivity.this,PhotoResultActivity.class);
         startActivity(intent);
     }

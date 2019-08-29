@@ -2,9 +2,18 @@
 
 buildscript {
     repositories {
+        //maven库
+        def cn = "http://maven.aliyun.com/nexus/content/groups/public/"
+        def abroad = "http://central.maven.org/maven2/"
+        //先从URL中下载jar若没有找到，则在artifactUrls中寻找
+        maven{
+            url cn
+            artifactUrls abroad
+        }
+        maven{
+            url "http://maven.aliyun.com/nexus/content/respositories/jcenter"
+        }
         google()
-        jcenter()
-        
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
@@ -16,9 +25,18 @@ buildscript {
 
 allprojects {
     repositories {
+        //maven库
+        def cn = "http://maven.aliyun.com/nexus/content/groups/public/"
+        def abroad = "http://central.maven.org/maven2/"
+        //先从URL中下载jar若没有找到，则在artifactUrls中寻找
+        maven{
+            url cn
+            artifactUrls abroad
+        }
+        maven{
+            url "http://maven.aliyun.com/nexus/content/respositories/jcenter"
+        }
         google()
-        jcenter()
-        
     }
 }
 
