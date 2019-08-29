@@ -1,7 +1,5 @@
 package com.example.myjavaapplication;
 
-import android.annotation.SuppressLint;
-import android.app.WallpaperManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
