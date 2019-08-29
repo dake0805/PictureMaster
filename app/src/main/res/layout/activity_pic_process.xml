@@ -37,11 +37,12 @@
         tools:layout_editor_absoluteY="655dp" />
 
     <Button
-        android:id="@+id/select"
+        android:id="@+id/select_process"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="select"
+        android:onClick="selectPhoto"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="67dp" />
 
@@ -51,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="share"
+        android:onClick="SharePhoto"
         app:layout_constraintStart_toEndOf="@+id/select"
         tools:layout_editor_absoluteY="67dp" />
 

@@ -41,7 +41,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int CHOOSE_PICTURE = 1;
+    public static final int CHOOSE_PICTURE = 1;
     //    private static final int CROP_PICTURE = 2;
     private static final int CAMERA_PICTURE = 3;
 
