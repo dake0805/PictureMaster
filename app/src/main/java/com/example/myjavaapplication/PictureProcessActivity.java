@@ -18,12 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static androidx.core.content.FileProvider.getUriForFile;
 
 public class PictureProcessActivity extends AppCompatActivity {
 
@@ -32,26 +35,19 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Button doneButton;
     public static final int CHOOSE_PICTURE = 1;
 
-    protected void onCreate(Bundle savaInstanceState) {
-        super.onCreate(savaInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_process);
         //刚开始按钮隐藏
-        doneButton = (Button)findViewById(R.id.done_button);
+        doneButton = (Button) findViewById(R.id.done_button);
         doneButton.setVisibility(View.INVISIBLE);
         imageView = findViewById(R.id.imageView_process);
         Intent intent = getIntent();
-        if(intent.getStringExtra("extra_process_uri")!=null)
-        {
-            imageUri = Uri.parse(intent.getStringExtra("extra_process_uri"));
-            imageView.setImageURI(imageUri);
-        }
-        else
-        {
-            imageView.setImageResource(R.mipmap.joint_test);
-        }
+        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
+        imageView.setImageURI(imageUri);
     }
 
-    protected void OnResume(){
+    protected void OnResume() {
         imageView.setImageURI(null);
 //        imageView.setImageURI(imageUri);
     }
@@ -66,7 +62,17 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageView.setImageURI(imageUri);
                     break;
                 case UCrop.REQUEST_CROP:
-                    imageUri = UCrop.getOutput(data);          //得到的裁剪结果URI
+                    imageUri = UCrop.getOutput(data);
+                    File tempFile = new File(imageUri.getPath());
+
+                    try {
+                        imageUri = Uri.parse(
+                                android.provider.MediaStore.Images.Media.insertImage(
+                                        getContentResolver(),
+                                        tempFile.getAbsolutePath(), null, null));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     doneButton.setVisibility(View.VISIBLE);
@@ -80,25 +86,22 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     public void EditClick(View view) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
+
+        //////////////Uri destinationUri格式:file://*
+
         UCrop.of(imageUri, destinationUri)
                 .withMaxResultSize(1920, 1080)
                 .start(this);
     }
 
-    public void DoneClick(View view){
-        Intent intent = new Intent(PictureProcessActivity.this,PhotoResultActivity.class);
-        intent.putExtra("extra_resultUri",imageUri);
-        startActivity(intent);
-    }
-
-    public void HomeClick(View view)
-    {
-        Intent intent = new Intent(PictureProcessActivity.this,MainActivity.class);
+    public void DoneClick(View view) {
+        Intent intent = new Intent(PictureProcessActivity.this, PhotoResultActivity.class);
+        intent.putExtra("extra_resultUri", imageUri);
         startActivity(intent);
     }
 
     //select button 绑定
-    public void SelectPhoto_Pre(View view){
+    public void SelectPhoto_Pre(View view) {
         Intent selectPhoto = new Intent();
         selectPhoto.setAction(Intent.ACTION_PICK);
         selectPhoto.setType("image/*");
@@ -149,9 +152,8 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
 
-
     //set wallpaper button 绑定
-    public void SetWallpaper(View view){
+    public void SetWallpaper(View view) {
         final WallpaperManager wpManager = WallpaperManager.getInstance(this);
         try {
             //wpManager.setResource(R.id.imageView); //墙纸
@@ -163,6 +165,7 @@ public class PictureProcessActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     /**
      * 保存图片到外部存储    /storage/0/Picture/Save
      * 使用文件输入输出流

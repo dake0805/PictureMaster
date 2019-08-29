@@ -27,21 +27,33 @@ public class PhotoResultActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private Uri originImageUri;
+
     //private Button setBackground;
-    protected void onCreate(Bundle savaInstanceState){
-        super.onCreate(savaInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_result);
-        imageView = (ImageView)findViewById(R.id.imageResult);
-        Intent intent = getIntent();
+//        imageView = (ImageView) findViewById(R.id.imageResult);
+//        Intent intent = getIntent();
+//        originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
+//        if (originImageUri != null) {
+//            imageView.setImageURI(originImageUri);
+//        }
+    }
+
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setContentView(R.layout.activity_photo_result);
+        imageView = (ImageView) findViewById(R.id.imageResult);
+        setIntent(intent);
         originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
-        if(originImageUri!=null)
-        {
+        if (originImageUri != null) {
             imageView.setImageURI(originImageUri);
         }
     }
 
-    public void close_click(View view){
-        finish();
+    public void close_click(View view) {
+        Intent intent = new Intent(PhotoResultActivity.this, PictureProcessActivity.class);
+        startActivity(intent);
     }
 
     //share button 绑定
@@ -60,7 +72,7 @@ public class PhotoResultActivity extends AppCompatActivity {
     }
 
     //set wallpaper button 绑定
-    public void SetWallpaper(View view){
+    public void SetWallpaper(View view) {
         final WallpaperManager wpManager = WallpaperManager.getInstance(this);
         try {
             //wpManager.setResource(R.id.imageView); //墙纸
