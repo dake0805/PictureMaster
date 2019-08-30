@@ -1,8 +1,6 @@
 package com.example.myjavaapplication;
 
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,9 +16,9 @@ public class JointPhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jointphoto);
     }
 
-    public void ClickToResult(View view)
+    public void JointDoneClick(View view)
     {
-        Intent intent = new Intent(JointPhotoActivity.this,PhotoResultActivity.class);
+        Intent intent = new Intent(JointPhotoActivity.this,PictureProcessActivity.class);
         startActivity(intent);
     }
 }
