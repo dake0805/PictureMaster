@@ -85,8 +85,11 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         //////////////Uri destinationUri格式:file://*
 
-    
-        UCrop.Options.setToolbarColor(Color.parseColor("#000000"));
+        UCrop.Options options = new UCrop.Options();
+//        options.setToolbarColor(Color.GREEN);
+//        options.setActiveWidgetColor(Color.GREEN);
+//        options.setCropFrameColor(Color.GREEN);
+//        options.setStatusBarColor(Color.GREEN);
 
         UCrop.of(imageUri, destinationUri)
                 .withMaxResultSize(1920, 1080)
