@@ -56,8 +56,8 @@
 
     <ImageView
         android:id="@+id/background"
-        android:layout_width="408dp"
-        android:layout_height="727dp"
+        android:layout_width="287dp"
+        android:layout_height="560dp"
         android:fadingEdge="vertical"
         android:foregroundGravity="fill_vertical"
         android:verticalScrollbarPosition="defaultPosition"
@@ -66,8 +66,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.272"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@android:color/background_dark"
+        app:srcCompat="@drawable/background"
+        tools:srcCompat="@drawable/background"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,32 +47,48 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        imageView = findViewById(R.id.background);
+        switch ((int) (1 + Math.random() * (10 - 1 + 1))) {
+            case 1:
+                imageView.setImageResource(R.drawable.p1);
+                break;
+            case 2:
+                imageView.setImageResource(R.drawable.p2);
+                break;
+            case 3:
+                imageView.setImageResource(R.drawable.p3);
+                break;
+            case 4:
+                imageView.setImageResource(R.drawable.p4);
+                break;
+            case 5:
+                imageView.setImageResource(R.drawable.p5);
+                break;
+            case 6:
+                imageView.setImageResource(R.drawable.p6);
+                break;
+            case 7:
+                imageView.setImageResource(R.drawable.p7);
+                break;
+            case 8:
+                imageView.setImageResource(R.drawable.p8);
+                break;
+            case 9:
+                imageView.setImageResource(R.drawable.p9);
+                break;
+            case 10:
+                imageView.setImageResource(R.drawable.p10);
+                break;
+        }
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView=findViewById(R.id.background);
-        switch((int) (1+Math.random()*(10-1+1))) {
-            case 1:imageView.setImageResource(R.drawable.p1);
-                break;
-            case 2:imageView.setImageResource(R.drawable.p2);
-                break;
-            case 3:imageView.setImageResource(R.drawable.p3);
-                break;
-            case 4:imageView.setImageResource(R.drawable.p4);
-                break;
-            case 5:imageView.setImageResource(R.drawable.p5);
-                break;
-            case 6:imageView.setImageResource(R.drawable.p6);
-                break;
-            case 7:imageView.setImageResource(R.drawable.p7);
-                break;
-            case 8:imageView.setImageResource(R.drawable.p8);
-                break;
-            case 9:imageView.setImageResource(R.drawable.p9);
-                break;
-            case 10:imageView.setImageResource(R.drawable.p10);
-                break;
-        }
+        imageView.setImageResource(R.drawable.p1);
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
