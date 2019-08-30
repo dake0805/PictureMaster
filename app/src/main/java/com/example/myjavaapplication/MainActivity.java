@@ -8,19 +8,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -53,16 +46,6 @@ public class MainActivity extends AppCompatActivity {
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
 
-        RequestQueue requestQueue;
-        //EditText txt_url = (EditText)findViewById(R.id.text);
-        //ImageView volley_image = (ImageView)findViewById(R.id.downloadImage2);
-        Button btn_dwnload = findViewById(R.id.btnDownload);
-        btn_dwnload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadCacheImage();
-            }
-        });
     }
 
     //检查权限
@@ -192,78 +175,12 @@ public class MainActivity extends AppCompatActivity {
         photoFile = image;
         return image;
     }
-    /*
-    public void onClick(View v) {
 
-        //加载网络图片
-        //loadImage();
-        //加载网络图片，使用了缓存
-        //loadCacheImage();
-
-
+    //下载图片功能演示
+    //点击主界面DOWNLOAD按钮后进入DownloadActivity进行演示
+    public void btnDownload_OnClicked(View view) {
+        Intent intent = new Intent(MainActivity.this,DownloadActivity.class);
+        startActivity(intent);
     }
-
-     */
-
-    //加载网络图片，使用了缓存
-    private void loadCacheImage(){
-        //初始化控件
-
-        //创建网络请求队列
-        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-        EditText txt_url = (EditText)findViewById(R.id.text);
-        ImageView volley_image = (ImageView)findViewById(R.id.downloadImage2);
-        //获取网络图片路径url
-        if(txt_url.getText()!=null) {
-            String url = txt_url.getText().toString();
-
-            //创建请求
-            ImageLoader imageLoader = new ImageLoader(requestQueue, new BitmapCache());//带缓存
-            //加载不到图片或加载失败，采用默认图
-            ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(volley_image, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
-
-            imageLoader.get(url, imageListener);
-        }
-        else{
-            Toast.makeText(this,"错误",Toast.LENGTH_LONG).show();
-        }
-
-
-    }
-/*
-    //加载网络图片
-    private void loadImage(){
-        //创建网络请求队列
-        requestQueue = Volley.newRequestQueue(MainActivity.this);
-
-        //获取网络图片路径url
-        String url = txt_url.getText().toString();
-
-        //创建请求
-        ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-                //正确接收图volley_image.setImageBitmap(response);
-
-            }
-        }, 0, 0, Bitmap.Config.RGB_565, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //接收图片错误
-                volley_image.setImageResource(R.mipmap.ic_launcher);//默认图片
-
-            }
-        });
-        //将请求加入队列
-        requestQueue.add(imageRequest);
-
-
-    }
-
-
- */
-
-
-
 }
 

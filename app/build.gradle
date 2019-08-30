@@ -29,4 +29,5 @@ dependencies {
     implementation 'com.github.krokyze:ucrop:2.2.0-native'
     implementation 'com.roger.gifloadinglibrary:gifloadinglibrary:1.0.0'
 
+
 }
