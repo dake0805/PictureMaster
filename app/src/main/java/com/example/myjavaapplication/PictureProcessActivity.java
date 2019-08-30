@@ -62,14 +62,8 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageUri = UCrop.getOutput(data);
                     File tempFile = new File(imageUri.getPath());
 
-                    try {
-                        imageUri = Uri.parse(
-                                android.provider.MediaStore.Images.Media.insertImage(
-                                        getContentResolver(),
-                                        tempFile.getAbsolutePath(), null, null));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+
+
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     break;
