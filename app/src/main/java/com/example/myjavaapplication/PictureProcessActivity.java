@@ -38,23 +38,15 @@ public class PictureProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_process);
-        //刚开始按钮隐藏
         doneButton = (Button) findViewById(R.id.done_button);
-//        doneButton.setVisibility(View.INVISIBLE);
         imageView = findViewById(R.id.imageView_process);
         Intent intent = getIntent();
         if (intent.getStringExtra("extra_uri") != null) {
             imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
             imageView.setImageURI(imageUri);
-        } else {
-            imageView.setImageResource(R.mipmap.joint_test);
         }
     }
 
-    protected void OnResume() {
-        imageView.setImageURI(null);
-        imageView.setImageURI(imageUri);
-    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -79,7 +71,6 @@ public class PictureProcessActivity extends AppCompatActivity {
                     }
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
-                    doneButton.setVisibility(View.VISIBLE);
                     break;
             }
 
@@ -101,13 +92,13 @@ public class PictureProcessActivity extends AppCompatActivity {
     public void DoneClick(View view) {
         Intent intent = new Intent(PictureProcessActivity.this, PhotoResultActivity.class);
         intent.putExtra("extra_resultUri", imageUri.toString());
-//        Bundle bundle = new Bundle();
-//        bundle.putString("extra_resultUri",imageUri.toString());
+
         startActivity(intent);
     }
 
     public void HomeClick(View view){
-        finish();
+        Intent intent = new Intent(PictureProcessActivity.this,MainActivity.class);
+        startActivity(intent);
     }
     //select button 绑定
     public void SelectPhoto_Pre(View view) {
@@ -117,93 +108,4 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
 
-    public void SavePhoto(View view) {
-//        ImageView imageView = findViewById(R.id.imageView);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Save Photo");
-        builder.setMessage("test");
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
-
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
-                try {
-                    SavePhotoInStorage();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-            }
-        });
-
-        AlertDialog b = builder.create();
-        b.show();
-
-    }
-
-    //share button 绑定
-    public void SharePhoto(View view) {
-        if (imageUri != null) {
-            //   Log.d("uri",imageUri.toString());
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-            shareIntent.setType("image/*");
-            startActivity(Intent.createChooser(shareIntent, "分享到"));
-        } else {
-            Log.d("test", "uri not exit");
-        }
-
-    }
-
-
-    //set wallpaper button 绑定
-    public void SetWallpaper(View view) {
-        final WallpaperManager wpManager = WallpaperManager.getInstance(this);
-        try {
-            //wpManager.setResource(R.id.imageView); //墙纸
-            InputStream in = getContentResolver().openInputStream(imageUri);
-            wpManager.setStream(in);
-            in.close();
-            Toast.makeText(PictureProcessActivity.this, "更换壁纸成功", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 保存图片到外部存储    /storage/0/Picture/Save
-     * 使用文件输入输出流
-     *
-     * @throws IOException
-     */
-    private void SavePhotoInStorage() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/Save");
-        if (!storageDir.exists()) {
-            storageDir.mkdir();
-        }
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        // Save a file: path for use with ACTION_VIEW intents
-
-        InputStream in = getContentResolver().openInputStream(imageUri);
-        OutputStream out = new FileOutputStream(new File(image.getPath()));
-        byte[] buf = new byte[1024];
-        int len;
-        while ((len = in.read(buf)) > 0) {
-            out.write(buf, 0, len);
-        }
-        out.close();
-        in.close();
-    }
 }

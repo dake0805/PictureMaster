@@ -93,11 +93,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void jointPhoto(View view) {
-        Intent intent = new Intent(MainActivity.this, JointPhotoActivity.class);
-        startActivity(intent);
-    }
-
+//    public void jointPhoto(View view) {
+//        Intent intent = new Intent(MainActivity.this, JointPhotoActivity.class);
+//        startActivity(intent);
+//    }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {// If request is cancelled, the result arrays are empty.
