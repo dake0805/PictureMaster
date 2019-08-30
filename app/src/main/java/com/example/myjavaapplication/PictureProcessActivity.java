@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -34,6 +35,22 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Uri imageUri;
     private Button doneButton;
     public static final int CHOOSE_PICTURE = 1;
+
+    //点击美化按钮弹出界面所需的5个变量
+    private TextView backgroudforbrauty;
+    private  Button highfraction;
+    private  Button Stylemigration;
+    private  Button beauty;
+    private  boolean isbeautybutton =true;
+
+    //点击添加按钮弹出界面所需的6个变量
+    private TextView backgroudforadd;
+    private  Button addtext;
+    private  Button addaccessories;
+    private  Button addphotoframe;
+    private  Button add;
+    private  boolean isaddbutton =true;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,5 +220,63 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
         out.close();
         in.close();
+    }
+
+
+
+
+
+    // private TextView backgroudforbrauty;
+    //private  Button highfraction;
+    //private  Button Stylemigration;
+    //private  Button beauty;
+    //private  boolean isbeautybutton =true;
+    public void btn_onclickofbeauty(View view){
+        backgroudforbrauty=(TextView)findViewById(R.id.backgroundforbeauty);
+        highfraction=(Button)findViewById(R.id.highfraction);
+        Stylemigration=(Button)findViewById(R.id.Stylemigration);
+
+        if(isbeautybutton){
+            backgroudforbrauty.setVisibility(View.VISIBLE);
+            highfraction.setVisibility(View.VISIBLE);
+            Stylemigration.setVisibility(View.VISIBLE);
+            isbeautybutton=false;
+        }
+        else{
+            backgroudforbrauty.setVisibility(View.INVISIBLE);
+            highfraction.setVisibility(View.INVISIBLE);
+            Stylemigration.setVisibility(View.INVISIBLE);
+            isbeautybutton=true;
+        }
+
+    }
+    //点击添加按钮弹出界面所需的6个变量
+    //private TextView backgroudforadd;
+    //private  Button addtext;
+    //private  Button addaccessories;
+    //private  Button addaddphotoframe;
+    //private  Button add;
+    //private  boolean isaddbutton =true;
+    public void btn_onclickofadd(View view){
+       backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
+        addtext=(Button)findViewById(R.id.addtext);
+        addaccessories=(Button)findViewById(R.id.addaccessories);
+        addphotoframe=(Button)findViewById(R.id.addphotoframe);
+
+        if(isbeautybutton){
+            backgroudforadd.setVisibility(View.VISIBLE);
+            addtext.setVisibility(View.VISIBLE);
+            addaccessories.setVisibility(View.VISIBLE);
+            addphotoframe.setVisibility(View.VISIBLE);
+            isbeautybutton=false;
+        }
+        else{
+            backgroudforadd.setVisibility(View.INVISIBLE);
+            addtext.setVisibility(View.INVISIBLE);
+            addaccessories.setVisibility(View.INVISIBLE);
+            addphotoframe.setVisibility(View.INVISIBLE);
+            isbeautybutton=true;
+        }
+
     }
 }
