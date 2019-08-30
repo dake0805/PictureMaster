@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO 页面跳转问题，是否清除
     //TODO 编辑照片会自动保存
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,12 +98,39 @@ public class MainActivity extends AppCompatActivity {
             case 8:
                 imageView.setImageResource(R.drawable.p8);
                 break;
+            case 9:imageView.setImageResource(R.drawable.p9);
+                break;
+            case 10:imageView.setImageResource(R.drawable.p10);
+                break;
+        }
+    }
+
+
+//    //随机设置壁纸test pic
+//    public void setBackground(View view){
+//        switch((int) (1+Math.random()*(10-1+1))) {
+//            case 1:imageView.setImageResource(R.drawable.p1);
+//                break;
+//            case 2:imageView.setImageResource(R.drawable.p2);
+//                break;
+//            case 3:imageView.setImageResource(R.drawable.p3);
+//                break;
+//            case 4:imageView.setImageResource(R.drawable.p4);
+//                break;
+//            case 5:imageView.setImageResource(R.drawable.p5);
+//                break;
+//            case 6:imageView.setImageResource(R.drawable.p6);
+//                break;
+//            case 7:imageView.setImageResource(R.drawable.p7);
+//                break;
+//            case 8:imageView.setImageResource(R.drawable.p8);
+//                break;
 //            case 9:imageView.setImageResource(R.drawable.p9);
 //                break;
 //            case 10:imageView.setImageResource(R.drawable.p10);
 //                break;
-        }
-    }
+//        }
+//    }
 
     //TODO 按钮的图片设置与排版
     //Button SELECT

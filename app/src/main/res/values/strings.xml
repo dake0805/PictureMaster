@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Java Application</string>
+    <string name="welcomepicyure" />
 </resources>
