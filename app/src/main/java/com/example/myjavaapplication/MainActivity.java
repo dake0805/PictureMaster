@@ -1,9 +1,5 @@
 package com.example.myjavaapplication;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +10,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -245,16 +245,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void downloadImage_OnClicked(View view) {
+
         //初始化控件
-        EditText uri = (EditText)findViewById(R.id.editText_Uri);
+        EditText editText_Url = (EditText)findViewById(R.id.editText_Url);
         ImageView downloadImage = (ImageView)findViewById(R.id.downloadImage);
+
+        String uri = editText_Url.getText().toString();
         //创建请求队列
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         //创建请求
         ImageLoader imageLoader = new ImageLoader(requestQueue,new BitmapCache());
         //加载不到图片，加载失败，采用默认图
         ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(downloadImage, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
-        imageLoader.get(uri.getText().toString(),imageListener);
+        imageLoader.get(uri,imageListener);
+
+/*
+        //创建网络请求队列
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+
+        //获取网络图片路径uri
+        EditText editText_Uri = (EditText)findViewById(R.id.editText_Uri);
+        String uri = editText_Uri.getContext().toString();
+
+        //创建请求
+        ImageRequest imageRequest = new ImageRequest(uri, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                //正确接收图片
+                downloadImage.setImageBitmap(response);
+
+            }
+        }, 0, 0, Bitmap.Config.RGB_565, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //接收图片错误
+                downloadImage.setImageResource(R.mipmap.ic_launcher);//默认图片
+
+            }
+        });
+        //将请求加入队列
+        requestQueue.add(imageRequest);
+
+ */
     }
 }
 
