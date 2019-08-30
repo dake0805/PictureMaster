@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private File photoFile;
 
     //private ImageView cropImage;
-
+    //
     private Uri imageCurrent;
 
     private ImageView imageView;
