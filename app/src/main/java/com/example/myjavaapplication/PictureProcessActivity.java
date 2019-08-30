@@ -5,6 +5,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,20 @@ public class PictureProcessActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ImageUri =Uri.parse(intent.getStringExtra("extra_uri"));
         imageView.setImageURI(ImageUri);
+
+
+        //hrn测试用
+        final Button button9=(Button) findViewById(R.id.button9);
+        button9.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                Intent intent = new Intent(PictureProcessActivity.this,Drawer.class);
+
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this,"打开相册",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

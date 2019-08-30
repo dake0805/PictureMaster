@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -51,9 +52,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("MainActivity",this.toString());
+
+
+
+
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
+/*
+    public void startDrawer(View v){
+        //hrn测试用
+        final Button button1=(Button) findViewById(R.id.button5);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,Drawer.class);
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this,"打开相册",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+*/
+
 
     //TODO 按钮的图片设置与排版
     //Button SELECT
@@ -83,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            // Continue only if the File was successfully created
+            // Continue only if the File was successfully creat2ed
             if (photoFile != null) {
                 cameraPhoto = FileProvider.getUriForFile(this,
                         "com.example.myjavaapplication",
