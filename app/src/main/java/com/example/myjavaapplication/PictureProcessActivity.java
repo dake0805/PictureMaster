@@ -107,6 +107,9 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void HomeClick(View view){
+        finish();
+    }
     //select button 绑定
     public void SelectPhoto_Pre(View view) {
         Intent selectPhoto = new Intent();
