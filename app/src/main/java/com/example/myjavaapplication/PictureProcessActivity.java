@@ -38,16 +38,13 @@ public class PictureProcessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pic_process);
         //刚开始按钮隐藏
         doneButton = (Button) findViewById(R.id.done_button);
-        doneButton.setVisibility(View.INVISIBLE);
+//        doneButton.setVisibility(View.INVISIBLE);
         imageView = findViewById(R.id.imageView_process);
         Intent intent = getIntent();
-        if(intent.getStringExtra("extra_uri")!=null)
-        {
+        if (intent.getStringExtra("extra_uri") != null) {
             imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
             imageView.setImageURI(imageUri);
-        }
-        else
-        {
+        } else {
             imageView.setImageResource(R.mipmap.joint_test);
         }
     }
@@ -101,7 +98,9 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     public void DoneClick(View view) {
         Intent intent = new Intent(PictureProcessActivity.this, PhotoResultActivity.class);
-        intent.putExtra("extra_resultUri", imageUri);
+        intent.putExtra("extra_resultUri", imageUri.toString());
+//        Bundle bundle = new Bundle();
+//        bundle.putString("extra_resultUri",imageUri.toString());
         startActivity(intent);
     }
 

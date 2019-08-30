@@ -18,12 +18,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/beauty"
+        android:id="@+id/AIclcik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="28dp"
-        android:text="美化"
+        android:text="AI"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Edit" />
 
@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/beauty" />
+        app:layout_constraintStart_toEndOf="@+id/AIclcik" />
 
     <Button
         android:id="@+id/select_process"
