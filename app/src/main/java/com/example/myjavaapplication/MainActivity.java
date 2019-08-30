@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.yalantis.ucrop.UCrop;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri imageCurrent;
 
+    private ImageView imageView;
+
     //TODO 页面跳转问题，是否清除
     //TODO 编辑照片会自动保存
     @Override
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CheckPermission();
+        imageView=findViewById(R.id.background);
+        setBackground();
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
@@ -58,6 +63,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        setBackground();
+    }
+
+    //随机设置壁纸
+    private void setBackground(){
+        switch((int) (1+Math.random()*(10-1+1))) {
+            case 1:imageView.setImageResource(R.drawable.p1);
+                break;
+            case 2:imageView.setImageResource(R.drawable.p2);
+                break;
+            case 3:imageView.setImageResource(R.drawable.p3);
+                break;
+            case 4:imageView.setImageResource(R.drawable.p4);
+                break;
+            case 5:imageView.setImageResource(R.drawable.p5);
+                break;
+            case 6:imageView.setImageResource(R.drawable.p6);
+                break;
+            case 7:imageView.setImageResource(R.drawable.p7);
+                break;
+            case 8:imageView.setImageResource(R.drawable.p8);
+                break;
+            case 9:imageView.setImageResource(R.drawable.p9);
+                break;
+            case 10:imageView.setImageResource(R.drawable.p10);
+                break;
+        }
+    }
+
     //TODO 按钮的图片设置与排版
     //Button SELECT
     public void selectPhoto(View view) {
@@ -69,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
 
     //Button CAMERA
     public void cameraShotPhoto(View view) {
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivityForResult(intent, CAMERA_PICTURE);
+//        }
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -109,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+            //获得的Uri
             Uri ImageUri;
             Intent sendPicUriIntent = new Intent(MainActivity.this, PictureProcessActivity.class);
             switch (requestCode) {

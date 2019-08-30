@@ -37,4 +37,20 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/button2"
         app:layout_constraintEnd_toStartOf="@+id/button2" />
 
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="408dp"
+        android:layout_height="727dp"
+        android:fadingEdge="vertical"
+        android:foregroundGravity="fill_vertical"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@android:color/background_dark"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
