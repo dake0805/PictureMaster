@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri imageCurrent;
 
-    private RequestQueue requestQueue;
-    //private EditText txt_url;
-    private ImageView volley_image;
-
     //TODO 页面跳转问题，是否清除
     //TODO 编辑照片会自动保存
     @Override
@@ -214,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
         //初始化控件
 
         //创建网络请求队列
-        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         EditText txt_url = (EditText)findViewById(R.id.text);
         ImageView volley_image = (ImageView)findViewById(R.id.downloadImage2);
         //获取网络图片路径url
