@@ -88,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 8:imageView.setImageResource(R.drawable.p8);
                 break;
-            case 9:imageView.setImageResource(R.drawable.p9);
-                break;
-            case 10:imageView.setImageResource(R.drawable.p10);
-                break;
+//            case 9:imageView.setImageResource(R.drawable.p9);
+//                break;
+//            case 10:imageView.setImageResource(R.drawable.p10);
+//                break;
         }
     }
 
