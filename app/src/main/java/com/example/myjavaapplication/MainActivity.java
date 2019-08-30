@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO 页面跳转问题，是否清除
     //TODO 编辑照片会自动保存
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

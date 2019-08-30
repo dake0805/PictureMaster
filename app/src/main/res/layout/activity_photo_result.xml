@@ -5,20 +5,37 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <ImageView-->
+<!--        android:id="@+id/imageResult"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:adjustViewBounds="true"-->
+<!--        android:baselineAligned="false"-->
+<!--        android:maxWidth="512pt"-->
+<!--        android:maxHeight="712pt"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/save_result"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.543"-->
+<!--        tools:srcCompat="@tools:sample/avatars" />-->
+
     <ImageView
-        android:id="@+id/imageResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:baselineAligned="false"
-        android:maxWidth="512pt"
-        android:maxHeight="712pt"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/save_result"
+        android:id="@+id/background_result"
+        android:layout_width="408dp"
+        android:layout_height="727dp"
+        android:fadingEdge="vertical"
+        android:scaleType="centerCrop"
+        android:foregroundGravity="fill_vertical"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.543"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@android:color/background_dark"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/share_result"
