@@ -3,6 +3,7 @@ package com.example.myjavaapplication;
 import android.app.WallpaperManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,6 +35,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Uri imageUri;
     private Button doneButton;
     public static final int CHOOSE_PICTURE = 1;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,9 +86,13 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         //////////////Uri destinationUri格式:file://*
 
+    
+        UCrop.Options.setToolbarColor(Color.parseColor("#000000"));
+
         UCrop.of(imageUri, destinationUri)
                 .withMaxResultSize(1920, 1080)
                 .start(this);
+
     }
 
     public void DoneClick(View view) {
@@ -96,10 +102,11 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void HomeClick(View view){
-        Intent intent = new Intent(PictureProcessActivity.this,MainActivity.class);
+    public void HomeClick(View view) {
+        Intent intent = new Intent(PictureProcessActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
     //select button 绑定
     public void SelectPhoto_Pre(View view) {
         Intent selectPhoto = new Intent();
