@@ -3,6 +3,7 @@ package com.example.myjavaapplication;
 import android.app.WallpaperManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,10 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,6 +38,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Button doneButton;
     public static final int CHOOSE_PICTURE = 1;
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_process);
@@ -46,7 +50,6 @@ public class PictureProcessActivity extends AppCompatActivity {
             imageView.setImageURI(imageUri);
         }
     }
-
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -61,14 +64,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageUri = UCrop.getOutput(data);
                     File tempFile = new File(imageUri.getPath());
 
-                    try {
-                        imageUri = Uri.parse(
-                                android.provider.MediaStore.Images.Media.insertImage(
-                                        getContentResolver(),
-                                        tempFile.getAbsolutePath(), null, null));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     break;
@@ -84,9 +80,13 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         //////////////Uri destinationUri格式:file://*
 
-        UCrop.of(imageUri, destinationUri)
-                .withMaxResultSize(1920, 1080)
-                .start(this);
+
+        UCrop ucrop = UCrop.of(imageUri, destinationUri);
+        ucrop = UcropConfig(ucrop);
+
+        ucrop.start(this);
+
+
     }
 
     public void DoneClick(View view) {
@@ -96,10 +96,11 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void HomeClick(View view){
-        Intent intent = new Intent(PictureProcessActivity.this,MainActivity.class);
+    public void HomeClick(View view) {
+        Intent intent = new Intent(PictureProcessActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
     //select button 绑定
     public void SelectPhoto_Pre(View view) {
         Intent selectPhoto = new Intent();
@@ -107,5 +108,19 @@ public class PictureProcessActivity extends AppCompatActivity {
         selectPhoto.setType("image/*");
         startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
+
+
+    private UCrop UcropConfig(UCrop uCrop) {
+        UCrop.Options options = new UCrop.Options();
+//        options.setToolbarColor(Color.GREEN);
+//        options.setActiveWidgetColor(Color.GREEN);
+//        options.setCropFrameColor(Color.GREEN);
+//        options.setStatusBarColor(Color.GREEN);
+        options.setAllowedGestures(UCropActivity.ALL, UCropActivity.NONE, UCropActivity.ALL);
+        options.setFreeStyleCropEnabled(true);
+        options.setHideBottomControls(true);
+        return uCrop.withOptions(options);
+    }
+
 
 }

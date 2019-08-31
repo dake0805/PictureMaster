@@ -1,11 +1,16 @@
 package com.example.myjavaapplication;
 
 import android.app.WallpaperManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,19 +30,47 @@ import java.util.Date;
 
 public class PhotoResultActivity extends AppCompatActivity {
 
-    private ImageView imageView;
+    private ImageView imageView_background;
     private Uri originImageUri;
+    private Bitmap photoBmp;
+    private Bitmap fuzzyPhotoBmp;
 
     //private Button setBackground;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_result);
-        imageView = (ImageView) findViewById(R.id.imageResult);
+
+        imageView_background = (ImageView) findViewById(R.id.background_result);
         Intent intent = getIntent();
-        originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
-        if (originImageUri != null) {
-            imageView.setImageURI(originImageUri);
+
+        if(intent.getStringExtra("extra_resultUri")!=null){
+            originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
+            photoBmp = Photo.getBitmapFromUri(getApplicationContext(),this.getContentResolver(),originImageUri);
+            fuzzyPhotoBmp = FastBlur.doBlur(photoBmp,40,false);
+            //fuzzyPhotoBmp = FastBlur.doBlur(Photo.scaleBitmap(photoBmp,1,1),20,false);
+            imageView_background.setImageBitmap(fuzzyPhotoBmp);
         }
+    }
+
+    //uri转bitmap 可以用来避免旋转
+    private Bitmap getBitmapFromUri(Uri uri) {
+        //获取路径
+        String  photoPath = FastBlur.getPath(getApplicationContext(),uri);
+        //通过路径判断被旋转的角度
+        int degrees = FastBlur.getBitmapDegree(photoPath);
+        Bitmap bitmap;
+        try {
+            // 读取uri所在的图片
+            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+        } catch (Exception e) {
+            Log.e("[Android]", e.getMessage());
+            Log.e("[Android]", "目录为：" + uri);
+            e.printStackTrace();
+            return null;
+        }
+        //再旋转
+        bitmap = FastBlur.rotateBitmap(bitmap,degrees);
+        return bitmap;
     }
 
     public void close_click(View view) {
