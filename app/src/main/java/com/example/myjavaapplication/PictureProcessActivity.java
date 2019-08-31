@@ -13,10 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -63,7 +65,6 @@ public class PictureProcessActivity extends AppCompatActivity {
                     File tempFile = new File(imageUri.getPath());
 
 
-
                     imageView.setImageURI(null);
                     imageView.setImageURI(imageUri);
                     break;
@@ -79,15 +80,12 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         //////////////Uri destinationUri格式:file://*
 
-        UCrop.Options options = new UCrop.Options();
-//        options.setToolbarColor(Color.GREEN);
-//        options.setActiveWidgetColor(Color.GREEN);
-//        options.setCropFrameColor(Color.GREEN);
-//        options.setStatusBarColor(Color.GREEN);
 
-        UCrop.of(imageUri, destinationUri)
-                .withMaxResultSize(1920, 1080)
-                .start(this);
+        UCrop ucrop = UCrop.of(imageUri, destinationUri);
+        ucrop = UcropConfig(ucrop);
+
+        ucrop.start(this);
+
 
     }
 
@@ -110,5 +108,19 @@ public class PictureProcessActivity extends AppCompatActivity {
         selectPhoto.setType("image/*");
         startActivityForResult(selectPhoto, CHOOSE_PICTURE);
     }
+
+
+    private UCrop UcropConfig(UCrop uCrop) {
+        UCrop.Options options = new UCrop.Options();
+//        options.setToolbarColor(Color.GREEN);
+//        options.setActiveWidgetColor(Color.GREEN);
+//        options.setCropFrameColor(Color.GREEN);
+//        options.setStatusBarColor(Color.GREEN);
+        options.setAllowedGestures(UCropActivity.ALL, UCropActivity.NONE, UCropActivity.ALL);
+        options.setFreeStyleCropEnabled(true);
+        options.setHideBottomControls(true);
+        return uCrop.withOptions(options);
+    }
+
 
 }
