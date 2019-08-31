@@ -51,6 +51,10 @@ public class PictureProcessActivity extends AppCompatActivity {
     private  Button add;
     private  boolean isaddbutton =true;
 
+    //其余的home和select按钮
+    private Button Home;
+    private  Button Select;
+    private boolean isthetwoon = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -231,22 +235,53 @@ public class PictureProcessActivity extends AppCompatActivity {
     //private  Button Stylemigration;
     //private  Button beauty;
     //private  boolean isbeautybutton =true;
+
+
+    /**
+     * 当点击beauty按钮时，
+     * 如果isbeautybutton=true，
+     * add相关的控件消失在屏幕上，之后置isaddbutton为true
+     * beauty相关的控件显示在屏幕上，之后置isbeautybutton为false
+     * 其余两个按钮消失，之后置isthetwoon为true
+     *
+     * 如果isbeautybutton=false，beauty相关的控件不显示在屏幕上，之后置isbeautybutton为true
+     * 其余两个按钮出现，之后置isthetwoon为false
+     */
     public void btn_onclickofbeauty(View view){
         backgroudforbrauty=(TextView)findViewById(R.id.backgroundforbeauty);
         highfraction=(Button)findViewById(R.id.highfraction);
         Stylemigration=(Button)findViewById(R.id.Stylemigration);
+        backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
+        addtext=(Button)findViewById(R.id.addtext);
+        addaccessories=(Button)findViewById(R.id.addaccessories);
+        addphotoframe=(Button)findViewById(R.id.addphotoframe);
+        Home=(Button)findViewById(R.id.homebutton);
+        Select=(Button)findViewById(R.id.select_process);
+        Home=(Button)findViewById(R.id.homebutton);
+        Select=(Button)findViewById(R.id.select_process);
 
         if(isbeautybutton){
+            backgroudforadd.setVisibility(View.GONE);
+            addtext.setVisibility(View.GONE);
+            addaccessories.setVisibility(View.GONE);
+            addphotoframe.setVisibility(View.GONE);
+            isaddbutton=true;
             backgroudforbrauty.setVisibility(View.VISIBLE);
             highfraction.setVisibility(View.VISIBLE);
             Stylemigration.setVisibility(View.VISIBLE);
             isbeautybutton=false;
+            Home.setVisibility(View.GONE);
+            Select.setVisibility(View.GONE);
+            isthetwoon=true;
         }
         else{
-            backgroudforbrauty.setVisibility(View.INVISIBLE);
-            highfraction.setVisibility(View.INVISIBLE);
-            Stylemigration.setVisibility(View.INVISIBLE);
+            backgroudforbrauty.setVisibility(View.GONE);
+            highfraction.setVisibility(View.GONE);
+            Stylemigration.setVisibility(View.GONE);
             isbeautybutton=true;
+            Home.setVisibility(View.VISIBLE);
+            Select.setVisibility(View.VISIBLE);
+            isthetwoon=false;
         }
 
     }
@@ -257,25 +292,56 @@ public class PictureProcessActivity extends AppCompatActivity {
     //private  Button addaddphotoframe;
     //private  Button add;
     //private  boolean isaddbutton =true;
+
+
+    /**
+     * 当点击add按钮时，
+     * 如果isaddbutton=true，
+     * beauty相关的控件消失在屏幕上，之后置isbeautybutton为true
+     * add相关的控件显示在屏幕上，之后置isaddbutton为false
+     *
+     * 如果isaddbutton=false，add相关的控件不显示在屏幕上，之后置isaddbutton为true
+     */
+
+
+
     public void btn_onclickofadd(View view){
-       backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
+        backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
         addtext=(Button)findViewById(R.id.addtext);
         addaccessories=(Button)findViewById(R.id.addaccessories);
         addphotoframe=(Button)findViewById(R.id.addphotoframe);
+        backgroudforbrauty=(TextView)findViewById(R.id.backgroundforbeauty);
+        highfraction=(Button)findViewById(R.id.highfraction);
+        Stylemigration=(Button)findViewById(R.id.Stylemigration);
+        Home=(Button)findViewById(R.id.homebutton);
+        Select=(Button)findViewById(R.id.select_process);
+        Home=(Button)findViewById(R.id.homebutton);
+        Select=(Button)findViewById(R.id.select_process);
 
-        if(isbeautybutton){
+        if(isaddbutton){
+            backgroudforbrauty.setVisibility(View.GONE);
+            highfraction.setVisibility(View.GONE);
+            Stylemigration.setVisibility(View.GONE);
+            isbeautybutton=true;
             backgroudforadd.setVisibility(View.VISIBLE);
             addtext.setVisibility(View.VISIBLE);
             addaccessories.setVisibility(View.VISIBLE);
             addphotoframe.setVisibility(View.VISIBLE);
-            isbeautybutton=false;
+            isaddbutton=false;
+            Home.setVisibility(View.GONE);
+            Select.setVisibility(View.GONE);
+            isthetwoon=true;
+
         }
         else{
-            backgroudforadd.setVisibility(View.INVISIBLE);
-            addtext.setVisibility(View.INVISIBLE);
-            addaccessories.setVisibility(View.INVISIBLE);
-            addphotoframe.setVisibility(View.INVISIBLE);
-            isbeautybutton=true;
+            backgroudforadd.setVisibility(View.GONE);
+            addtext.setVisibility(View.GONE);
+            addaccessories.setVisibility(View.GONE);
+            addphotoframe.setVisibility(View.GONE);
+            isaddbutton=true;
+            Home.setVisibility(View.VISIBLE);
+            Select.setVisibility(View.VISIBLE);
+            isthetwoon=false;
         }
 
     }
