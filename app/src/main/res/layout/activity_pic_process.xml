@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/Edit"
+        android:id="@+id/Editclick"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="28dp"
-        android:onClick="btn_onclickofbeauty"
+        android:onClick="AiClick"
         android:text="AI"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Edit" />
+        app:layout_constraintStart_toEndOf="@+id/Editclick" />
 
     <Button
         android:id="@+id/add"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="88dp"
         android:layout_marginBottom="28dp"
-        android:onClick="btn_onclickofadd"
+        android:onClick="AddClick"
         android:text="添加"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,22 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-
+    <ImageView
+        android:id="@+id/background_process"
+        android:layout_width="408dp"
+        android:layout_height="727dp"
+        android:fadingEdge="vertical"
+        android:scaleType="centerCrop"
+        android:foregroundGravity="fill_vertical"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@android:color/background_dark"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/imageView_process"
@@ -93,7 +108,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/backgroundforbeauty"
+        android:id="@+id/backgroundforButton"
         android:layout_width="411dp"
         android:layout_height="259dp"
         android:background="#80050505"
@@ -122,15 +137,6 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/backgroundforadd"
-        android:layout_width="409dp"
-        android:layout_height="258dp"
-        android:background="#800F0F0F"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/backgroundforbeauty"
-        app:layout_constraintTop_toTopOf="@+id/backgroundforbeauty" />
 
     <Button
         android:id="@+id/addtext"
@@ -161,6 +167,28 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="88dp"
         android:text="@string/addaccessories"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/edit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="168dp"
+        android:text="edit1"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/edit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="88dp"
+        android:text="edit2"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
