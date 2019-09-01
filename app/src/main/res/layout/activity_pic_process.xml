@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="28dp"
+        android:onClick="btn_onclickofbeauty"
         android:text="AI"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Edit" />
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="88dp"
         android:layout_marginBottom="28dp"
+        android:onClick="btn_onclickofadd"
         android:text="添加"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,11 +84,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="home"
+        android:layout_marginTop="64dp"
         android:onClick="HomeClick"
-        app:layout_constraintBottom_toTopOf="@+id/select_process"
+        android:text="home"
+        app:layout_constraintEnd_toStartOf="@+id/done_button"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/backgroundforbeauty"
+        android:layout_width="411dp"
+        android:layout_height="259dp"
+        android:background="#80050505"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/highfraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/highfraction"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Stylemigration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/Stylemigration"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/backgroundforadd"
+        android:layout_width="409dp"
+        android:layout_height="258dp"
+        android:background="#800F0F0F"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/backgroundforbeauty"
+        app:layout_constraintTop_toTopOf="@+id/backgroundforbeauty" />
+
+    <Button
+        android:id="@+id/addtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/addtext"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addphotoframe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="168dp"
+        android:text="@string/addphotoframe"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addaccessories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="88dp"
+        android:text="@string/addaccessories"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
