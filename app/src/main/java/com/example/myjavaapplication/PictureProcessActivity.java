@@ -101,13 +101,13 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //select button 绑定
-    public void SelectPhoto_Pre(View view) {
-        Intent selectPhoto = new Intent();
-        selectPhoto.setAction(Intent.ACTION_PICK);
-        selectPhoto.setType("image/*");
-        startActivityForResult(selectPhoto, CHOOSE_PICTURE);
-    }
+//    //select button 绑定
+//    public void SelectPhoto_Pre(View view) {
+//        Intent selectPhoto = new Intent();
+//        selectPhoto.setAction(Intent.ACTION_PICK);
+//        selectPhoto.setType("image/*");
+//        startActivityForResult(selectPhoto, CHOOSE_PICTURE);
+//    }
 
 
     private UCrop UcropConfig(UCrop uCrop) {
