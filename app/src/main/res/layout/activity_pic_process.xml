@@ -31,12 +31,10 @@
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="28dp"
         android:text="添加"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/AIclcik" />
 
     <Button
@@ -50,22 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-    <ImageView
-        android:id="@+id/imageView_process"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:baselineAligned="false"
-        android:maxWidth="512pt"
-        android:maxHeight="512pt"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/done_button"
@@ -82,11 +64,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="home"
         android:onClick="HomeClick"
+        android:text="home"
         app:layout_constraintBottom_toTopOf="@+id/select_process"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25" />
+
+    <Button
+        android:id="@+id/edit_1"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="Edit1"
+        android:text="scale"
+        app:layout_constraintBottom_toTopOf="@+id/Edit"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/edit_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="Edit2"
+        android:text="rotate"
+        app:layout_constraintBottom_toTopOf="@+id/AIclcik"
+        app:layout_constraintStart_toEndOf="@+id/edit_1" />
+
+    <Button
+        android:id="@+id/edit_001"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="Edit3"
+        android:text="3"
+        app:layout_constraintBottom_toTopOf="@+id/add"
+        app:layout_constraintStart_toEndOf="@+id/edit_2" />
+
+    <ImageView
+        android:id="@+id/imageView_process"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:baselineAligned="false"
+        android:maxWidth="512pt"
+        android:maxHeight="512pt"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.412"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
