@@ -53,11 +53,11 @@
 
     <ImageView
         android:id="@+id/background_process"
-        android:layout_width="408dp"
-        android:layout_height="727dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fadingEdge="vertical"
-        android:scaleType="centerCrop"
         android:foregroundGravity="fill_vertical"
+        android:scaleType="centerCrop"
         android:verticalScrollbarPosition="defaultPosition"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,10 +106,11 @@
 
     <TextView
         android:id="@+id/backgroundforButton"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="259dp"
         android:background="#80050505"
         android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
