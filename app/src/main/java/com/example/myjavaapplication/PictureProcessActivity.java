@@ -25,6 +25,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Uri imageUri;
 
     public static final int CHOOSE_PICTURE = 1;
+    public static final int CHANGE_BRIGHTNESS = 7;
 
     private Bitmap photoBmp;
     private Bitmap fuzzyPhotoBmp;
@@ -102,6 +103,10 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
                     break;
+                case CHANGE_BRIGHTNESS:
+                    imageUri = Uri.parse(data.getStringExtra("finishChange"));
+                    imageView_origin.setImageURI(null);
+                    imageView_origin.setImageURI(imageUri);
             }
 
         } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -147,7 +152,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     public void Edit3_brightness(View view) {
         Intent changeBrightness = new Intent(this, PicColorControlActivity.class);
         changeBrightness.putExtra("brightness_change_pic", imageUri.toString());
-        startActivity(changeBrightness);
+        startActivityForResult(changeBrightness, CHANGE_BRIGHTNESS);
     }
 
     public void EditProcess(EditMethod editMethod) {

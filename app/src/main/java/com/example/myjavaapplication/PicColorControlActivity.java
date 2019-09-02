@@ -12,9 +12,14 @@ import android.net.ProxyInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class PicColorControlActivity extends AppCompatActivity {
@@ -85,5 +90,35 @@ public class PicColorControlActivity extends AppCompatActivity {
         canvas.drawBitmap(startImage, 0, 0, paint);
         return bitmap;
     }
+
+
+    public void FinishChange(View view) throws IOException {
+
+        bitmap = ChangeBrightness(bitmap, brightness);
+
+        Uri finishUri;
+
+        File finishFile = new File(getCacheDir(), "tmp_brightness.jpg");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        byte[] bitmapData = bytes.toByteArray();
+
+        FileOutputStream fileOutputStream = new FileOutputStream(finishFile);
+        fileOutputStream.write(bitmapData);
+        fileOutputStream.flush();
+        fileOutputStream.close();
+
+        finishUri = Uri.fromFile(finishFile);
+
+        imageView.setImageURI(null);
+        imageView.setImageURI(finishUri);
+        if (finishUri != null) {
+            Intent intent = new Intent();
+            intent.putExtra("finishChange", finishUri.toString());
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
+
 
 }
