@@ -20,11 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TextEdit"></activity>
-        <activity android:name=".Drawer"
-                  android:launchMode="singleTask">
+        <activity android:name=".TextEdit" />
+        <activity
+            android:name=".Drawer"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="Start_Drawer" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="Drawer.Start" />
             </intent-filter>
@@ -35,23 +37,14 @@
             android:authorities="com.example.myjavaapplication"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provide_file_paths" />
         </provider>
 
-        <activity android:name=".PictureProcessActivity">
-
-        </activity>
-
-        <activity android:name=".JointPhotoActivity">
-
-        </activity>
-
-        <activity android:name=".PhotoResultActivity">
-
-        </activity>
+        <activity android:name=".PictureProcessActivity"></activity>
+        <activity android:name=".JointPhotoActivity"></activity>
+        <activity android:name=".PhotoResultActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,13 +52,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
     </application>
 
 </manifest>
-

@@ -7,16 +7,14 @@
     tools:context=".Drawer">
 
 
-    <ImageView
-        android:id="@+id/photo"
+    <com.example.myjavaapplication.view.MyRelativeLayout
+        android:id="@+id/add_photo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -24,22 +22,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="188dp"
-        android:layout_marginTop="568dp"
+        android:layout_marginTop="500dp"
         android:text="cool"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/Edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="636dp"
-        android:text="文字"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/drawer_finshed"
@@ -48,18 +36,6 @@
         android:layout_marginStart="290dp"
         android:layout_marginTop="10dp"
         android:text="完成"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/Decorate_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
-        android:layout_marginTop="624dp"
-        android:text="装饰"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

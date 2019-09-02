@@ -4,12 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 
 /*
@@ -29,9 +26,6 @@ public class TextEdit extends AppCompatActivity implements View.OnClickListener 
         /*TextView a = (TextView)findViewById(R.id.Edit_Text1);
         a.setText("Happpy");*/
 
-
-
-
     }
 
 
@@ -48,8 +42,6 @@ public class TextEdit extends AppCompatActivity implements View.OnClickListener 
 
                 intent.putExtra("edit_text",text);
                 startActivity(intent);
-
-
 
                 break;
 

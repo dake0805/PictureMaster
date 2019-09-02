@@ -56,7 +56,6 @@ public class PictureProcessActivity extends AppCompatActivity {
             public void onClick(View v){
 
                 Intent intent = new Intent(PictureProcessActivity.this,Drawer.class);
-               // Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
                 intent.putExtra("extra_photoadd",imageUri.toString());
                 startActivity(intent);
             }

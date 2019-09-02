@@ -43,7 +43,7 @@
         android:id="@+id/Finsh_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="292dp"
+        android:layout_marginStart="236dp"
 
         android:layout_marginBottom="616dp"
         android:text="完成"

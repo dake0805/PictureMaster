@@ -269,7 +269,7 @@ public class MyRelativeLayout extends RelativeLayout {
                 Log.d("HHHH", "ACTION_UP");
                 if ( onefinger ) {
                     if ( spacing(firstX, firstY, event.getX(), event.getY()) < 10 ) {
-                        //showDialog("", true);
+                        showDialog("", true);
                         Toast.makeText(context, "这个是自定义View上的单击事件！", Toast.LENGTH_SHORT).show();
                     } else {
                         if ( myRelativeTouchCallBack != null ) {
@@ -433,7 +433,7 @@ public class MyRelativeLayout extends RelativeLayout {
                             updateTextViewParams((TextView) v, mAngle, scale);
 
                             if ( tvOneFinger && isClick ) {
-                                //showDialog(textView.getText().toString(), false);
+                                showDialog(textView.getText().toString(), false);
                             }
 
                             break;

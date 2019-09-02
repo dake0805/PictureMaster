@@ -17,7 +17,7 @@ import com.example.myjavaapplication.R;
 
 
 /**
- * it is a view where view or viewgroup can be scaled,rotated,moved on it
+ * 自定义视图，实现其他在气上方实现拖动、旋转、放大缩小功能
  * Created by cretin on 16/11/16.
  */
 
