@@ -39,44 +39,44 @@
 
     <Button
         android:id="@+id/share_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
         android:onClick="SharePhoto"
-        android:text="share"
+        android:background="@drawable/ic_share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/save_result" />
 
     <Button
         android:id="@+id/save_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="35dp"
         android:onClick="SavePhoto"
-        android:text="save"
+        android:background="@drawable/ic_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/wallpaper_result" />
 
     <Button
         android:id="@+id/wallpaper_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="83dp"
+        android:layout_marginBottom="40dp"
         android:onClick="SetWallpaper"
-        android:text="wallpaper"
+        android:background="@drawable/ic_phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/close_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="close"
+        android:background="@drawable/ic_close"
         android:onClick="close_click"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
