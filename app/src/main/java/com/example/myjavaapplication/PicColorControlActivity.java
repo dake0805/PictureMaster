@@ -32,9 +32,9 @@ public class PicColorControlActivity extends AppCompatActivity {
     private static final int MAX_VALUE = 200;
     private static final int MID_VALUE = 100;
 
-    private float brightness;
-    private float saturation;
-    private float contrast;
+    private float brightness = 100 * 1.0f / MID_VALUE;
+    private float saturation = 1.0f;
+    private float contrast = 0;
 
     enum Mode {
         Brightness,
