@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -98,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
             case 8:
                 imageView.setImageResource(R.drawable.p8);
                 break;
-            case 9:imageView.setImageResource(R.drawable.p9);
+            case 9:
+                imageView.setImageResource(R.drawable.p9);
                 break;
-            case 10:imageView.setImageResource(R.drawable.p10);
+            case 10:
+                imageView.setImageResource(R.drawable.p10);
                 break;
         }
     }
@@ -153,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
+            photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException e) {
@@ -197,13 +200,13 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     ImageUri = data.getData();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri_album", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     //CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
                     ImageUri = getCameraPhotoUri();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri_camera", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
             }
@@ -214,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Uri getCameraPhotoUri() {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
         /**
          * 注意修改文件名
@@ -224,10 +227,19 @@ public class MainActivity extends AppCompatActivity {
         //获得Uri
         Uri originPhoto = null;
         //CropPhoto(originPhoto);
-        if (photoFile != null) {
-            originPhoto = FileProvider.getUriForFile(this,
-                    "com.example.myjavaapplication",
-                    photoFile);
+//        if (photoFile != null) {
+//            originPhoto = FileProvider.getUriForFile(this,
+//                    "com.example.myjavaapplication",
+//                    photoFile);
+//        }
+
+        try {
+            originPhoto = Uri.parse(MediaStore.Images.Media.insertImage(
+                    getContentResolver(),
+                    photoFile.getAbsolutePath(), null, null
+            ));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
         return originPhoto;
