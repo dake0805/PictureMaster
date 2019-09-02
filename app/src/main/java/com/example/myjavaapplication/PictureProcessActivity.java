@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,7 +15,6 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
-import java.io.IOException;
 
 public class PictureProcessActivity extends AppCompatActivity {
 
@@ -35,8 +33,11 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     //点击编辑按钮弹出界面所需变量
     private Button Edit;
-    private Button Edit1;
-    private Button Edit2;
+    private Button Edit_Scale;
+    private Button Edit_Rotate;
+    private Button Edit_Saturation;
+    private Button Edit_Contrast;
+    private Button Edit_Brightness;
 
     //点击AI按钮弹出界面所需的4个变量
     private Button highfraction;
@@ -135,8 +136,11 @@ public class PictureProcessActivity extends AppCompatActivity {
         backgroudforButton = (TextView) findViewById(R.id.backgroundforButton);
 
         Edit = (Button) findViewById(R.id.Editclick);
-        Edit1 = (Button) findViewById(R.id.scale);
-        Edit2 = (Button) findViewById(R.id.rotate);
+        Edit_Scale = (Button) findViewById(R.id.scale);
+        Edit_Rotate = (Button) findViewById(R.id.rotate);
+        Edit_Brightness =(Button)findViewById(R.id.brightness);
+        Edit_Contrast = (Button)findViewById(R.id.contrast);
+        Edit_Saturation =(Button)findViewById(R.id.saturation);
 
         highfraction = (Button) findViewById(R.id.highfraction);
         Stylemigration = (Button) findViewById(R.id.Stylemigration);
@@ -185,13 +189,10 @@ public class PictureProcessActivity extends AppCompatActivity {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 
         //////////////Uri destinationUri格式:file://*
-
-
         UCrop ucrop = UCrop.of(imageUri, destinationUri);
         ucrop = UcropConfig(ucrop, editMethod);
 
         ucrop.start(this);
-
 
     }
 
@@ -220,8 +221,6 @@ public class PictureProcessActivity extends AppCompatActivity {
                 break;
 
         }
-
-
         return uCrop.withOptions(options);
     }
 
@@ -235,16 +234,6 @@ public class PictureProcessActivity extends AppCompatActivity {
         Intent intent = new Intent(PictureProcessActivity.this, MainActivity.class);
         startActivity(intent);
     }
-
-//    private UCrop UcropConfig(UCrop uCrop) {
-////        //select button 绑定
-////        public void SelectPhoto_Pre (View view){
-////            Intent selectPhoto = new Intent();
-////            selectPhoto.setAction(Intent.ACTION_PICK);
-////            selectPhoto.setType("image/*");
-////            startActivityForResult(selectPhoto, CHOOSE_PICTURE);
-//        }
-//    }
 
     public void RestoreOrigin() {
         AiGroupSetVisibility(View.GONE);
@@ -338,8 +327,11 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     private void EditGroupSetVisibility(int visibility) {
-        Edit1.setVisibility(visibility);
-        Edit2.setVisibility(visibility);
+        Edit_Scale.setVisibility(visibility);
+        Edit_Rotate.setVisibility(visibility);
+        Edit_Saturation.setVisibility(visibility);
+        Edit_Contrast.setVisibility(visibility);
+        Edit_Brightness.setVisibility(visibility);
     }
 
     private void AddGroupSetVisibility(int visibility) {
