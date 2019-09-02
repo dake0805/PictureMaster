@@ -11,12 +11,12 @@
         android:id="@+id/Editclick"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/ic_edit"
         android:onClick="EditClick"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_process" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--    <Button-->
 <!--        android:id="@+id/select_process"-->
@@ -32,26 +32,26 @@
 
     <Button
         android:id="@+id/AIclcik"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/ic_ai"
         android:onClick="AiClick"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toEndOf="@+id/Editclick"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_process" />
+        app:layout_constraintStart_toEndOf="@+id/Editclick" />
 
     <Button
         android:id="@+id/add"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="28dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/ic_add"
         android:onClick="AddClick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_process" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/background_process"
