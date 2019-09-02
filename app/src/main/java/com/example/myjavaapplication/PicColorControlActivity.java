@@ -41,16 +41,19 @@ public class PicColorControlActivity extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.colorControl_ImageView);
 
+        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar_brightness);
+        seekBar.setMax(MAX_VALUE);
+        seekBar.setProgress(MID_VALUE);
+
         Intent intent = getIntent();
         if (intent.getStringExtra("brightness_change_pic") != null) {
-            imageUri = Uri.parse(intent.getStringExtra("brightness_change_pic"));
+            Brightness();
+        } else if (intent.getStringExtra("saturation_change_pic") != null) {
+            Saturation();
         }
 
         imageView.setImageURI(imageUri);
 
-        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar_brightness);
-        seekBar.setMax(MAX_VALUE);
-        seekBar.setProgress(MID_VALUE);
 
         try {
             bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
@@ -78,6 +81,16 @@ public class PicColorControlActivity extends AppCompatActivity {
         });
     }
 
+
+    //亮度
+    private void Brightness() {
+        imageUri = Uri.parse(intent.getStringExtra("brightness_change_pic"));
+
+    }
+
+    //饱和度
+    private void Saturation() {
+    }
 
     private static Bitmap ChangeBrightness(Bitmap startImage, float brightness) {
         ColorMatrix lumMatrix = new ColorMatrix();

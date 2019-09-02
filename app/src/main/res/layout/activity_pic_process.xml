@@ -207,4 +207,14 @@
         app:layout_constraintBottom_toTopOf="@+id/Editclick"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/saturation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="12dp"
+        android:text="saturation"
+        app:layout_constraintBottom_toTopOf="@+id/AIclcik"
+        app:layout_constraintStart_toEndOf="@+id/brightness" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
