@@ -14,7 +14,8 @@
         android:layout_marginBottom="28dp"
         android:onClick="EditClick"
         android:text="编辑"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/AIclcik"
@@ -51,6 +52,7 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
+
     <ImageView
         android:id="@+id/background_process"
         android:layout_width="0dp"
@@ -62,9 +64,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView_process"
@@ -175,6 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="168dp"
+        android:onClick="Edit1_scale"
         android:text="裁剪"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,9 +190,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
         android:layout_marginTop="88dp"
+        android:onClick="Edit2_rotate"
         android:text="旋转"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/brightness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="12dp"
+        android:onClick="Edit3_brightness"
+        android:text="brightness"
+        app:layout_constraintBottom_toTopOf="@+id/Editclick"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
