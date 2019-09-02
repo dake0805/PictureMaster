@@ -3,7 +3,7 @@
     <string name="welcomepicyure" />
     <string name="highfraction">high fraction</string>
     <string name="Stylemigration">Style migration</string>
-    <string name="addtext" >addtext</string>
-    <string name="addphotoframe" >addphotoframe</string>
-    <string name="addaccessories" >addaccessories</string>
+    <string name="addtext">addtext</string>
+    <string name="addphotoframe">addphotoframe</string>
+    <string name="addaccessories">addaccessories</string>
 </resources>

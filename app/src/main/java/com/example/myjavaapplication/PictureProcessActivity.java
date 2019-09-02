@@ -62,6 +62,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     enum EditMethod {
         Scale,
         Rotate,
+        Brightness,
         None;
     }
 
@@ -143,8 +144,13 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     public void Edit2_rotate(View view) {
-
         EditProcess(EditMethod.Rotate);
+    }
+
+    public void Edit3_brightness(View view) {
+        Intent changeBrightness = new Intent(this, PicColorControlActivity.class);
+        changeBrightness.putExtra("brightness_change_pic", imageUri.toString());
+        startActivity(changeBrightness);
     }
 
     public void EditProcess(EditMethod editMethod) {
@@ -184,6 +190,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 options.setToolbarTitle("旋转");
 
                 break;
+
         }
 
 
