@@ -187,19 +187,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/rotate"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="260dp"
-        android:layout_marginTop="90dp"
-        android:onClick="Edit2_rotate"
-        android:background="@drawable/ic_rotate"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/brightness"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
@@ -220,6 +208,18 @@
         android:text="saturation"
         app:layout_constraintBottom_toTopOf="@+id/AIclcik"
         app:layout_constraintStart_toEndOf="@+id/brightness" />
+
+    <Button
+        android:id="@+id/rotate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/ic_rotate"
+        android:onClick="Edit2_rotate"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/edit5_contrast"
