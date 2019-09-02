@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +26,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Uri imageUri;
 
     public static final int CHOOSE_PICTURE = 1;
+    public static final int CHANGE_PICTURE = 7;
 
     private Bitmap photoBmp;
     private Bitmap fuzzyPhotoBmp;
@@ -115,6 +115,12 @@ public class PictureProcessActivity extends AppCompatActivity {
                     photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
                     fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
                     break;
+                case CHANGE_PICTURE:
+                    if (Uri.parse(data.getStringExtra("finishChange")) != null) {
+                        imageUri = Uri.parse(data.getStringExtra("finishChange"));
+                    }
+                    imageView_origin.setImageURI(null);
+                    imageView_origin.setImageURI(imageUri);
             }
             RestoreOrigin();
         } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -160,7 +166,13 @@ public class PictureProcessActivity extends AppCompatActivity {
     public void Edit3_brightness(View view) {
         Intent changeBrightness = new Intent(this, PicColorControlActivity.class);
         changeBrightness.putExtra("brightness_change_pic", imageUri.toString());
-        startActivity(changeBrightness);
+        startActivityForResult(changeBrightness, CHANGE_PICTURE);
+    }
+
+    public void Edit4_saturation(View view) {
+        Intent changeSaturation = new Intent(this, PicColorControlActivity.class);
+        changeSaturation.putExtra("saturation_change_pic", imageUri.toString());
+        startActivityForResult(changeSaturation, CHANGE_PICTURE);
     }
 
     public void EditProcess(EditMethod editMethod) {
@@ -228,7 +240,7 @@ public class PictureProcessActivity extends AppCompatActivity {
 //        }
 //    }
 
-    public void RestoreOrigin(){
+    public void RestoreOrigin() {
         AiGroupSetVisibility(View.GONE);
         AddGroupSetVisibility(View.GONE);
         EditGroupSetVisibility(View.GONE);
