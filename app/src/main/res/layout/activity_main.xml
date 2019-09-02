@@ -39,8 +39,7 @@
 
     <ImageView
         android:id="@+id/background"
-        android:layout_width="408dp"
-        android:layout_height="727dp"
+
         android:fadingEdge="vertical"
         android:foregroundGravity="fill_vertical"
         android:verticalScrollbarPosition="defaultPosition"
@@ -49,9 +48,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
+
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+
         app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@android:color/background_dark"
         tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="99dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="176dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_paim" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
