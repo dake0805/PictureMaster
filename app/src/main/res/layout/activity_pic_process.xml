@@ -218,4 +218,15 @@
         app:layout_constraintBottom_toTopOf="@+id/AIclcik"
         app:layout_constraintStart_toEndOf="@+id/brightness" />
 
+    <Button
+        android:id="@+id/edit5_contrast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="Edit5_contrasts"
+        android:text="Buttontrast"
+        app:layout_constraintBottom_toTopOf="@+id/add"
+        app:layout_constraintStart_toEndOf="@+id/saturation" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
