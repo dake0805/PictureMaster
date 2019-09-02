@@ -16,7 +16,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <SeekBar
-        android:id="@+id/seekBar_brightness"
+        android:id="@+id/seekBar_editPhoto"
         android:layout_width="229dp"
         android:layout_height="95dp"
         android:layout_marginStart="16dp"
