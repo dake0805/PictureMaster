@@ -61,6 +61,8 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     private ButtonSelectType buttonSelect = ButtonSelectType.None;
 
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_process);
@@ -122,6 +124,21 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     }
 
+    /*
+    编辑拆开
+     */
+
+    public void Edit1(View view) {
+
+//        EditClick("scale");
+    }
+
+    public void Edit2(View view) {
+
+//        EditClick("rotate");
+    }
+
+
     public void DoneClick(View view) {
         Intent intent = new Intent(PictureProcessActivity.this, PhotoResultActivity.class);
         intent.putExtra("extra_resultUri", imageUri.toString());
@@ -133,15 +150,47 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private UCrop UcropConfig(UCrop uCrop) {
+//    private UCrop UcropConfig(UCrop uCrop) {
+////        //select button 绑定
+////        public void SelectPhoto_Pre (View view){
+////            Intent selectPhoto = new Intent();
+////            selectPhoto.setAction(Intent.ACTION_PICK);
+////            selectPhoto.setType("image/*");
+////            startActivityForResult(selectPhoto, CHOOSE_PICTURE);
+//        }
+//    }
+
+
+    private UCrop UcropConfig(UCrop uCrop, String mode) {
         UCrop.Options options = new UCrop.Options();
+//        options.setFreeStyleCropEnabled(true);
+        options.setHideBottomControls(true);
+
 //        options.setToolbarColor(Color.GREEN);
 //        options.setActiveWidgetColor(Color.GREEN);
 //        options.setCropFrameColor(Color.GREEN);
 //        options.setStatusBarColor(Color.GREEN);
-        options.setAllowedGestures(UCropActivity.ALL, UCropActivity.NONE, UCropActivity.ALL);
-        options.setFreeStyleCropEnabled(true);
-        options.setHideBottomControls(true);
+        switch (mode) {
+            case "scale":
+                options.setAllowedGestures(UCropActivity.NONE, UCropActivity.ALL, UCropActivity.ALL);
+                options.setFreeStyleCropEnabled(true);
+                break;
+            case "rotate":
+                options.setAllowedGestures(UCropActivity.ALL, UCropActivity.ALL, UCropActivity.ALL);
+                options.setFreeStyleCropEnabled(false);
+                options.setCropGridColumnCount(0);
+                options.setCropGridRowCount(0);
+                options.setShowCropFrame(false);
+                options.setToolbarTitle("旋转");
+
+                break;
+//            case "001":
+//                options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ALL, UCropActivity.ALL);
+//                break;
+        }
+
+
+
         return uCrop.withOptions(options);
     }
 
