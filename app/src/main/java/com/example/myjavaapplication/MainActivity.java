@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
@@ -32,7 +34,7 @@ import java.util.Date;
  */
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private static final int CHOOSE_PICTURE = 1;
     //    private static final int CROP_PICTURE = 2;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
 
+    private Button btn;
     @Override
     protected void onStart() {
         super.onStart();
@@ -89,12 +92,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         imageView=findViewById(R.id.background);
         imageView.setImageResource(R.drawable.p1);
+        btn = (Button)findViewById(R.id.button7);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView about= (TextView)findViewById(R.id.textView2);
+                about.setVisibility(View.VISIBLE);
+            }
+        });
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
+
     @Override
     protected void onResume(){
         super.onResume();
+    }
+    //Button SETTINGS
+    public void settings(View v){
+        Intent settings = new Intent(MainActivity.this,Settings.class);
+        startActivity(settings);
     }
     //TODO 按钮的图片设置与排版
     //Button SELECT
@@ -134,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     public void jointPhoto(View view){
         Intent intent = new Intent(MainActivity.this,JointPhotoActivity.class);

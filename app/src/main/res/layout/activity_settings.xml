@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="73dp"
+        android:text="About"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="409dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:text="Settings"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="407dp"
+        android:layout_height="447dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="94dp"
+        android:text='PAIM® for android®  Trademarks Apple, App Store, Mac App Store, iBookstore, iPhone, and iPad are registered trademarks or service marks of Apple Inc. All other brand names, product names or trademarks belong to their respective holders.  Third-Party Software Credits and Attributions  AFNetworking, 2.5.3 Copyright 2013-2015, AFNetworking https://github.com/AFNetworking/AFNetworking/blob/master/LICENSE  UICKeyChainStore, 1.1.0 Copyright 2011 kishikawa katsumi https://github.com/kishikawakatsumi/UICKeyChainStore/blob/master/LICENSE  ReactiveCocoa, 2.4.2 Copyright 2012 - 2014, GitHub, Inc. https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/LICENSE.md  SMPageControl, 1.2 Copyright (C) 2012 by Spaceman Labs (http://www.spacemanlabs.com) https://github.com/Spaceman-Labs/SMPageControl/blob/master/LICENSE  DB5 Copyright (c) 2013 Q Branch LLC (http://qbranch.co/) https://github.com/quartermaster/DB5/blob/master/LICENSE  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.'
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+</androidx.constraintlayout.widget.ConstraintLayout>
