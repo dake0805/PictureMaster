@@ -91,7 +91,7 @@ public class PicColorControlActivity extends AppCompatActivity {
     //亮度
     private void Brightness() {
         seekBar = findViewById(R.id.seekBar_editPhoto);
-        seekBar.setMax(160);
+        seekBar.setMax(150);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             seekBar.setMin(40);
         }
