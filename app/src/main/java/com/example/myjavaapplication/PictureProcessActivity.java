@@ -179,13 +179,10 @@ public class PictureProcessActivity extends AppCompatActivity {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 
         //////////////Uri destinationUri格式:file://*
-
-
         UCrop ucrop = UCrop.of(imageUri, destinationUri);
         ucrop = UcropConfig(ucrop, editMethod);
 
         ucrop.start(this);
-
 
     }
 
@@ -214,8 +211,6 @@ public class PictureProcessActivity extends AppCompatActivity {
                 break;
 
         }
-
-
         return uCrop.withOptions(options);
     }
 
@@ -229,16 +224,6 @@ public class PictureProcessActivity extends AppCompatActivity {
         Intent intent = new Intent(PictureProcessActivity.this, MainActivity.class);
         startActivity(intent);
     }
-
-//    private UCrop UcropConfig(UCrop uCrop) {
-////        //select button 绑定
-////        public void SelectPhoto_Pre (View view){
-////            Intent selectPhoto = new Intent();
-////            selectPhoto.setAction(Intent.ACTION_PICK);
-////            selectPhoto.setType("image/*");
-////            startActivityForResult(selectPhoto, CHOOSE_PICTURE);
-//        }
-//    }
 
     public void RestoreOrigin() {
         AiGroupSetVisibility(View.GONE);
