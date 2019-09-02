@@ -108,8 +108,8 @@ public class PictureProcessActivity extends AppCompatActivity {
         backgroudforButton = (TextView)findViewById(R.id.backgroundforButton);
 
         Edit = (Button)findViewById(R.id.Editclick);
-        Edit1 = (Button)findViewById(R.id.edit1);
-        Edit2 = (Button)findViewById(R.id.edit2);
+        Edit1 = (Button)findViewById(R.id.scale);
+        Edit2 = (Button)findViewById(R.id.rotate);
 
         highfraction =(Button)findViewById(R.id.highfraction);
         Stylemigration = (Button)findViewById(R.id.Stylemigration);
