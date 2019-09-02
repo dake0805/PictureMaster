@@ -1,0 +1,13 @@
+<vector android:height="50dp" android:viewportHeight="720"
+    android:viewportWidth="720" android:width="50dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#fff" android:name="圆角矩形 1" android:pathData="m158 297c-5.5 0 -10 5.4 -10 12v336c0 6.6 4.5 12 10 12h1c5.5 0 10 -5.4 10 -12v-336c0 -6.6 -4.5 -12 -10 -12z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 2" android:pathData="m550 297c-5.5 0 -10 5.4 -10 12v336c0 6.6 4.5 12 10 12h1c5.5 0 10 -5.4 10 -12v-336c0 -6.6 -4.5 -12 -10 -12z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 10" android:pathData="m248 357c-5.5 0 -10 4.5 -10 10v280c0 5.5 4.5 10 10 10h1c5.5 0 10 -4.5 10 -10v-280c0 -5.5 -4.5 -10 -10 -10z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 11" android:pathData="m367 357c-5.5 0 -10 4.5 -10 10v280c0 5.5 4.5 10 10 10h1c5.5 0 10 -4.5 10 -10v-280c0 -5.5 -4.5 -10 -10 -10z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 12" android:pathData="m253.5 355c-7.5 0 -13.5 4.5 -13.5 10v1c0 5.5 6 10 13.5 10h108c7.5 0 13.5 -4.5 13.5 -10v-1c0 -5.5 -6 -10 -13.5 -10z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 9" android:pathData="m159 636c-5.5 0 -10 4.5 -10 10v1c0 5.5 4.5 10 10 10h390c5.5 0 10 -4.5 10 -10v-1c0 -5.5 -4.5 -10 -10 -10z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 4" android:pathData="m356.4 39c-2.3 0 -4.5 0.8 -6.4 2.3l-306.4 257.2c-4.2 3.6 -4.8 9.9 -1.2 14.1l0.6 0.8c2 2.4 4.8 3.6 7.7 3.6c2.3 0 4.5 -0.8 6.4 -2.3l306.4 -257.2c4.2 -3.6 4.8 -9.9 1.2 -14.1l-0.6 -0.8c-2 -2.4 -4.8 -3.6 -7.7 -3.6z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 5" android:pathData="m356.6 39c-2.9 0 -5.7 1.2 -7.7 3.6l-0.6 0.8c-3.5 4.2 -3 10.5 1.2 14.1l306.4 257.2c1.9 1.6 4.2 2.3 6.4 2.3c2.9 0 5.7 -1.2 7.7 -3.6l0.6 -0.8c3.5 -4.2 3 -10.5 -1.2 -14.1l-306.4 -257.2c-1.9 -1.6 -4.2 -2.3 -6.4 -2.3z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 7" android:pathData="m49 297c-5.5 0 -10 4.5 -10 10v1c0 5.5 4.5 10 10 10h110c5.5 0 10 -4.5 10 -10v-1c0 -5.5 -4.5 -10 -10 -10z"/>
+    <path android:fillColor="#fff" android:name="圆角矩形 8" android:pathData="m553 297c-5.5 0 -10 4.5 -10 10v1c0 5.5 4.5 10 10 10h110c5.5 0 10 -4.5 10 -10v-1c0 -5.5 -4.5 -10 -10 -10z"/>
+</vector>
