@@ -93,7 +93,27 @@ public class PhotoResultActivity extends AppCompatActivity {
     }
 
     //set wallpaper button 绑定
-    public void SetWallpaper(View view) {
+    public void SetWallpaperClick(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("设置壁纸");
+        builder.setMessage("是否确定要设置壁纸");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
+
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                SetWallpaper();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+            }
+        });
+        AlertDialog b = builder.create();
+        b.show();
+    }
+
+    public void SetWallpaper() {
         final WallpaperManager wpManager = WallpaperManager.getInstance(this);
         try {
             //wpManager.setResource(R.id.imageView); //墙纸
@@ -109,13 +129,12 @@ public class PhotoResultActivity extends AppCompatActivity {
     //save button 绑定
     public void SavePhoto(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Save Photo");
+        builder.setTitle("保存照片");
         builder.setMessage("是否确定要存储照片");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
 
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
                 try {
                     SavePhotoInStorage();
                 } catch (IOException e) {
@@ -123,7 +142,7 @@ public class PhotoResultActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
             }
@@ -159,6 +178,7 @@ public class PhotoResultActivity extends AppCompatActivity {
         while ((len = in.read(buf)) > 0) {
             out.write(buf, 0, len);
         }
+        Toast.makeText(getApplicationContext(), "保存图片成功", Toast.LENGTH_SHORT).show();
         out.close();
         in.close();
     }

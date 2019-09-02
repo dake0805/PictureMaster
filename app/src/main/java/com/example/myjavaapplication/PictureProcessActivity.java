@@ -94,21 +94,24 @@ public class PictureProcessActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     imageUri = data.getData();
-                    imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
+                    //准备模糊化
+                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
                     break;
                 case UCrop.REQUEST_CROP:
                     imageUri = UCrop.getOutput(data);
-                    File tempFile = new File(imageUri.getPath());
-                    imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
+                    //准备模糊化
+                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
                     break;
                 case CHANGE_BRIGHTNESS:
                     imageUri = Uri.parse(data.getStringExtra("finishChange"));
                     imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
             }
-
+            RestoreOrigin();
         } else if (resultCode == UCrop.RESULT_ERROR) {
             final Throwable cropError = UCrop.getError(data);
         }
@@ -220,6 +223,15 @@ public class PictureProcessActivity extends AppCompatActivity {
 //        }
 //    }
 
+    public void RestoreOrigin(){
+        AiGroupSetVisibility(View.GONE);
+        AddGroupSetVisibility(View.GONE);
+        EditGroupSetVisibility(View.GONE);
+        OtherButtonGroupSetVisibility(View.VISIBLE);
+        backgroudforButton.setVisibility(View.GONE);
+        buttonSelect = ButtonSelectType.None;
+        SelectPhotoAppear("imageView_origin");
+    }
 
     public void EditClick(View view) {
         switch (buttonSelect) {
