@@ -2,14 +2,19 @@ package com.example.myjavaapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 
 /*
- * 文字输入页面
+ * 文本编辑的实现
+ * @hrncool
  * */
 
 public class TextEdit extends AppCompatActivity implements View.OnClickListener {
@@ -19,9 +24,10 @@ public class TextEdit extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_edit);
 
-        Button finsh_botton = (Button)findViewById(R.id.Finsh_Button);
-
-        finsh_botton.setOnClickListener(this);
+        Button finshbotton = (Button)findViewById(R.id.Finsh_Button);
+        finshbotton.setOnClickListener(this);
+        /*TextView a = (TextView)findViewById(R.id.Edit_Text1);
+        a.setText("Happpy");*/
 
 
 
@@ -33,20 +39,31 @@ public class TextEdit extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v){
         switch (v.getId()){
             case R.id.Finsh_Button:
+                String text="HelloWorld";
+
                 EditText EditText_1 = (EditText)findViewById(R.id.Edit_Text1) ;
+                text = EditText_1.getText().toString();
 
-                EditText_1.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                imm.showSoftInput(EditText_1, InputMethodManager.SHOW_IMPLICIT);
+                Intent intent = new Intent(TextEdit.this,Drawer.class);
+
+                intent.putExtra("edit_text",text);
+                startActivity(intent);
+
+
 
                 break;
-            case R.id.Edit_Text1:
-
-                break;
-
 
             default:
         }
 
     }
+
+
+
+
+
+
+
 }
+
+

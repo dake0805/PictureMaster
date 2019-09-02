@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application
         android:allowBackup="true"
@@ -17,13 +18,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".TextEdit"></activity>
-        <activity android:name=".Drawer">
+        <activity android:name=".Drawer"
+                  android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="Start_Drawer" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="Drawer.Start" />
             </intent-filter>
@@ -34,14 +35,23 @@
             android:authorities="com.example.myjavaapplication"
             android:exported="false"
             android:grantUriPermissions="true">
+
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provide_file_paths" />
         </provider>
 
-        <activity android:name=".PictureProcessActivity" />
-        <activity android:name=".JointPhotoActivity" />
-        <activity android:name=".PhotoResultActivity" />
+        <activity android:name=".PictureProcessActivity">
+
+        </activity>
+
+        <activity android:name=".JointPhotoActivity">
+
+        </activity>
+
+        <activity android:name=".PhotoResultActivity">
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,10 +59,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>
+
