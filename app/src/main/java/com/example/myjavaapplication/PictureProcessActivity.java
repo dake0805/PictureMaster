@@ -79,18 +79,20 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         BlidView();
         Intent intent = getIntent();
-        if (intent.getStringExtra("extra_uri_album") != null) {
-            imageUri = Uri.parse(intent.getStringExtra("extra_uri_album"));
-            //准备模糊化
-            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-
-        }
-        else if(intent.getStringExtra("extra_uri_camera")!=null){
-            imageUri = Uri.parse(intent.getStringExtra("extra_uri_camera"));
-            //准备模糊化
-            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-
-        }
+        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
+        photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+//        if (intent.getStringExtra("extra_uri_album") != null) {
+//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_album"));
+//            //准备模糊化
+//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+//
+//        }
+//        else if(intent.getStringExtra("extra_uri_camera")!=null){
+//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_camera"));
+//            //准备模糊化
+//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+//
+//        }
         fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
         imageView_origin.setImageURI(imageUri);
     }

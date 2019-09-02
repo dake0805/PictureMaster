@@ -27,7 +27,6 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     public static final int CHOOSE_PICTURE = 1;
-    //    private static final int CROP_PICTURE = 2;
     private static final int CAMERA_PICTURE = 3;
 
 
@@ -35,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     private File photoFile;
 
-    //private ImageView cropImage;
-    //
     private Uri imageCurrent;
 
     private ImageView imageView;
@@ -51,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         CheckPermission();
         imageView = findViewById(R.id.background);
         setBackground();
-        //cropImage = findViewById(R.id.imageView);
-        //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
 
     //检查权限
@@ -108,33 +103,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-//    //随机设置壁纸test pic
-//    public void setBackground(View view){
-//        switch((int) (1+Math.random()*(10-1+1))) {
-//            case 1:imageView.setImageResource(R.drawable.p1);
-//                break;
-//            case 2:imageView.setImageResource(R.drawable.p2);
-//                break;
-//            case 3:imageView.setImageResource(R.drawable.p3);
-//                break;
-//            case 4:imageView.setImageResource(R.drawable.p4);
-//                break;
-//            case 5:imageView.setImageResource(R.drawable.p5);
-//                break;
-//            case 6:imageView.setImageResource(R.drawable.p6);
-//                break;
-//            case 7:imageView.setImageResource(R.drawable.p7);
-//                break;
-//            case 8:imageView.setImageResource(R.drawable.p8);
-//                break;
-//            case 9:imageView.setImageResource(R.drawable.p9);
-//                break;
-//            case 10:imageView.setImageResource(R.drawable.p10);
-//                break;
-//        }
-//    }
-
     //TODO 按钮的图片设置与排版
     //Button SELECT
     public void selectPhoto(View view) {
@@ -146,10 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Button CAMERA
     public void cameraShotPhoto(View view) {
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (intent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(intent, CAMERA_PICTURE);
-//        }
+
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -174,11 +139,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    public void jointPhoto(View view) {
-//        Intent intent = new Intent(MainActivity.this, JointPhotoActivity.class);
-//        startActivity(intent);
-//    }
-
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
             // If request is cancelled, the result arrays are empty.
@@ -200,13 +160,12 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     ImageUri = data.getData();
-                    sendPicUriIntent.putExtra("extra_uri_album", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
-                    //CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
                     ImageUri = getCameraPhotoUri();
-                    sendPicUriIntent.putExtra("extra_uri_camera", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
             }
@@ -217,21 +176,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Uri getCameraPhotoUri() {
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-        /**
-         * 注意修改文件名
-         */
-//        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), timeStamp + "test.jpg"));
-
         //获得Uri
         Uri originPhoto = null;
-        //CropPhoto(originPhoto);
-//        if (photoFile != null) {
-//            originPhoto = FileProvider.getUriForFile(this,
-//                    "com.example.myjavaapplication",
-//                    photoFile);
-//        }
 
         try {
             originPhoto = Uri.parse(MediaStore.Images.Media.insertImage(
@@ -241,9 +187,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         return originPhoto;
-
     }
 
     //拍照前创建photo文件，在/mnt/sdcard/DCIM下
