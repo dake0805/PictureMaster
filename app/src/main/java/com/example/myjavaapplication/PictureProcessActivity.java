@@ -175,6 +175,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivityForResult(changeSaturation, CHANGE_PICTURE);
     }
 
+    public void Edit5_contrasts(View view) {
+        Intent changeSaturation = new Intent(this, PicColorControlActivity.class);
+        changeSaturation.putExtra("contrast_change_pic", imageUri.toString());
+        startActivityForResult(changeSaturation, CHANGE_PICTURE);
+    }
+
     public void EditProcess(EditMethod editMethod) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 

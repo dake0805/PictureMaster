@@ -217,8 +217,28 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="12dp"
         android:onClick="Edit4_saturation"
-        android:text="saturation"
+        android:text="饱和度"
         app:layout_constraintBottom_toTopOf="@+id/AIclcik"
         app:layout_constraintStart_toEndOf="@+id/brightness" />
+
+    <Button
+        android:id="@+id/edit5_contrast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="Edit5_contrasts"
+        android:text="对比度"
+        app:layout_constraintBottom_toTopOf="@+id/add"
+        app:layout_constraintStart_toEndOf="@+id/saturation" />
+
+    <Button
+        android:id="@+id/edit3_brightness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Edit3_brightness"
+        android:text="亮度"
+        app:layout_constraintBottom_toTopOf="@+id/AIclcik"
+        app:layout_constraintStart_toEndOf="@+id/edit5_contrast" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
