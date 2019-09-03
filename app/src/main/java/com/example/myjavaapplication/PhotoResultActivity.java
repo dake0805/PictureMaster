@@ -45,34 +45,11 @@ public class PhotoResultActivity extends AppCompatActivity {
 
         if(intent.getStringExtra("extra_resultUri")!=null){
             originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
-            photoBmp = Photo.getBitmapFromUri(getApplicationContext(),this.getContentResolver(),originImageUri);
-            photoBmp = Photo.scaleBitmap(photoBmp,0.2f);
-            fuzzyPhotoBmp = FastBlur.doBlur(photoBmp,40,false);
-            //fuzzyPhotoBmp = FastBlur.doBlur(Photo.scaleBitmap(photoBmp,1,1),20,false);
+            fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),originImageUri);
             imageView_background.setImageBitmap(fuzzyPhotoBmp);
         }
     }
 
-    //uri转bitmap 可以用来避免旋转
-    private Bitmap getBitmapFromUri(Uri uri) {
-        //获取路径
-        String  photoPath = FastBlur.getPath(getApplicationContext(),uri);
-        //通过路径判断被旋转的角度
-        int degrees = FastBlur.getBitmapDegree(photoPath);
-        Bitmap bitmap;
-        try {
-            // 读取uri所在的图片
-            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-        } catch (Exception e) {
-            Log.e("[Android]", e.getMessage());
-            Log.e("[Android]", "目录为：" + uri);
-            e.printStackTrace();
-            return null;
-        }
-        //再旋转
-        bitmap = FastBlur.rotateBitmap(bitmap,degrees);
-        return bitmap;
-    }
 
     public void close_click(View view) {
         finish();

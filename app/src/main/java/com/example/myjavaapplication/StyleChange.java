@@ -2,6 +2,7 @@ package com.example.myjavaapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 
 public class StyleChange extends AppCompatActivity {
@@ -10,5 +11,7 @@ public class StyleChange extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style_change);
+
+    
     }
 }
