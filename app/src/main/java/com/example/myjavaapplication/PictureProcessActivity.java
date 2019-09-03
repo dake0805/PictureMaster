@@ -81,20 +81,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         BlidView();
         Intent intent = getIntent();
         imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
-        photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//        if (intent.getStringExtra("extra_uri_album") != null) {
-//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_album"));
-//            //准备模糊化
-//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//
-//        }
-//        else if(intent.getStringExtra("extra_uri_camera")!=null){
-//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_camera"));
-//            //准备模糊化
-//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//
-//        }
-        fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         imageView_origin.setImageURI(imageUri);
     }
 
@@ -105,17 +92,13 @@ public class PictureProcessActivity extends AppCompatActivity {
                 case CHOOSE_PICTURE:
                     imageUri = data.getData();
                     imageView_origin.setImageURI(imageUri);
-                    //准备模糊化
-                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+                    fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
                     break;
                 case UCrop.REQUEST_CROP:
                     imageUri = UCrop.getOutput(data);
                     imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
-                    //准备模糊化
-                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+                    fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),imageUri);
                     break;
                 case CHANGE_PICTURE:
                     if (Uri.parse(data.getStringExtra("finishChange")) != null) {
@@ -150,6 +133,15 @@ public class PictureProcessActivity extends AppCompatActivity {
         addtext = (Button) findViewById(R.id.addtext);
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
+
+        addphotoframe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PictureProcessActivity.this, AddPhotoFrameActivity.class);
+                intent.putExtra("extra_addFrame", imageUri.toString());
+                startActivity(intent);
+            }
+        });
 
         homeButton = (Button) findViewById(R.id.homebutton);
         doneButton = (Button) findViewById(R.id.done_button);
@@ -186,6 +178,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivityForResult(changeSaturation, CHANGE_PICTURE);
     }
 
+    public void AiEdit1_StyleChange(View view) {
+        Intent intent = new Intent(this, StyleChange.class);
+        intent.putExtra("style_change_pic", imageUri.toString());
+        startActivity(intent);
+    }
+
     public void EditProcess(EditMethod editMethod) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 
@@ -199,13 +197,8 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     private UCrop UcropConfig(UCrop uCrop, EditMethod mode) {
         UCrop.Options options = new UCrop.Options();
-//        options.setFreeStyleCropEnabled(true);
         options.setHideBottomControls(true);
 
-//        options.setToolbarColor(Color.GREEN);
-//        options.setActiveWidgetColor(Color.GREEN);
-//        options.setCropFrameColor(Color.GREEN);
-//        options.setStatusBarColor(Color.GREEN);
         switch (mode) {
             case Scale:
                 options.setAllowedGestures(UCropActivity.NONE, UCropActivity.ALL, UCropActivity.ALL);
@@ -362,96 +355,4 @@ public class PictureProcessActivity extends AppCompatActivity {
             imageView_background.setVisibility(View.GONE);
         }
     }
-
-//
-//    /**
-//     * 当点击beauty按钮时，
-//     * 如果isbeautybutton=true，
-//     * add相关的控件消失在屏幕上，之后置isaddbutton为true
-//     * beauty相关的控件显示在屏幕上，之后置isbeautybutton为false
-//     * 其余两个按钮消失，之后置isthetwoon为true
-//     *
-//     * 如果isbeautybutton=false，beauty相关的控件不显示在屏幕上，之后置isbeautybutton为true
-//     * 其余两个按钮出现，之后置isthetwoon为false
-//     */
-//    public void btn_onclickofbeauty(View view){
-//        backgroudforbrauty=(TextView)findViewById(R.id.backgroundforbeauty);
-//        highfraction=(Button)findViewById(R.id.highfraction);
-//        Stylemigration=(Button)findViewById(R.id.Stylemigration);
-//        backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
-//        addtext=(Button)findViewById(R.id.addtext);
-//        addaccessories=(Button)findViewById(R.id.addaccessories);
-//        addphotoframe=(Button)findViewById(R.id.addphotoframe);
-//        Home=(Button)findViewById(R.id.homebutton);
-//
-//        if(isbeautybutton){
-//            backgroudforadd.setVisibility(View.GONE);
-//            addtext.setVisibility(View.GONE);
-//            addaccessories.setVisibility(View.GONE);
-//            addphotoframe.setVisibility(View.GONE);
-//            isaddbutton=true;
-//            backgroudforbrauty.setVisibility(View.VISIBLE);
-//            highfraction.setVisibility(View.VISIBLE);
-//            Stylemigration.setVisibility(View.VISIBLE);
-//            isbeautybutton=false;
-//            Home.setVisibility(View.GONE);
-//            isthetwoon=true;
-//        }
-//        else{
-//            backgroudforbrauty.setVisibility(View.GONE);
-//            highfraction.setVisibility(View.GONE);
-//            Stylemigration.setVisibility(View.GONE);
-//            isbeautybutton=true;
-//            Home.setVisibility(View.VISIBLE);
-//            isthetwoon=false;
-//            imageView_background.setImageBitmap(fuzzyPhotoBmp);
-//            imageView.setImageURI(null);
-//
-//        }
-//
-//    }
-//
-//    /**
-//     * 当点击add按钮时，
-//     * 如果isaddbutton=true，
-//     * beauty相关的控件消失在屏幕上，之后置isbeautybutton为true
-//     * add相关的控件显示在屏幕上，之后置isaddbutton为false
-//     *
-//     * 如果isaddbutton=false，add相关的控件不显示在屏幕上，之后置isaddbutton为true
-//     */
-//
-//    public void btn_onclickofadd(View view){
-//        backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
-//        addtext=(Button)findViewById(R.id.addtext);
-//        addaccessories=(Button)findViewById(R.id.addaccessories);
-//        addphotoframe=(Button)findViewById(R.id.addphotoframe);
-//        backgroudforbrauty=(TextView)findViewById(R.id.backgroundforbeauty);
-//        highfraction=(Button)findViewById(R.id.highfraction);
-//        Stylemigration=(Button)findViewById(R.id.Stylemigration);
-//        Home=(Button)findViewById(R.id.homebutton);
-//
-//        if(isaddbutton){
-//            backgroudforbrauty.setVisibility(View.GONE);
-//            highfraction.setVisibility(View.GONE);
-//            Stylemigration.setVisibility(View.GONE);
-//            isbeautybutton=true;
-//            backgroudforadd.setVisibility(View.VISIBLE);
-//            addtext.setVisibility(View.VISIBLE);
-//            addaccessories.setVisibility(View.VISIBLE);
-//            addphotoframe.setVisibility(View.VISIBLE);
-//            isaddbutton=false;
-//            Home.setVisibility(View.GONE);
-//            isthetwoon=true;
-//
-//        }
-//        else{
-//            backgroudforadd.setVisibility(View.GONE);
-//            addtext.setVisibility(View.GONE);
-//            addaccessories.setVisibility(View.GONE);
-//            addphotoframe.setVisibility(View.GONE);
-//            isaddbutton=true;
-//            Home.setVisibility(View.VISIBLE);
-//            isthetwoon=false;
-//        }
-//    }
 }

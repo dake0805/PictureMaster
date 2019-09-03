@@ -1,5 +1,14 @@
-<vector android:height="50dp" android:viewportHeight="720"
-    android:viewportWidth="720" android:width="50dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#fff" android:name="圆角矩形 1" android:pathData="m559.7 149.1c-2.6 0 -5.1 1 -7.1 2.9l-410.1 410.1c-3.9 3.9 -3.9 10.2 0 14.1l0.7 0.7c2 2 4.5 2.9 7.1 2.9c2.6 0 5.1 -1 7.1 -2.9l410.1 -410.1c3.9 -3.9 3.9 -10.2 0 -14.1l-0.7 -0.7c-2 -2 -4.5 -2.9 -7.1 -2.9z"/>
-    <path android:fillColor="#fff" android:name="圆角矩形 2" android:pathData="m159.3 149.1c-2.6 0 -5.1 1 -7.1 2.9l-0.7 0.7c-3.9 3.9 -3.9 10.2 0 14.1l410.1 410.1c2 2 4.5 2.9 7.1 2.9c2.6 0 5.1 -1 7.1 -2.9l0.7 -0.7c3.9 -3.9 3.9 -10.2 0 -14.1l-410.1 -410.1c-2 -2 -4.5 -2.9 -7.1 -2.9z"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="720dp"
+    android:height="720dp"
+    android:viewportWidth="720"
+    android:viewportHeight="720">
+    <path
+        android:name="圆角矩形 1"
+        android:pathData="m694.7 -0c-4.2 0 -8.4 1.6 -11.6 4.9l-671.3 685.4c-6.4 6.5 -6.4 17.1 0 23.6l1.2 1.2c3.2 3.3 7.4 4.9 11.6 4.9c4.2 0 8.4 -1.6 11.6 -4.9l671.3 -685.4c6.4 -6.5 6.4 -17.1 0 -23.6l-1.2 -1.2c-3.2 -3.3 -7.4 -4.9 -11.6 -4.9z"
+        android:fillColor="#fff" />
+    <path
+        android:name="圆角矩形 2"
+        android:pathData="m24.2 -0c-4.2 0 -8.4 1.6 -11.6 4.9l-1.2 1.2c-6.4 6.5 -6.4 17.1 0 23.6l671.3 685.4c3.2 3.3 7.4 4.9 11.6 4.9c4.2 0 8.4 -1.6 11.6 -4.9l1.2 -1.2c6.4 -6.5 6.4 -17.1 0 -23.6l-671.3 -685.4c-3.2 -3.3 -7.4 -4.9 -11.6 -4.9z"
+        android:fillColor="#fff" />
 </vector>
