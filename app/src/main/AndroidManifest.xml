@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PicColorControlActivity"></activity>
+        <activity android:name=".StyleChange"></activity>
+        <activity android:name=".PicColorControlActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PictureProcessActivity" />
         <activity android:name=".JointPhotoActivity" />

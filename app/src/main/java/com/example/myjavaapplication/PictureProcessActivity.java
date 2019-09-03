@@ -186,6 +186,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivityForResult(changeSaturation, CHANGE_PICTURE);
     }
 
+    public void AiEdit1_StyleChange(View view) {
+        Intent intent = new Intent(this, StyleChange.class);
+        intent.putExtra("style_change_pic", imageUri.toString());
+        startActivity(intent);
+    }
+
     public void EditProcess(EditMethod editMethod) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 

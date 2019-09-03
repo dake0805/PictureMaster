@@ -108,6 +108,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/ic_filter"
+            android:onClick="AiEdit1_StyleChange"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/highfraction"
             app:layout_constraintEnd_toStartOf="@+id/highfraction"
