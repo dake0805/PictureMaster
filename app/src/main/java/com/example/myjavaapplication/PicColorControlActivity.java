@@ -17,6 +17,9 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -54,6 +57,7 @@ public class PicColorControlActivity extends AppCompatActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView title = findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,16 +80,21 @@ public class PicColorControlActivity extends AppCompatActivity {
             mode = Mode.Brightness;
             imageUri = Uri.parse(intent.getStringExtra("brightness_change_pic"));
             getBitmap();
+            title.setText("亮度");
             Brightness();
         } else if (intent.getStringExtra("saturation_change_pic") != null) {
             mode = Mode.Saturation;
             imageUri = Uri.parse(intent.getStringExtra("saturation_change_pic"));
             getBitmap();
+            title.setText(" 饱和度");
+
             Saturation();
         } else if (intent.getStringExtra("contrast_change_pic") != null) {
             mode = Mode.Contrast;
             imageUri = Uri.parse(intent.getStringExtra("contrast_change_pic"));
             getBitmap();
+            title.setText("对比度");
+
             Contrast();
         }
 
