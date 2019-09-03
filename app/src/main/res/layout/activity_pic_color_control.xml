@@ -8,16 +8,19 @@
 
     <ImageView
         android:id="@+id/colorControl_ImageView"
-        android:layout_width="265dp"
-        android:layout_height="326dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="171dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar_editPhoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="138dp"
+        app:layout_constraintTop_toBottomOf="@+id/finish_Button"
         tools:srcCompat="@tools:sample/avatars" />
 
     <SeekBar
-        android:id="@+id/seekBar_brightness"
-        android:layout_width="229dp"
+        android:id="@+id/seekBar_editPhoto"
+        android:layout_width="0dp"
         android:layout_height="95dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -25,4 +28,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/finish_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="48dp"
+        android:onClick="FinishChange"
+        android:text="FINISH"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +24,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Uri imageUri;
 
     public static final int CHOOSE_PICTURE = 1;
+    public static final int CHANGE_PICTURE = 7;
 
     private Bitmap photoBmp;
     private Bitmap fuzzyPhotoBmp;
@@ -33,8 +33,11 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     //点击编辑按钮弹出界面所需变量
     private Button Edit;
-    private Button Edit1;
-    private Button Edit2;
+    private Button Edit_Scale;
+    private Button Edit_Rotate;
+    private Button Edit_Saturation;
+    private Button Edit_Contrast;
+    private Button Edit_Brightness;
 
     //点击AI按钮弹出界面所需的4个变量
     private Button highfraction;
@@ -76,15 +79,23 @@ public class PictureProcessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pic_process);
 
         BlidView();
-
         Intent intent = getIntent();
-        if (intent.getStringExtra("extra_uri") != null) {
-            imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
-            //准备模糊化
-            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-            fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
-            imageView_origin.setImageURI(imageUri);
-        }
+        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
+        photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+//        if (intent.getStringExtra("extra_uri_album") != null) {
+//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_album"));
+//            //准备模糊化
+//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+//
+//        }
+//        else if(intent.getStringExtra("extra_uri_camera")!=null){
+//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_camera"));
+//            //准备模糊化
+//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+//
+//        }
+        fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+        imageView_origin.setImageURI(imageUri);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -100,11 +111,18 @@ public class PictureProcessActivity extends AppCompatActivity {
                     break;
                 case UCrop.REQUEST_CROP:
                     imageUri = UCrop.getOutput(data);
+                    imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
                     //准备模糊化
                     photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
                     fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
                     break;
+                case CHANGE_PICTURE:
+                    if (Uri.parse(data.getStringExtra("finishChange")) != null) {
+                        imageUri = Uri.parse(data.getStringExtra("finishChange"));
+                    }
+                    imageView_origin.setImageURI(null);
+                    imageView_origin.setImageURI(imageUri);
             }
             RestoreOrigin();
         } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -119,8 +137,11 @@ public class PictureProcessActivity extends AppCompatActivity {
         backgroudforButton = (TextView) findViewById(R.id.backgroundforButton);
 
         Edit = (Button) findViewById(R.id.Editclick);
-        Edit1 = (Button) findViewById(R.id.scale);
-        Edit2 = (Button) findViewById(R.id.rotate);
+        Edit_Scale = (Button) findViewById(R.id.scale);
+        Edit_Rotate = (Button) findViewById(R.id.rotate);
+        Edit_Brightness = (Button) findViewById(R.id.brightness);
+        Edit_Contrast = (Button) findViewById(R.id.contrast);
+        Edit_Saturation = (Button) findViewById(R.id.saturation);
 
         highfraction = (Button) findViewById(R.id.highfraction);
         Stylemigration = (Button) findViewById(R.id.Stylemigration);
@@ -159,20 +180,35 @@ public class PictureProcessActivity extends AppCompatActivity {
     public void Edit3_brightness(View view) {
         Intent changeBrightness = new Intent(this, PicColorControlActivity.class);
         changeBrightness.putExtra("brightness_change_pic", imageUri.toString());
-        startActivity(changeBrightness);
+        startActivityForResult(changeBrightness, CHANGE_PICTURE);
+    }
+
+    public void Edit4_saturation(View view) {
+        Intent changeSaturation = new Intent(this, PicColorControlActivity.class);
+        changeSaturation.putExtra("saturation_change_pic", imageUri.toString());
+        startActivityForResult(changeSaturation, CHANGE_PICTURE);
+    }
+
+    public void Edit5_contrasts(View view) {
+        Intent changeSaturation = new Intent(this, PicColorControlActivity.class);
+        changeSaturation.putExtra("contrast_change_pic", imageUri.toString());
+        startActivityForResult(changeSaturation, CHANGE_PICTURE);
+    }
+
+    public void AiEdit1_StyleChange(View view) {
+        Intent intent = new Intent(this, StyleChange.class);
+        intent.putExtra("style_change_pic", imageUri.toString());
+        startActivity(intent);
     }
 
     public void EditProcess(EditMethod editMethod) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 
         //////////////Uri destinationUri格式:file://*
-
-
         UCrop ucrop = UCrop.of(imageUri, destinationUri);
         ucrop = UcropConfig(ucrop, editMethod);
 
         ucrop.start(this);
-
 
     }
 
@@ -201,8 +237,6 @@ public class PictureProcessActivity extends AppCompatActivity {
                 break;
 
         }
-
-
         return uCrop.withOptions(options);
     }
 
@@ -217,17 +251,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    private UCrop UcropConfig(UCrop uCrop) {
-////        //select button 绑定
-////        public void SelectPhoto_Pre (View view){
-////            Intent selectPhoto = new Intent();
-////            selectPhoto.setAction(Intent.ACTION_PICK);
-////            selectPhoto.setType("image/*");
-////            startActivityForResult(selectPhoto, CHOOSE_PICTURE);
-//        }
-//    }
-
-    public void RestoreOrigin(){
+    public void RestoreOrigin() {
         AiGroupSetVisibility(View.GONE);
         AddGroupSetVisibility(View.GONE);
         EditGroupSetVisibility(View.GONE);
@@ -319,8 +343,11 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     private void EditGroupSetVisibility(int visibility) {
-        Edit1.setVisibility(visibility);
-        Edit2.setVisibility(visibility);
+        Edit_Scale.setVisibility(visibility);
+        Edit_Rotate.setVisibility(visibility);
+        Edit_Saturation.setVisibility(visibility);
+        Edit_Contrast.setVisibility(visibility);
+        Edit_Brightness.setVisibility(visibility);
     }
 
     private void AddGroupSetVisibility(int visibility) {

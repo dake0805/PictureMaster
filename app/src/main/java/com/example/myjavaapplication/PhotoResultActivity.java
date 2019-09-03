@@ -46,6 +46,7 @@ public class PhotoResultActivity extends AppCompatActivity {
         if(intent.getStringExtra("extra_resultUri")!=null){
             originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
             photoBmp = Photo.getBitmapFromUri(getApplicationContext(),this.getContentResolver(),originImageUri);
+            photoBmp = Photo.scaleBitmap(photoBmp,2);
             fuzzyPhotoBmp = FastBlur.doBlur(photoBmp,40,false);
             //fuzzyPhotoBmp = FastBlur.doBlur(Photo.scaleBitmap(photoBmp,1,1),20,false);
             imageView_background.setImageBitmap(fuzzyPhotoBmp);

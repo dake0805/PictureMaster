@@ -209,14 +209,11 @@ public class Photo {
     }
 
     //将图片进行缩放
-    public static Bitmap scaleBitmap(Bitmap source, int widthScale,int heightSacle){
-        int width = Math.round(source.getWidth() * widthScale);
-        int height = Math.round(source.getHeight() * heightSacle);
-
+    public static Bitmap scaleBitmap(Bitmap source, float scale){
+        int width = Math.round(source.getWidth() * scale);
+        int height = Math.round(source.getHeight() * scale);
         Bitmap outBitmap = Bitmap.createScaledBitmap(source,width,height,false);
         return outBitmap;
     }
-
-
 
 }
