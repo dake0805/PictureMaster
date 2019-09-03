@@ -22,19 +22,21 @@
 
     <ImageView
         android:id="@+id/background_result"
-        android:layout_width="408dp"
-        android:layout_height="727dp"
         android:fadingEdge="vertical"
-        android:scaleType="centerCrop"
         android:foregroundGravity="fill_vertical"
         android:verticalScrollbarPosition="defaultPosition"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@android:color/background_dark"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         tools:visibility="visible" />
 
     <Button
