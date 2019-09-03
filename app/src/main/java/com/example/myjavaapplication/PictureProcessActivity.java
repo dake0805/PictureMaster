@@ -99,6 +99,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                     break;
                 case UCrop.REQUEST_CROP:
                     imageUri = UCrop.getOutput(data);
+                    imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
 //                    //准备模糊化
 //                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
@@ -126,9 +127,9 @@ public class PictureProcessActivity extends AppCompatActivity {
         Edit = (Button) findViewById(R.id.Editclick);
         Edit_Scale = (Button) findViewById(R.id.scale);
         Edit_Rotate = (Button) findViewById(R.id.rotate);
-        Edit_Brightness =(Button)findViewById(R.id.brightness);
-        Edit_Contrast = (Button)findViewById(R.id.contrast);
-        Edit_Saturation =(Button)findViewById(R.id.saturation);
+        Edit_Brightness = (Button) findViewById(R.id.brightness);
+        Edit_Contrast = (Button) findViewById(R.id.contrast);
+        Edit_Saturation = (Button) findViewById(R.id.saturation);
 
         highfraction = (Button) findViewById(R.id.highfraction);
         Stylemigration = (Button) findViewById(R.id.Stylemigration);
