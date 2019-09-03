@@ -3,12 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="ucrop_color_toolbar">#fff</color>
-    <color name="ucrop_color_statusbar">#f5f5f5</color>
-    <color name="ucrop_color_toolbar_widget">#000000</color>
 
-    <color name="ucrop_color_widget_active">#f5f5f5</color>
-    <color name="ucrop_color_active_controls_color">#FFFFFF</color>
-    <color name="ucrop_color_widget_rotate_mid_line">#000000</color>
-    <color name="ucrop_color_widget_background">#000000</color>
+<!--    <color name="ucrop_color_toolbar">#fff</color>-->
+<!--    <color name="ucrop_color_statusbar">#f5f5f5</color>-->
+<!--    <color name="ucrop_color_toolbar_widget">#000000</color>-->
+
+<!--    <color name="ucrop_color_widget_active">#f5f5f5</color>-->
+<!--    <color name="ucrop_color_active_controls_color">#FFFFFF</color>-->
+<!--    <color name="ucrop_color_widget_rotate_mid_line">#000000</color>-->
+<!--    <color name="ucrop_color_widget_background">#000000</color>-->
 </resources>
