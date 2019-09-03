@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +21,7 @@ import java.io.File;
 
 public class PictureProcessActivity extends AppCompatActivity {
 
+    private ImageView imageView_drawer;
     private ImageView imageView_origin;
     private ImageView imageView_background;
 
@@ -107,7 +111,9 @@ public class PictureProcessActivity extends AppCompatActivity {
                     imageUri = UCrop.getOutput(data);
                     imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
-                    fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),imageUri);
+                    //准备模糊化
+                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
                     break;
                 case CHANGE_PICTURE:
                     if (Uri.parse(data.getStringExtra("finishChange")) != null) {
@@ -143,14 +149,15 @@ public class PictureProcessActivity extends AppCompatActivity {
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
 
-        addphotoframe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PictureProcessActivity.this, AddPhotoFrameActivity.class);
-                intent.putExtra("extra_addFrame", imageUri.toString());
-                startActivity(intent);
-            }
-        });
+//
+//        addphotoframe.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(PictureProcessActivity.this, AddPhotoFrameActivity.class);
+//                intent.putExtra("extra_addFrame", imageUri.toString());
+//                startActivity(intent);
+//            }
+//        });
 
         homeButton = (Button) findViewById(R.id.homebutton);
         doneButton = (Button) findViewById(R.id.done_button);
@@ -225,6 +232,14 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         }
         return uCrop.withOptions(options);
+    }
+
+    public void Add_Text(View view){
+        Intent intent = new Intent(PictureProcessActivity.this,Drawer.class);
+        intent.putExtra("extra_photoadd",imageUri.toString());
+                //  intent.putExtra("Height",imageView.getHeight());
+                //   intent.putExtra("Height",imageView.getWidth());
+        startActivity(intent);
     }
 
     public void DoneClick(View view) {
@@ -364,4 +379,5 @@ public class PictureProcessActivity extends AppCompatActivity {
             imageView_background.setVisibility(View.GONE);
         }
     }
+
 }

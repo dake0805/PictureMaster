@@ -28,12 +28,15 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     public static final int CHOOSE_PICTURE = 1;
+    //    private static final int CROP_PICTURE = 2;
     private static final int CAMERA_PICTURE = 3;
 
 
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 7;
 
     private File photoFile;
+
+    //private ImageView cropImage;
 
     private Uri imageCurrent;
 
@@ -52,6 +55,23 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.background);
         setBackground();
     }
+/*
+    public void startDrawer(View v){
+        //hrn测试用
+        final Button button1=(Button) findViewById(R.id.button5);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,Drawer.class);
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this,"打开相册",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+*/
+
 
     //检查权限
     private void CheckPermission() {
@@ -117,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Button CAMERA
     public void cameraShotPhoto(View view) {
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivityForResult(intent, CAMERA_PICTURE);
+//        }
+        //test hrn
 
         Uri cameraPhoto;
 
@@ -191,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return originPhoto;
+
     }
 
     //拍照前创建photo文件，在/mnt/sdcard/DCIM下
