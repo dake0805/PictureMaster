@@ -1,5 +1,6 @@
 package com.example.myjavaapplication;
 
+import android.app.ActionBar;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,14 +41,18 @@ public class PhotoResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_result);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
+
+
         imageView_background = (ImageView) findViewById(R.id.background_result);
         Intent intent = getIntent();
 
-        if(intent.getStringExtra("extra_resultUri")!=null){
+        if (intent.getStringExtra("extra_resultUri") != null) {
             originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
-            photoBmp = Photo.getBitmapFromUri(getApplicationContext(),this.getContentResolver(),originImageUri);
-            photoBmp = Photo.scaleBitmap(photoBmp,2);
-            fuzzyPhotoBmp = FastBlur.doBlur(photoBmp,40,false);
+            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), originImageUri);
+            photoBmp = Photo.scaleBitmap(photoBmp, 2);
+            fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 40, false);
             //fuzzyPhotoBmp = FastBlur.doBlur(Photo.scaleBitmap(photoBmp,1,1),20,false);
             imageView_background.setImageBitmap(fuzzyPhotoBmp);
         }
@@ -56,7 +61,7 @@ public class PhotoResultActivity extends AppCompatActivity {
     //uri转bitmap 可以用来避免旋转
     private Bitmap getBitmapFromUri(Uri uri) {
         //获取路径
-        String  photoPath = FastBlur.getPath(getApplicationContext(),uri);
+        String photoPath = FastBlur.getPath(getApplicationContext(), uri);
         //通过路径判断被旋转的角度
         int degrees = FastBlur.getBitmapDegree(photoPath);
         Bitmap bitmap;
@@ -70,7 +75,7 @@ public class PhotoResultActivity extends AppCompatActivity {
             return null;
         }
         //再旋转
-        bitmap = FastBlur.rotateBitmap(bitmap,degrees);
+        bitmap = FastBlur.rotateBitmap(bitmap, degrees);
         return bitmap;
     }
 
