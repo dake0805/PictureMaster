@@ -23,7 +23,8 @@
         <activity android:name=".StyleChange"></activity>
         <activity android:name=".PicColorControlActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".PictureProcessActivity" />
+        <activity android:name=".PictureProcessActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".JointPhotoActivity" />
         <activity android:name=".PhotoResultActivity" />
         <activity android:name=".WelcomeActivity">

@@ -163,12 +163,12 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     ImageUri = data.getData();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri_origin", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
                 case CAMERA_PICTURE:
                     ImageUri = getCameraPhotoUri();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri_origin", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
             }

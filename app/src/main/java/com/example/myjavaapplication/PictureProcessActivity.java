@@ -80,9 +80,18 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         BlidView();
         Intent intent = getIntent();
-        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
+        imageUri = Uri.parse(intent.getStringExtra("extra_uri_origin"));
         fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         imageView_origin.setImageURI(imageUri);
+    }
+
+    protected void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+        setIntent(intent);
+        Intent intent1 = getIntent();
+        imageUri = Uri.parse(intent1.getStringExtra("extar_uri_process"));
+        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),imageUri);
+        RestoreOrigin();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
