@@ -13,10 +13,7 @@ public class StyleChange extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style_change);
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
-    
     }
 //
 //    public boolean onOptionsltemSelected(MenuItem item){

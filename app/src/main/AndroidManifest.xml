@@ -22,8 +22,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".StyleChange"
-            android:label="风格迁移"
-            android:theme="@style/AppTheme"/>
+            android:label="风格迁移"/>
 
         <activity android:name=".PicColorControlActivity" />
 
