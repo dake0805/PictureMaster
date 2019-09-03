@@ -130,6 +130,15 @@ public class PictureProcessActivity extends AppCompatActivity {
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
 
+        addphotoframe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PictureProcessActivity.this, AddPhotoFrameActivity.class);
+                intent.putExtra("extra_addFrame", imageUri.toString());
+                startActivity(intent);
+            }
+        });
+
         homeButton = (Button) findViewById(R.id.homebutton);
         doneButton = (Button) findViewById(R.id.done_button);
 
