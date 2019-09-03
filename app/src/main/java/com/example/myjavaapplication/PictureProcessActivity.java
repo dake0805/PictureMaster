@@ -81,8 +81,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         BlidView();
         Intent intent = getIntent();
         imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
-//        photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//        fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         imageView_origin.setImageURI(imageUri);
     }
 
@@ -93,17 +92,13 @@ public class PictureProcessActivity extends AppCompatActivity {
                 case CHOOSE_PICTURE:
                     imageUri = data.getData();
                     imageView_origin.setImageURI(imageUri);
-//                    //准备模糊化
-//                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+                    fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
                     break;
                 case UCrop.REQUEST_CROP:
                     imageUri = UCrop.getOutput(data);
                     imageView_origin.setImageURI(null);
                     imageView_origin.setImageURI(imageUri);
-//                    //准备模糊化
-//                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+                    fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),imageUri);
                     break;
                 case CHANGE_PICTURE:
                     if (Uri.parse(data.getStringExtra("finishChange")) != null) {
@@ -232,7 +227,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         OtherButtonGroupSetVisibility(View.VISIBLE);
         backgroudforButton.setVisibility(View.GONE);
         buttonSelect = ButtonSelectType.None;
-//        SelectPhotoAppear("imageView_origin");
+        SelectPhotoAppear("imageView_origin");
     }
 
     public void EditClick(View view) {
@@ -243,21 +238,21 @@ public class PictureProcessActivity extends AppCompatActivity {
                 AddGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.VISIBLE);
                 buttonSelect = ButtonSelectType.Edit;
-//                SelectPhotoAppear("imageView_background");
+                SelectPhotoAppear("imageView_background");
                 break;
             case Edit:
                 EditGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
                 buttonSelect = ButtonSelectType.None;
-//                SelectPhotoAppear("imageView_origin");
+                SelectPhotoAppear("imageView_origin");
                 break;
             case None:
                 EditGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
                 buttonSelect = ButtonSelectType.Edit;
-//                SelectPhotoAppear("imageView_background");
+                SelectPhotoAppear("imageView_background");
                 break;
         }
     }
@@ -270,21 +265,21 @@ public class PictureProcessActivity extends AppCompatActivity {
                 EditGroupSetVisibility(View.GONE);
                 AiGroupSetVisibility(View.VISIBLE);
                 buttonSelect = ButtonSelectType.Ai;
-//                SelectPhotoAppear("imageView_background");
+                SelectPhotoAppear("imageView_background");
                 break;
             case Ai:
                 AiGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
                 buttonSelect = ButtonSelectType.None;
-//                SelectPhotoAppear("imageView_origin");
+                SelectPhotoAppear("imageView_origin");
                 break;
             case None:
                 AiGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
                 buttonSelect = ButtonSelectType.Ai;
-//                SelectPhotoAppear("imageView_background");
+                SelectPhotoAppear("imageView_background");
                 break;
         }
     }
@@ -297,21 +292,21 @@ public class PictureProcessActivity extends AppCompatActivity {
                 EditGroupSetVisibility(View.GONE);
                 AddGroupSetVisibility(View.VISIBLE);
                 buttonSelect = ButtonSelectType.Add;
-//                SelectPhotoAppear("imageView_background");
+                SelectPhotoAppear("imageView_background");
                 break;
             case Add:
                 AddGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
                 buttonSelect = ButtonSelectType.None;
-//                SelectPhotoAppear("imageView_origin");
+                SelectPhotoAppear("imageView_origin");
                 break;
             case None:
                 AddGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
                 buttonSelect = ButtonSelectType.Add;
-//                SelectPhotoAppear("imageView_background");
+                SelectPhotoAppear("imageView_background");
                 break;
         }
     }
@@ -340,15 +335,15 @@ public class PictureProcessActivity extends AppCompatActivity {
         doneButton.setVisibility(visibility);
     }
 
-//    private void SelectPhotoAppear(String SelectPic) {
-//        if (SelectPic == "imageView_background") {
-//            imageView_background.setVisibility(View.VISIBLE);
-//            imageView_background.setImageBitmap(fuzzyPhotoBmp);
-//            imageView_origin.setVisibility(View.GONE);
-//        } else if (SelectPic == "imageView_origin") {
-//            imageView_origin.setVisibility(View.VISIBLE);
-//            imageView_origin.setImageURI(imageUri);
-//            imageView_background.setVisibility(View.GONE);
-//        }
-//    }
+    private void SelectPhotoAppear(String SelectPic) {
+        if (SelectPic == "imageView_background") {
+            imageView_background.setVisibility(View.VISIBLE);
+            imageView_background.setImageBitmap(fuzzyPhotoBmp);
+            imageView_origin.setVisibility(View.GONE);
+        } else if (SelectPic == "imageView_origin") {
+            imageView_origin.setVisibility(View.VISIBLE);
+            imageView_origin.setImageURI(imageUri);
+            imageView_background.setVisibility(View.GONE);
+        }
+    }
 }
