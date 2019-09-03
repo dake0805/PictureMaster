@@ -41,6 +41,7 @@
 
     <Button
         android:id="@+id/share_result"
+        android:visibility="gone"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:background="@drawable/ic_share"
@@ -51,6 +52,7 @@
 
     <Button
         android:id="@+id/save_result"
+        android:visibility="gone"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginBottom="24dp"
@@ -62,6 +64,7 @@
 
     <Button
         android:id="@+id/wallpaper_result"
+        android:visibility="gone"
         android:layout_width="33dp"
         android:layout_height="33dp"
         android:background="@drawable/ic_phone"
@@ -72,6 +75,7 @@
 
     <Button
         android:id="@+id/close_result"
+        android:visibility="gone"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"

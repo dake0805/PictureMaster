@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,6 +36,12 @@ public class PhotoResultActivity extends AppCompatActivity {
     private Bitmap photoBmp;
     private Bitmap fuzzyPhotoBmp;
 
+    //button
+    private Button shareButton;
+    private Button saveButton;
+    private Button wallpaperButton;
+    private Button closeButton;
+
     //private Button setBackground;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +49,28 @@ public class PhotoResultActivity extends AppCompatActivity {
 
         imageView_background = (ImageView) findViewById(R.id.background_result);
         Intent intent = getIntent();
-
+        BlidView();
+        ViewAnimationAppear();
         if(intent.getStringExtra("extra_resultUri")!=null){
             originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
             fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),originImageUri);
             imageView_background.setImageBitmap(fuzzyPhotoBmp);
         }
+    }
+
+    private void ViewAnimationAppear() {
+        long duration = 1800;
+        AnimationView.fadeIn(saveButton,0,1,duration);
+        AnimationView.fadeIn(shareButton,0,1,duration);
+        AnimationView.fadeIn(wallpaperButton,0,1,duration);
+        AnimationView.fadeIn(closeButton,0,1,duration);
+    }
+
+    private void BlidView() {
+        saveButton = findViewById(R.id.save_result);
+        shareButton = findViewById(R.id.share_result);
+        wallpaperButton = findViewById(R.id.wallpaper_result);
+        closeButton = findViewById(R.id.close_result);
     }
 
 
