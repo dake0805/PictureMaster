@@ -3,15 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myjavaapplication">
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,16 +12,21 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".StyleChange"
-            android:label="风格迁移"/>
+        <activity
+            android:name=".StyleChange"
+            android:label="风格迁移"
+            android:parentActivityName=".PictureProcessActivity"
+            android:theme="@style/AppTheme" />
 
         <activity android:name=".PicColorControlActivity" />
 
-        <activity android:name=".MainActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask" />
 
-        <activity android:name=".PictureProcessActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".PictureProcessActivity"
+            android:launchMode="singleTask" />
 
         <activity android:name=".JointPhotoActivity" />
 
@@ -64,5 +60,15 @@
                 android:resource="@xml/provide_file_paths" />
         </provider>
     </application>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

@@ -7,36 +7,12 @@
     android:background="#E61E1E1E"
     tools:context=".StyleChange">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="406dp"
-        android:layout_height="45dp"
-        android:text="风格迁移"
-        android:textSize="32dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/close_result"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="364dp"
-        android:background="@drawable/ic_close"
-        android:onClick="close_click"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:scrollbars="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -46,9 +22,9 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -72,8 +48,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="24dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:id="@+id/imageView5"
@@ -84,9 +60,9 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -113,7 +89,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:id="@+id/imageView3"
