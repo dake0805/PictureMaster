@@ -41,13 +41,13 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
     ImageView imageView;
     Drawable try1;
 
-    private MyRelativeLayout background;
+    private MyRelativeLayout picture;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
+        setContentView(R.layout.drawer_new);
 
         //imageView = (ImageView)findViewById(R.id.photo);
         //Intent intent = getIntent();
@@ -80,12 +80,22 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
         //imageView.setImageURI(imageUri_add);
         try {
             Bitmap back = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri_add);
-            background =(MyRelativeLayout)findViewById(R.id.add_photo);
-            background.setBackGroundBitmap(back);
+
+            picture =(MyRelativeLayout)findViewById(R.id.add_photo);
+
+            //  picture.setMinimumHeight(back.getHeight());
+            // picture.setMinimumWidth(back.getWidth());
+            //picture.height = intent.getIntExtra("Height",0);
+            //picture.width = intent.getIntExtra("Width",0);
+
+            picture.height = 0;
+            picture.width = 0;
+
+            picture.setBackGroundBitmap(back);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        background.setMyRelativeTouchCallBack(this);
+        picture.setMyRelativeTouchCallBack(this);
 
     }
 
@@ -93,11 +103,6 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
     //实现继承的三个函数
     @Override
     public void touchMoveCallBack(int direction) {
-        if (direction == 6) {
-            Toast.makeText(Drawer.this, "你在向左滑动！", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(Drawer.this, "你在向右滑动！", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -110,13 +115,11 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
     }
 
 
-
     @Nullable
     @Override
     public ComponentName getCallingActivity() {
         return super.getCallingActivity();
     }
-
 
 
     @Override
@@ -132,7 +135,7 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
             case R.id.drawer_finshed:
 
                 //用于保存的代码
-                Bitmap bitmap = ImageUtils.createViewBitmap(background, background.getWidth(), background.getHeight());
+                Bitmap bitmap = ImageUtils.createViewBitmap(picture, picture.getWidth(), picture.getHeight());
                 String fileName = "CRETIN_" + new SimpleDateFormat("yyyyMMdd_HHmmss")
                         .format(new Date()) + ".png";
                 String result = ImageUtils.saveBitmapToFile(bitmap, fileName);
@@ -155,15 +158,13 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
 
         String data = intent.getStringExtra("edit_text");
 
-        TextView changetext = (TextView)findViewById(R.id.drawer_changetext);
+        //TextView changetext = (TextView)findViewById(R.id.drawer_changetext);
 
-        findViewById(R.id.drawer_changetext).bringToFront();
+       // findViewById(R.id.drawer_changetext).bringToFront();
 
-        changetext.setText(data);
+        //changetext.setText(data);
 
     }
-
-
 
 
 }

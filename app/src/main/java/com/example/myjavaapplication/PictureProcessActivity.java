@@ -57,6 +57,8 @@ public class PictureProcessActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(PictureProcessActivity.this,Drawer.class);
                 intent.putExtra("extra_photoadd",imageUri.toString());
+                intent.putExtra("Height",imageView.getHeight());
+                intent.putExtra("Height",imageView.getWidth());
                 startActivity(intent);
             }
         });

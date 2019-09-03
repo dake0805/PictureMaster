@@ -70,8 +70,8 @@ public class MyRelativeLayout extends RelativeLayout {
     private float textSize = 0;
     private int num = 0;
 
-    private int width;
-    private int height;
+    public int width;
+    public int height;
     private float startX;
     private float startY;
 
@@ -486,7 +486,6 @@ public class MyRelativeLayout extends RelativeLayout {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = View.inflate(context, R.layout.activity_text_edit, null);
         final EditText editText = (EditText) view.findViewById(R.id.Edit_Text1);
-       // TextView cancel = (TextView) view.findViewById(R.id.tv_cancel);
         Button ok = (Button) view.findViewById(R.id.Finsh_Button);
         ColorTagImageView colorTagImageView = ( ColorTagImageView ) view.findViewById(R.id.color_tag);
         colorTagImageView.setListener(new ColorTagImageView.OnColorTagChanges() {
@@ -517,13 +516,6 @@ public class MyRelativeLayout extends RelativeLayout {
             }
         });
 
-/*
-        cancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });*/
     }
 
     /**
