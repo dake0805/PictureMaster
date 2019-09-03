@@ -148,7 +148,6 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/addphotoframe"
             app:layout_constraintEnd_toStartOf="@+id/addphotoframe"
             app:layout_constraintStart_toStartOf="parent" />
-
         <Button
             android:id="@+id/addaccessories"
             android:layout_width="50dp"
@@ -224,10 +223,10 @@
 
         <Button
             android:id="@+id/saturation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:onClick="Edit4_saturation"
-            android:text="饱和度"
+            android:background="@drawable/ic_saturation"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
             app:layout_constraintEnd_toEndOf="parent"
@@ -244,33 +243,33 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/scale"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-           />
+            />
 
         <Button
             android:id="@+id/contrast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:onClick="Edit5_contrasts"
-            android:text="对比度"
+            android:background="@drawable/ic_compare"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
             app:layout_constraintEnd_toStartOf="@+id/brightness"
             app:layout_constraintStart_toStartOf="parent"
-          />
+            />
 
         <Button
             android:id="@+id/brightness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:onClick="Edit3_brightness"
-            android:text="亮度"
+            android:background="@drawable/ic_light"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-       />
+            />
 
         <Button
             android:id="@+id/scale"
@@ -283,7 +282,9 @@
             app:layout_constraintEnd_toStartOf="@+id/rotate"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contrast"
-          />
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
