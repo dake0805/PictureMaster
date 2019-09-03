@@ -39,8 +39,8 @@
 
     <Button
         android:id="@+id/share_result"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:background="@drawable/ic_share"
         android:onClick="SharePhoto"
         app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
@@ -49,8 +49,8 @@
 
     <Button
         android:id="@+id/save_result"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/ic_save"
         android:onClick="SavePhoto"
@@ -60,8 +60,8 @@
 
     <Button
         android:id="@+id/wallpaper_result"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         android:background="@drawable/ic_phone"
         android:onClick="SetWallpaperClick"
         app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
@@ -70,8 +70,8 @@
 
     <Button
         android:id="@+id/close_result"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/ic_close"
