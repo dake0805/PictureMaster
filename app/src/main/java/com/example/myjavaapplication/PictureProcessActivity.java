@@ -89,12 +89,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         imageView_origin.setImageURI(imageUri);
     }
 
-    protected void onNewIntent(Intent intent){
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
         Intent intent1 = getIntent();
         imageUri = Uri.parse(intent1.getStringExtra("extar_uri_process"));
-        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),imageUri);
+        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         RestoreOrigin();
     }
 
@@ -224,11 +224,11 @@ public class PictureProcessActivity extends AppCompatActivity {
         return uCrop.withOptions(options);
     }
 
-    public void Add_Text(View view){
-        Intent intent = new Intent(PictureProcessActivity.this,Drawer.class);
-        intent.putExtra("extra_photoadd",imageUri.toString());
-                //  intent.putExtra("Height",imageView.getHeight());
-                //   intent.putExtra("Height",imageView.getWidth());
+    public void Add_Text(View view) {
+        Intent intent = new Intent(PictureProcessActivity.this, Drawer.class);
+        intent.putExtra("extra_photoadd", imageUri.toString());
+        //  intent.putExtra("Height",imageView.getHeight());
+        //   intent.putExtra("Height",imageView.getWidth());
         startActivity(intent);
     }
 
@@ -335,27 +335,41 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     private void EditGroupSetVisibility(int visibility) {
-        Edit_Scale.setVisibility(visibility);
-        Edit_Rotate.setVisibility(visibility);
-        Edit_Saturation.setVisibility(visibility);
-        Edit_Contrast.setVisibility(visibility);
-        Edit_Brightness.setVisibility(visibility);
+
+        AnimationView.fade(Edit_Scale, visibility);
+        AnimationView.fade(Edit_Rotate, visibility);
+        AnimationView.fade(Edit_Saturation, visibility);
+        AnimationView.fade(Edit_Contrast, visibility);
+        AnimationView.fade(Edit_Brightness, visibility);
+
+//        Edit_Scale.setVisibility(visibility);
+//        Edit_Rotate.setVisibility(visibility);
+//        Edit_Saturation.setVisibility(visibility);
+//        Edit_Contrast.setVisibility(visibility);
+//        Edit_Brightness.setVisibility(visibility);
     }
 
     private void AddGroupSetVisibility(int visibility) {
-        addaccessories.setVisibility(visibility);
-        addphotoframe.setVisibility(visibility);
-        addtext.setVisibility(visibility);
+        AnimationView.fade(addaccessories, visibility);
+        AnimationView.fade(addphotoframe, visibility);
+        AnimationView.fade(addtext, visibility);
+//        addaccessories.setVisibility(visibility);
+//        addphotoframe.setVisibility(visibility);
+//        addtext.setVisibility(visibility);
     }
 
     private void AiGroupSetVisibility(int visibility) {
-        highfraction.setVisibility(visibility);
-        Stylemigration.setVisibility(visibility);
+//        highfraction.setVisibility(visibility);
+//        Stylemigration.setVisibility(visibility);
+        AnimationView.fade(highfraction, visibility);
+        AnimationView.fade(Stylemigration, visibility);
     }
 
     private void OtherButtonGroupSetVisibility(int visibility) {
-        homeButton.setVisibility(visibility);
-        doneButton.setVisibility(visibility);
+        AnimationView.fade(homeButton, visibility);
+        AnimationView.fade(doneButton, visibility);
+//        homeButton.setVisibility(visibility);
+//        doneButton.setVisibility(visibility);
     }
 
     private void SelectPhotoAppear(String SelectPic) {
