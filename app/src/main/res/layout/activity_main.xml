@@ -22,19 +22,23 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+
+
         app:layout_constraintTop_toTopOf="parent"
-
-
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@android:color/background_dark"
         tools:visibility="visible" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center|center_horizontal"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="256dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
         <Button
             android:id="@+id/choose_button"
@@ -42,7 +46,10 @@
             android:layout_height="55dp"
             android:layout_margin="40dp"
             android:background="@drawable/ic_local"
-            android:onClick="selectPhoto" />
+            android:onClick="selectPhoto"
+            app:layout_constraintEnd_toStartOf="@+id/camera_button"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
 
         <Button
             android:id="@+id/camera_button"
@@ -50,8 +57,11 @@
             android:layout_height="50dp"
             android:layout_margin="40dp"
             android:background="@drawable/ic_camera"
-            android:onClick="cameraShotPhoto" />
-    </LinearLayout>
+            android:onClick="cameraShotPhoto"
+            app:layout_constraintBaseline_toBaselineOf="@+id/choose_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/choose_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
