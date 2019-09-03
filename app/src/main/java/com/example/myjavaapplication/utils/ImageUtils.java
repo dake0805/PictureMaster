@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by cretin on 15/12/22.
+ * 将控件合成图片
  */
 public class ImageUtils {
     private static final int TYPE_FILE_IMAGE = 1;

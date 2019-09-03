@@ -23,8 +23,6 @@ public class TextEdit extends AppCompatActivity implements View.OnClickListener 
 
         Button finshbotton = (Button)findViewById(R.id.Finsh_Button);
         finshbotton.setOnClickListener(this);
-        /*TextView a = (TextView)findViewById(R.id.Edit_Text1);
-        a.setText("Happpy");*/
 
     }
 
@@ -49,12 +47,6 @@ public class TextEdit extends AppCompatActivity implements View.OnClickListener 
         }
 
     }
-
-
-
-
-
-
 
 }
 

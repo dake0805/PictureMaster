@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 /**
- * Created by cretin on 16/3/7.
+ * 设置字体颜色
  */
 public class ColorTagImageView extends ImageView {
     private float mEachItemHeght;
@@ -24,7 +24,8 @@ public class ColorTagImageView extends ImageView {
             Color.parseColor("#eaae65"),
             Color.parseColor("#ec7e65"),
             Color.parseColor("#ffffff"),
-            Color.parseColor("#000000"),};
+            Color.parseColor("#000000"),
+    };
 
     public OnColorTagChanges getListener() {
         return listener;

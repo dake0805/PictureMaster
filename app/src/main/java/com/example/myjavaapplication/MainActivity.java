@@ -12,11 +12,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,15 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri imageCurrent;
 
+    private ImageView imageView;
+
     //TODO 页面跳转问题，是否清除
     //TODO 编辑照片会自动保存
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CheckPermission();
-        //cropImage = findViewById(R.id.imageView);
-        //GifLoadingView mGifLoadingView = new GifLoadingView();
+        imageView = findViewById(R.id.background);
+        setBackground();
     }
 /*
     public void startDrawer(View v){
@@ -75,6 +81,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setBackground();
+    }
+
+    //随机设置壁纸
+    private void setBackground() {
+        switch ((int) (1 + Math.random() * (10 - 1 + 1))) {
+            case 1:
+                imageView.setImageResource(R.drawable.p1);
+                break;
+            case 2:
+                imageView.setImageResource(R.drawable.p2);
+                break;
+            case 3:
+                imageView.setImageResource(R.drawable.p3);
+                break;
+            case 4:
+                imageView.setImageResource(R.drawable.p4);
+                break;
+            case 5:
+                imageView.setImageResource(R.drawable.p5);
+                break;
+            case 6:
+                imageView.setImageResource(R.drawable.p6);
+                break;
+            case 7:
+                imageView.setImageResource(R.drawable.p7);
+                break;
+            case 8:
+                imageView.setImageResource(R.drawable.p8);
+                break;
+            case 9:
+                imageView.setImageResource(R.drawable.p9);
+                break;
+            case 10:
+                imageView.setImageResource(R.drawable.p10);
+                break;
+        }
+    }
+
     //TODO 按钮的图片设置与排版
     //Button SELECT
     public void selectPhoto(View view) {
@@ -91,13 +139,14 @@ public class MainActivity extends AppCompatActivity {
 //            startActivityForResult(intent, CAMERA_PICTURE);
 //        }
         //test hrn
+
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
+            photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException e) {
@@ -115,14 +164,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void jointPhoto(View view) {
-        Intent intent = new Intent(MainActivity.this, JointPhotoActivity.class);
-        startActivity(intent);
-    }
-
-
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {// If request is cancelled, the result arrays are empty.
+        if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
+            // If request is cancelled, the result arrays are empty.
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 return;
             } else {
@@ -132,10 +176,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+            //获得的Uri
             Uri ImageUri;
             Intent sendPicUriIntent = new Intent(MainActivity.this, PictureProcessActivity.class);
             switch (requestCode) {
@@ -143,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
                     ImageUri = data.getData();
                     sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
                     startActivity(sendPicUriIntent);
-                    //CropPhoto(originImageUri);
                     break;
                 case CAMERA_PICTURE:
                     ImageUri = getCameraPhotoUri();
@@ -158,22 +201,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Uri getCameraPhotoUri() {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-        /**
-         * 注意修改文件名
-         */
-//        Uri destinationUri = Uri.fromFile(new File(getCacheDir(), timeStamp + "test.jpg"));
-
         //获得Uri
         Uri originPhoto = null;
-        //CropPhoto(originPhoto);
-        if (photoFile != null) {
-            originPhoto = FileProvider.getUriForFile(this,
-                    "com.example.myjavaapplication",
-                    photoFile);
-        }
 
+        try {
+            originPhoto = Uri.parse(MediaStore.Images.Media.insertImage(
+                    getContentResolver(),
+                    photoFile.getAbsolutePath(), null, null
+            ));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         return originPhoto;
 
     }

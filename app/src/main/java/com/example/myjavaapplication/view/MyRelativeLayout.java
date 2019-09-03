@@ -270,15 +270,12 @@ public class MyRelativeLayout extends RelativeLayout {
                 if ( onefinger ) {
                     if ( spacing(firstX, firstY, event.getX(), event.getY()) < 10 ) {
                         showDialog("", true);
-                        Toast.makeText(context, "这个是自定义View上的单击事件！", Toast.LENGTH_SHORT).show();
                     } else {
                         if ( myRelativeTouchCallBack != null ) {
                             if ( Math.abs(firstX - event.getX()) > Math.abs(firstY - event.getY()) ) {
                                 if ( firstX < event.getX() ) {
-                                    Log.d("HHH", "你应该是在右滑吧");
                                     myRelativeTouchCallBack.touchMoveCallBack(AppConstants.MOVE_RIGHT);
                                 } else {
-                                    Log.d("HHH", "你应该是在左滑吧");
                                     myRelativeTouchCallBack.touchMoveCallBack(AppConstants.MOVE_LEFT);
                                 }
                             }

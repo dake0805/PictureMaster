@@ -7,10 +7,10 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,17 +20,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TextEdit" />
-        <activity
-            android:name=".Drawer"
-            android:launchMode="singleTask">
+        <activity android:name=".PicColorControlActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".PictureProcessActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".JointPhotoActivity" />
+        <activity android:name=".PhotoResultActivity" />
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
-                <action android:name="Start_Drawer" />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="Drawer.Start" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".TextEdit" />
+
+        <activity
+            android:name=".Drawer"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -41,21 +53,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provide_file_paths" />
         </provider>
-
-        <activity android:name=".PictureProcessActivity"></activity>
-        <activity android:name=".JointPhotoActivity"></activity>
-        <activity android:name=".PhotoResultActivity"></activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

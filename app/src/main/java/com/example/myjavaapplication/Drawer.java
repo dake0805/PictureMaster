@@ -3,7 +3,7 @@ package com.example.myjavaapplication;
 
 
 /*
-* 添加文字功能的实现主页面
+* 添加文字功能的实现主活动
 * 名字起的有问题
 * @hrncool
 * */
@@ -12,10 +12,12 @@ package com.example.myjavaapplication;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.example.myjavaapplication.utils.ImageUtils;
-import com.example.myjavaapplication.view.*;
+import com.example.myjavaapplication.view.MyRelativeLayout ;
 
 
 
@@ -47,7 +49,7 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_new);
+        setContentView(R.layout.activity_drawer);
 
         //imageView = (ImageView)findViewById(R.id.photo);
         //Intent intent = getIntent();
@@ -79,7 +81,10 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
         imageUri_add = Uri.parse(intent.getStringExtra("extra_photoadd"));
         //imageView.setImageURI(imageUri_add);
         try {
-            Bitmap back = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri_add);
+            Bitmap back = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageUri_add);
+
+            //Bitmap back = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(imageUri_add));
+
 
             picture =(MyRelativeLayout)findViewById(R.id.add_photo);
 
@@ -132,17 +137,17 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
 
                 break;*/
 
-            case R.id.drawer_finshed:
+              case R.id.drawer_finshed:
+                Intent intent = new Intent(Drawer.this, PictureProcessActivity.class);
 
-                //用于保存的代码
                 Bitmap bitmap = ImageUtils.createViewBitmap(picture, picture.getWidth(), picture.getHeight());
-                String fileName = "CRETIN_" + new SimpleDateFormat("yyyyMMdd_HHmmss")
-                        .format(new Date()) + ".png";
-                String result = ImageUtils.saveBitmapToFile(bitmap, fileName);
-                Toast.makeText(Drawer.this, "保存位置:" + result, Toast.LENGTH_SHORT).show();
+                Uri Text_edit_Finsh_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null));
+                intent.putExtra("Text_Edit_Finsh",Text_edit_Finsh_uri.toString());
+
+                startActivity(intent);
+
 
                 break;
-
             default:
         }
 

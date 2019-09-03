@@ -9,18 +9,18 @@
 
     <com.example.myjavaapplication.view.MyRelativeLayout
         android:id="@+id/add_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:baselineAligned="false"
         android:maxWidth="512pt"
+
         android:maxHeight="512pt"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button

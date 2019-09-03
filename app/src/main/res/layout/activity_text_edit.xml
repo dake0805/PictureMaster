@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".TextEdit">
 
+
     <EditText
         android:id="@+id/Edit_Text1"
         android:layout_width="wrap_content"
@@ -14,40 +15,33 @@
         android:layout_marginBottom="332dp"
         android:gravity="center"
         android:hint="Picture\nMaster "
-
         android:inputType="textNoSuggestions"
-
         android:maxLength="15"
         android:maxLines="3"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
+
 
     <com.example.myjavaapplication.view.ColorTagImageView
         android:id="@+id/color_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:background="@mipmap/colortag"
-        android:layout_marginStart="100dp"
-
+        android:layout_marginStart="112dp"
         android:layout_marginBottom="300dp"
-
-
-
+        android:background="@mipmap/colortag"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/Finsh_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
-
         android:layout_marginBottom="616dp"
         android:text="完成"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

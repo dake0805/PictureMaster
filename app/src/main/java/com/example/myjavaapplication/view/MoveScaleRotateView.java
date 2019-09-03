@@ -18,7 +18,7 @@ import com.example.myjavaapplication.R;
 
 /**
  * 自定义视图，实现其他在气上方实现拖动、旋转、放大缩小功能
- * Created by cretin on 16/11/16.
+ *
  */
 
 public class MoveScaleRotateView extends RelativeLayout {
@@ -236,33 +236,7 @@ public class MoveScaleRotateView extends RelativeLayout {
         init(context);
     }
 
-    /**
-     * 测试用 显示Toast
-     *
-     * @param msg
-     */
-    private void showToast(String msg) {
-        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
-    }
 
-    /**
-     * 测试用 打印log
-     *
-     * @param log
-     */
-    private void log(String log) {
-        Log.e("HHHHHHHHHH", log);
-    }
-
-    /**
-     * 测试用 打印log 指定TAG
-     *
-     * @param log
-     * @param tag
-     */
-    private void log(String log, String tag) {
-        Log.e(tag, log);
-    }
 
 
 }
