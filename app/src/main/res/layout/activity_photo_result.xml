@@ -41,41 +41,39 @@
         android:id="@+id/share_result"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/ic_share"
         android:onClick="SharePhoto"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
+        app:layout_constraintEnd_toStartOf="@+id/save_result"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/save_result"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/ic_save"
         android:onClick="SavePhoto"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/wallpaper_result"
-        app:layout_constraintStart_toEndOf="@+id/share_result" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/wallpaper_result"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="15dp"
         android:background="@drawable/ic_phone"
         android:onClick="SetWallpaperClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/save_result" />
 
     <Button
         android:id="@+id/close_result"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/ic_close"
         android:onClick="close_click"
         app:layout_constraintEnd_toEndOf="parent"
