@@ -63,8 +63,8 @@
 
         <Button
             android:id="@+id/done_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="68dp"
+            android:layout_height="45dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/ic_finish"
@@ -163,7 +163,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -175,8 +175,8 @@
 
             <Button
                 android:id="@+id/Editclick"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:background="@drawable/ic_edit"
                 android:onClick="EditClick"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -186,8 +186,8 @@
 
             <Button
                 android:id="@+id/AIclcik"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
@@ -200,8 +200,8 @@
 
             <Button
                 android:id="@+id/addMenu"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:background="@drawable/ic_add"
                 android:onClick="AddClick"
                 app:layout_constraintBaseline_toBaselineOf="@+id/AIclcik"
