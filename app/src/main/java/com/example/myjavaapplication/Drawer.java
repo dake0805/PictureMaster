@@ -3,10 +3,10 @@ package com.example.myjavaapplication;
 
 
 /*
-* 添加文字功能的实现主活动
-* 名字起的有问题
-* @hrncool
-* */
+ * 添加文字功能的实现主活动
+ * 名字起的有问题
+ * @hrncool
+ * */
 
 
 import androidx.annotation.Nullable;
@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,16 +30,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.example.myjavaapplication.utils.ImageUtils;
-import com.example.myjavaapplication.view.MyRelativeLayout ;
+import com.example.myjavaapplication.view.MyRelativeLayout;
 
 
-
-public class Drawer extends AppCompatActivity implements View.OnClickListener, MyRelativeLayout.MyRelativeTouchCallBack{
+public class Drawer extends AppCompatActivity implements View.OnClickListener, MyRelativeLayout.MyRelativeTouchCallBack {
     Uri imageUri_add;
     ImageView imageView;
     Drawable try1;
@@ -61,7 +62,7 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
         //}
 
         //Button Button_AddText = (Button)findViewById(R.id.Edit_button);
-        Button Button_Finsh = (Button)findViewById(R.id.drawer_finshed);
+        Button Button_Finsh = (Button) findViewById(R.id.drawer_finshed);
         //final EditText EditText_1 = (EditText)findViewById(R.id.Edit_Text1) ;
         //Button_AddText.setOnClickListener(this);
         Button_Finsh.setOnClickListener(this);
@@ -81,12 +82,12 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
         imageUri_add = Uri.parse(intent.getStringExtra("extra_photoadd"));
         //imageView.setImageURI(imageUri_add);
         try {
-            Bitmap back = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageUri_add);
+            Bitmap back = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri_add);
 
             //Bitmap back = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(imageUri_add));
 
 
-            picture =(MyRelativeLayout)findViewById(R.id.add_photo);
+            picture = (MyRelativeLayout) findViewById(R.id.add_photo);
 
             //  picture.setMinimumHeight(back.getHeight());
             // picture.setMinimumWidth(back.getWidth());
@@ -96,6 +97,9 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
             picture.height = 0;
             picture.width = 0;
 
+            back = ChangeSize(back);
+
+
             picture.setBackGroundBitmap(back);
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,6 +108,28 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
 
     }
 
+    Bitmap ChangeSize(Bitmap bitmap) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        double rate = (double) height / (double) width;
+        float dpi = displayMetrics.densityDpi;
+        int newWidth = displayMetrics.widthPixels;
+        int newHeight = (int) Math.floor(rate * ((double) newWidth));
+        //计算压缩的比率
+        float scaleWidth = (((float) newWidth) / width) * (dpi/160.0f);
+        float scaleHeight = (((float) newHeight) / height) * (dpi/160.0f);
+
+//获取想要缩放的matrix
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+
+
+//获取新的bitmap
+        Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+        return newBitmap;
+    }
 
     //实现继承的三个函数
     @Override
@@ -130,19 +156,19 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             /*case R.id.Edit_button:
                 Intent intent = new Intent(Drawer.this,TextEdit.class);
                 startActivity(intent);
 
                 break;*/
 
-              case R.id.drawer_finshed:
+            case R.id.drawer_finshed:
                 Intent intent = new Intent(Drawer.this, PictureProcessActivity.class);
 
                 Bitmap bitmap = ImageUtils.createViewBitmap(picture, picture.getWidth(), picture.getHeight());
-                Uri Text_edit_Finsh_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null));
-                intent.putExtra("extar_uri_process",Text_edit_Finsh_uri.toString());
+                Uri Text_edit_Finsh_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
+                intent.putExtra("extar_uri_process", Text_edit_Finsh_uri.toString());
 
                 startActivity(intent);
 
@@ -155,17 +181,17 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
 
 
     /*
-    *当再次返回页面的时候
-    * */
+     *当再次返回页面的时候
+     * */
     @Override
-    protected void onNewIntent(Intent intent){
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
         String data = intent.getStringExtra("edit_text");
 
         //TextView changetext = (TextView)findViewById(R.id.drawer_changetext);
 
-       // findViewById(R.id.drawer_changetext).bringToFront();
+        // findViewById(R.id.drawer_changetext).bringToFront();
 
         //changetext.setText(data);
 
