@@ -38,7 +38,9 @@
         android:layout_marginTop="256dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/choose_button"
@@ -63,32 +65,20 @@
             app:layout_constraintStart_toEndOf="@+id/choose_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="99dp"
-            android:layout_height="87dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="44dp"
-            android:contentDescription="TODO"
-            app:srcCompat="@drawable/ic_logo" />
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="176dp"
-            android:layout_height="139dp"
-            android:layout_marginTop="16dp"
-            app:srcCompat="@drawable/ic_paim" />
-    </LinearLayout>
+            android:id="@+id/title"
+            android:layout_width="416dp"
+            android:layout_height="162dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
