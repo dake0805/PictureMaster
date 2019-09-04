@@ -15,7 +15,7 @@ public class AnimationView {
     }
 
     public static void fadeIn(View view) {
-        fadeIn(view, 0F, 1F, 300);
+        fadeIn(view, 0F, 1F, 600);
 
         // We disabled the button in fadeOut(), so enable it here.
         view.setEnabled(true);
@@ -34,7 +34,7 @@ public class AnimationView {
     }
 
     public static void fadeOut(View view) {
-        fadeOut(view,1F,0F,300);
+        fadeOut(view,1F,0F,600);
     }
 
     public static void fade(View view,int visibility){

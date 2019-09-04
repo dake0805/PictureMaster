@@ -18,6 +18,8 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PictureProcessActivity extends AppCompatActivity {
 
@@ -363,6 +365,15 @@ public class PictureProcessActivity extends AppCompatActivity {
 //        Stylemigration.setVisibility(visibility);
         AnimationView.fade(highfraction, visibility);
         AnimationView.fade(Stylemigration, visibility);
+
+//        Timer timer = new Timer();
+//        TimerTask timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//            }
+//        };
+//        timer.schedule(timerTask, 600);
+
     }
 
     private void OtherButtonGroupSetVisibility(int visibility) {
