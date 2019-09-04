@@ -17,5 +17,7 @@
     <string name="setting">设置</string>
     <string name="feedback">反馈</string>
     <string name="send">发送</string>
-    <string name="edit">编辑</string>
+    <string name="edit">基本编辑</string>
+    <string name="ai">AI美化</string>
+    <string name="add">添加元素</string>
 </resources>
