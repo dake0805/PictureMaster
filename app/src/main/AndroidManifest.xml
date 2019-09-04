@@ -56,6 +56,7 @@
         <activity android:name=".TextEdit" />
         <activity
             android:name=".Drawer"
+            android:label=""
             android:launchMode="singleTask" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

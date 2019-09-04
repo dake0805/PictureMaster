@@ -24,4 +24,5 @@
     <string name="enus">English (en_US)</string>
     <string name="zhcn">简体中文 (zh_CN)</string>
     <string name="zhhk">繁體中文 (zh_HK)</string>
+    <string name="finish">完成</string>
 </resources>
