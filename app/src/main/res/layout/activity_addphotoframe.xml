@@ -15,4 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CircleBut" />
+
+    <ImageView
+        android:id="@+id/imageview_addframe"
+        android:layout_width="match_parent"
+        android:layout_height="467dp"
+
+        />
 </LinearLayout>

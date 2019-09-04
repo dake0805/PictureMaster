@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Java Application</string>
+    <string name="brightness">光暗度</string>
+    <string name="contrast">對比</string>
+    <string name="highResolution">超分辨率</string>
+    <string name="rotate">旋轉</string>
+    <string name="saturation">飽和度</string>
+    <string name="scale">裁切</string>
+    <string name="styleChange">風格轉換</string>
+    <string name="addaccessories">添加飾品</string>
+    <string name="addtext">添加文字</string>
+    <string name="addText">添加文字</string>
+    <string name="setFrame">設定相框</string>
+</resources>

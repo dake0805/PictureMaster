@@ -1,12 +1,11 @@
 package com.example.myjavaapplication;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -91,11 +90,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         imageView_origin.setImageURI(imageUri);
     }
 
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
         Intent intent1 = getIntent();
-        imageUri = Uri.parse(intent1.getStringExtra("extar_uri_process"));
+        imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
         fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         RestoreOrigin();
     }
@@ -150,6 +150,19 @@ public class PictureProcessActivity extends AppCompatActivity {
         addtext = (Button) findViewById(R.id.addtext);
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
+        /**
+         * addphotoframe 的跳转函数
+         * 需要修改放置位置
+         */
+        addphotoframe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PictureProcessActivity.this, AddPhotoFrameActivity.class);
+                intent.putExtra("extra_uri_process", imageUri.toString());
+                startActivity(intent);
+            }
+        });
+
 
         homeButton = (Button) findViewById(R.id.homebutton);
         doneButton = (Button) findViewById(R.id.done_button);
@@ -255,10 +268,37 @@ public class PictureProcessActivity extends AppCompatActivity {
         SelectPhotoAppear("imageView_origin");
     }
 
+    private void SetButtonColor(ButtonSelectType button) {
+        Button edit = findViewById(R.id.Editclick);
+        Button ai = findViewById(R.id.AIclcik);
+        Button add = findViewById(R.id.addMain);
+
+        ColorStateList color = ColorStateList.valueOf(Color.parseColor("#ff9708"));
+        edit.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+        ai.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+        add.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+
+        switch (button) {
+            case Edit:
+                edit.setCompoundDrawableTintList(color);
+                break;
+            case Ai:
+                ai.setCompoundDrawableTintList(color);
+                break;
+            case Add:
+                add.setCompoundDrawableTintList(color);
+                break;
+            case None:
+                break;
+        }
+    }
+
     public void EditClick(View view) {
+
         switch (buttonSelect) {
             case Ai:
             case Add:
+                SetButtonColor(ButtonSelectType.Edit);
                 AiGroupSetVisibility(View.GONE);
                 AddGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.VISIBLE);
@@ -266,6 +306,8 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_background");
                 break;
             case Edit:
+                SetButtonColor(ButtonSelectType.None);
+
                 EditGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
@@ -273,6 +315,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Edit);
                 EditGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
@@ -282,10 +325,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
     }
 
+
     public void AiClick(View view) {
         switch (buttonSelect) {
             case Edit:
             case Add:
+                SetButtonColor(ButtonSelectType.Ai);
                 AddGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.GONE);
                 AiGroupSetVisibility(View.VISIBLE);
@@ -294,12 +339,14 @@ public class PictureProcessActivity extends AppCompatActivity {
                 break;
             case Ai:
                 AiGroupSetVisibility(View.GONE);
+                SetButtonColor(ButtonSelectType.None);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
                 buttonSelect = ButtonSelectType.None;
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Ai);
                 AiGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
@@ -313,6 +360,8 @@ public class PictureProcessActivity extends AppCompatActivity {
         switch (buttonSelect) {
             case Edit:
             case Ai:
+                SetButtonColor(ButtonSelectType.Add);
+
                 AiGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.GONE);
                 AddGroupSetVisibility(View.VISIBLE);
@@ -320,6 +369,8 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_background");
                 break;
             case Add:
+                SetButtonColor(ButtonSelectType.None);
+
                 AddGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
@@ -327,6 +378,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Add);
                 AddGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
