@@ -68,22 +68,6 @@ public class ServerCommunication {
     }
 
 
-    public static String getFilePathFromContentUri(Uri selectedVideoUri,
-                                                   ContentResolver contentResolver) {
-        String filePath;
-        String[] filePathColumn = {MediaStore.MediaColumns.DATA};
-
-        Cursor cursor = contentResolver.query(selectedVideoUri, filePathColumn, null, null, null);
-//      也可用下面的方法拿到cursor
-//      Cursor cursor = this.context.managedQuery(selectedVideoUri, filePathColumn, null, null, null);
-
-        cursor.moveToFirst();
-
-        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-        filePath = cursor.getString(columnIndex);
-        cursor.close();
-        return filePath;
-    }
 
 }
 

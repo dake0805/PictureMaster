@@ -28,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         CheckPermission();
         imageView = findViewById(R.id.background);
         setBackground();
+//        LanguageUtil.changeAppLanguage(getApplicationContext(),Locale.ENGLISH);
     }
 
     //检查权限
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
         }
     }
 
