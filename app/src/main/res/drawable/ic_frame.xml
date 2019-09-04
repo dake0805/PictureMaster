@@ -5,10 +5,10 @@
     android:viewportHeight="720">
     <path
         android:name="圆角矩形 1"
-        android:pathData="m623 99v520h-520v-520zm-550 -40c-5.5 0 -10 4.5 -10 10v580c0 5.5 4.5 10 10 10h580c5.5 0 10 -4.5 10 -10v-580c0 -5.5 -4.5 -10 -10 -10z"
+        android:pathData="m680 40v640h-640v-640zm-668 -40c-6.6 0 -12 5.4 -12 12v696c0 6.6 5.4 12 12 12h696c6.6 0 12 -5.4 12 -12v-696c0 -6.6 -5.4 -12 -12 -12z"
         android:fillColor="#fff" />
     <path
         android:name="矩形 1"
-        android:pathData="m553 178v380h-380v-380zm-390 -10v400h400v-400z"
+        android:pathData="m590 140.8v460h-460v-460zm-470 -10v480h480v-480z"
         android:fillColor="#fff" />
 </vector>

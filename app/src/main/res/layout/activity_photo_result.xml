@@ -22,25 +22,28 @@
 
     <ImageView
         android:id="@+id/background_result"
-        android:layout_width="408dp"
-        android:layout_height="727dp"
         android:fadingEdge="vertical"
-        android:scaleType="centerCrop"
         android:foregroundGravity="fill_vertical"
         android:verticalScrollbarPosition="defaultPosition"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@android:color/background_dark"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         tools:visibility="visible" />
 
     <Button
         android:id="@+id/share_result"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:visibility="gone"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:background="@drawable/ic_share"
         android:onClick="SharePhoto"
         app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
@@ -49,8 +52,9 @@
 
     <Button
         android:id="@+id/save_result"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/ic_save"
         android:onClick="SavePhoto"
@@ -60,8 +64,9 @@
 
     <Button
         android:id="@+id/wallpaper_result"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:visibility="gone"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         android:background="@drawable/ic_phone"
         android:onClick="SetWallpaperClick"
         app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
@@ -70,8 +75,9 @@
 
     <Button
         android:id="@+id/close_result"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/ic_close"

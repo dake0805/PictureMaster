@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,7 +15,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 
@@ -23,10 +28,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final int CHOOSE_PICTURE = 1;
+    //    private static final int CROP_PICTURE = 2;
     private static final int CAMERA_PICTURE = 3;
 
 
@@ -34,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
     private File photoFile;
 
+    //private ImageView cropImage;
+
     private Uri imageCurrent;
 
     private ImageView imageView;
 
-    //TODO 页面跳转问题，是否清除
-    //TODO 编辑照片会自动保存
-
+    private Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         CheckPermission();
         imageView = findViewById(R.id.background);
         setBackground();
+//        LanguageUtil.changeAppLanguage(getApplicationContext(),Locale.ENGLISH);
     }
 
     //检查权限
@@ -57,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
         }
     }
 
@@ -73,36 +80,43 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 imageView.setImageResource(R.drawable.p1);
                 break;
-            case 2:
-                imageView.setImageResource(R.drawable.p2);
+            case 2:imageView.setImageResource(R.drawable.p2);
                 break;
-            case 3:
-                imageView.setImageResource(R.drawable.p3);
+            case 3:imageView.setImageResource(R.drawable.p3);
                 break;
-            case 4:
-                imageView.setImageResource(R.drawable.p4);
+            case 4:imageView.setImageResource(R.drawable.p4);
                 break;
-            case 5:
-                imageView.setImageResource(R.drawable.p5);
+            case 5:imageView.setImageResource(R.drawable.p5);
                 break;
-            case 6:
-                imageView.setImageResource(R.drawable.p6);
+            case 6:imageView.setImageResource(R.drawable.p6);
                 break;
-            case 7:
-                imageView.setImageResource(R.drawable.p7);
+            case 7:imageView.setImageResource(R.drawable.p7);
                 break;
-            case 8:
-                imageView.setImageResource(R.drawable.p8);
+            case 8:imageView.setImageResource(R.drawable.p8);
                 break;
-            case 9:
-                imageView.setImageResource(R.drawable.p9);
+            case 9:imageView.setImageResource(R.drawable.p9);
                 break;
-            case 10:
-                imageView.setImageResource(R.drawable.p10);
+            case 10:imageView.setImageResource(R.drawable.p10);
                 break;
         }
     }
 
+    //Button SETTINGS
+    public void settings(View v) {
+        Intent settings = new Intent(MainActivity.this, Settings.class);
+        startActivity(settings);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+    }
+
+    //Button FeedBack
+    private void feedback(View view) {
+        Intent feedback = new Intent(MainActivity.this, FeedBackActivity.class);
+        startActivity(feedback);
+    }
     //TODO 按钮的图片设置与排版
     //Button SELECT
     public void selectPhoto(View view) {
@@ -114,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Button CAMERA
     public void cameraShotPhoto(View view) {
-
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -160,12 +173,12 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode) {
                 case CHOOSE_PICTURE:
                     ImageUri = data.getData();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri_origin", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
                 case CAMERA_PICTURE:
                     ImageUri = getCameraPhotoUri();
-                    sendPicUriIntent.putExtra("extra_uri", ImageUri.toString());
+                    sendPicUriIntent.putExtra("extra_uri_origin", ImageUri.toString());
                     startActivity(sendPicUriIntent);
                     break;
             }
@@ -188,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return originPhoto;
+
     }
 
     //拍照前创建photo文件，在/mnt/sdcard/DCIM下
@@ -208,7 +222,5 @@ public class MainActivity extends AppCompatActivity {
         photoFile = image;
         return image;
     }
-
-
 }
 

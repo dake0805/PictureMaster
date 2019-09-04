@@ -1,11 +1,14 @@
 package com.example.myjavaapplication;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,9 +18,12 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PictureProcessActivity extends AppCompatActivity {
 
+    private ImageView imageView_drawer;
     private ImageView imageView_origin;
     private ImageView imageView_background;
 
@@ -38,17 +44,21 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Button Edit_Saturation;
     private Button Edit_Contrast;
     private Button Edit_Brightness;
+    private TextView Edit_text;
+
 
     //点击AI按钮弹出界面所需的4个变量
     private Button highfraction;
     private Button Stylemigration;
     private Button AI;
+    private TextView AI_text;
 
     //点击添加按钮弹出界面所需的5个变量
     private Button addtext;
     private Button addaccessories;
     private Button addphotoframe;
     private Button add;
+    private TextView add_text;
 
     //其余的home和done按钮
     private Button homeButton;
@@ -80,22 +90,21 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         BlidView();
         Intent intent = getIntent();
-        imageUri = Uri.parse(intent.getStringExtra("extra_uri"));
-        photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//        if (intent.getStringExtra("extra_uri_album") != null) {
-//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_album"));
-//            //准备模糊化
-//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//
-//        }
-//        else if(intent.getStringExtra("extra_uri_camera")!=null){
-//            imageUri = Uri.parse(intent.getStringExtra("extra_uri_camera"));
-//            //准备模糊化
-//            photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-//
-//        }
-        fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+        imageUri = Uri.parse(intent.getStringExtra("extra_uri_origin"));
+        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         imageView_origin.setImageURI(imageUri);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        Intent intent1 = getIntent();
+        if(intent1.getStringExtra("extra_uri_process")!=null){
+            imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
+            fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+        }
+        RestoreOrigin();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -105,9 +114,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 case CHOOSE_PICTURE:
                     imageUri = data.getData();
                     imageView_origin.setImageURI(imageUri);
-                    //准备模糊化
-                    photoBmp = Photo.getBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-                    fuzzyPhotoBmp = FastBlur.doBlur(photoBmp, 20, false);
+                    fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
                     break;
                 case UCrop.REQUEST_CROP:
                     imageUri = UCrop.getOutput(data);
@@ -142,18 +149,34 @@ public class PictureProcessActivity extends AppCompatActivity {
         Edit_Brightness = (Button) findViewById(R.id.brightness);
         Edit_Contrast = (Button) findViewById(R.id.contrast);
         Edit_Saturation = (Button) findViewById(R.id.saturation);
+        Edit_text = (TextView)findViewById(R.id.edit_textview);
+
 
         highfraction = (Button) findViewById(R.id.highfraction);
         Stylemigration = (Button) findViewById(R.id.Stylemigration);
         AI = (Button) findViewById(R.id.AIclcik);
+        AI_text = (TextView)findViewById(R.id.ai_textview);
 
         addtext = (Button) findViewById(R.id.addtext);
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
+        add_text = (TextView)findViewById(R.id.add_textview);
+
+        /**
+         * addphotoframe 的跳转函数
+         * 需要修改放置位置
+         */
+        addphotoframe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PictureProcessActivity.this, AddPhotoFrameActivity.class);
+                intent.putExtra("extra_uri_process", imageUri.toString());
+                startActivity(intent);
+            }
+        });
 
         homeButton = (Button) findViewById(R.id.homebutton);
         doneButton = (Button) findViewById(R.id.done_button);
-
     }
 
     /*
@@ -186,6 +209,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivityForResult(changeSaturation, CHANGE_PICTURE);
     }
 
+    public void AiEdit1_StyleChange(View view) {
+        Intent intent = new Intent(this, StyleChange.class);
+        intent.putExtra("style_change_pic", imageUri.toString());
+        startActivity(intent);
+    }
+
     public void EditProcess(EditMethod editMethod) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 
@@ -199,13 +228,8 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     private UCrop UcropConfig(UCrop uCrop, EditMethod mode) {
         UCrop.Options options = new UCrop.Options();
-//        options.setFreeStyleCropEnabled(true);
         options.setHideBottomControls(true);
 
-//        options.setToolbarColor(Color.GREEN);
-//        options.setActiveWidgetColor(Color.GREEN);
-//        options.setCropFrameColor(Color.GREEN);
-//        options.setStatusBarColor(Color.GREEN);
         switch (mode) {
             case Scale:
                 options.setAllowedGestures(UCropActivity.NONE, UCropActivity.ALL, UCropActivity.ALL);
@@ -223,6 +247,14 @@ public class PictureProcessActivity extends AppCompatActivity {
 
         }
         return uCrop.withOptions(options);
+    }
+
+    public void Add_Text(View view) {
+        Intent intent = new Intent(PictureProcessActivity.this, Drawer.class);
+        intent.putExtra("extra_photoadd", imageUri.toString());
+        //  intent.putExtra("Height",imageView.getHeight());
+        //   intent.putExtra("Height",imageView.getWidth());
+        startActivity(intent);
     }
 
     public void DoneClick(View view) {
@@ -244,12 +276,40 @@ public class PictureProcessActivity extends AppCompatActivity {
         backgroudforButton.setVisibility(View.GONE);
         buttonSelect = ButtonSelectType.None;
         SelectPhotoAppear("imageView_origin");
+        SetButtonColor(buttonSelect);
+    }
+
+    private void SetButtonColor(ButtonSelectType button) {
+        Button edit = findViewById(R.id.Editclick);
+        Button ai = findViewById(R.id.AIclcik);
+        Button add = findViewById(R.id.addMain);
+
+        ColorStateList color = ColorStateList.valueOf(Color.parseColor("#ff9708"));
+        edit.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+        ai.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+        add.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+
+        switch (button) {
+            case Edit:
+                edit.setCompoundDrawableTintList(color);
+                break;
+            case Ai:
+                ai.setCompoundDrawableTintList(color);
+                break;
+            case Add:
+                add.setCompoundDrawableTintList(color);
+                break;
+            case None:
+                break;
+        }
     }
 
     public void EditClick(View view) {
+
         switch (buttonSelect) {
             case Ai:
             case Add:
+                SetButtonColor(ButtonSelectType.Edit);
                 AiGroupSetVisibility(View.GONE);
                 AddGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.VISIBLE);
@@ -257,6 +317,8 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_background");
                 break;
             case Edit:
+                SetButtonColor(ButtonSelectType.None);
+
                 EditGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
@@ -264,6 +326,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Edit);
                 EditGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
@@ -273,10 +336,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
     }
 
+
     public void AiClick(View view) {
         switch (buttonSelect) {
             case Edit:
             case Add:
+                SetButtonColor(ButtonSelectType.Ai);
                 AddGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.GONE);
                 AiGroupSetVisibility(View.VISIBLE);
@@ -285,12 +350,14 @@ public class PictureProcessActivity extends AppCompatActivity {
                 break;
             case Ai:
                 AiGroupSetVisibility(View.GONE);
+                SetButtonColor(ButtonSelectType.None);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
                 buttonSelect = ButtonSelectType.None;
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Ai);
                 AiGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
@@ -304,6 +371,8 @@ public class PictureProcessActivity extends AppCompatActivity {
         switch (buttonSelect) {
             case Edit:
             case Ai:
+                SetButtonColor(ButtonSelectType.Add);
+
                 AiGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.GONE);
                 AddGroupSetVisibility(View.VISIBLE);
@@ -311,6 +380,8 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_background");
                 break;
             case Add:
+                SetButtonColor(ButtonSelectType.None);
+
                 AddGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
@@ -318,6 +389,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Add);
                 AddGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
@@ -328,27 +400,51 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     private void EditGroupSetVisibility(int visibility) {
-        Edit_Scale.setVisibility(visibility);
-        Edit_Rotate.setVisibility(visibility);
-        Edit_Saturation.setVisibility(visibility);
-        Edit_Contrast.setVisibility(visibility);
-        Edit_Brightness.setVisibility(visibility);
+
+        AnimationView.fade(Edit_Scale, visibility);
+        AnimationView.fade(Edit_Rotate, visibility);
+        AnimationView.fade(Edit_Saturation, visibility);
+        AnimationView.fade(Edit_Contrast, visibility);
+        AnimationView.fade(Edit_Brightness, visibility);
+        AnimationView.fade(Edit_text,visibility);
+//        Edit_Scale.setVisibility(visibility);
+//        Edit_Rotate.setVisibility(visibility);
+//        Edit_Saturation.setVisibility(visibility);
+//        Edit_Contrast.setVisibility(visibility);
+//        Edit_Brightness.setVisibility(visibility);
     }
 
     private void AddGroupSetVisibility(int visibility) {
-        addaccessories.setVisibility(visibility);
-        addphotoframe.setVisibility(visibility);
-        addtext.setVisibility(visibility);
+        AnimationView.fade(addaccessories, visibility);
+        AnimationView.fade(addphotoframe, visibility);
+        AnimationView.fade(addtext, visibility);
+        AnimationView.fade(add_text,visibility);
+//        addaccessories.setVisibility(visibility);
+//        addphotoframe.setVisibility(visibility);
+//        addtext.setVisibility(visibility);
     }
 
     private void AiGroupSetVisibility(int visibility) {
-        highfraction.setVisibility(visibility);
-        Stylemigration.setVisibility(visibility);
+//        highfraction.setVisibility(visibility);
+//        Stylemigration.setVisibility(visibility);
+        AnimationView.fade(highfraction, visibility);
+        AnimationView.fade(Stylemigration, visibility);
+        AnimationView.fade(AI_text,visibility);
+//        Timer timer = new Timer();
+//        TimerTask timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//            }
+//        };
+//        timer.schedule(timerTask, 600);
+
     }
 
     private void OtherButtonGroupSetVisibility(int visibility) {
-        homeButton.setVisibility(visibility);
-        doneButton.setVisibility(visibility);
+        AnimationView.fade(homeButton, visibility);
+        AnimationView.fade(doneButton, visibility);
+//        homeButton.setVisibility(visibility);
+//        doneButton.setVisibility(visibility);
     }
 
     private void SelectPhotoAppear(String SelectPic) {
@@ -363,95 +459,4 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
     }
 
-//
-//    /**
-//     * 当点击beauty按钮时，
-//     * 如果isbeautybutton=true，
-//     * add相关的控件消失在屏幕上，之后置isaddbutton为true
-//     * beauty相关的控件显示在屏幕上，之后置isbeautybutton为false
-//     * 其余两个按钮消失，之后置isthetwoon为true
-//     *
-//     * 如果isbeautybutton=false，beauty相关的控件不显示在屏幕上，之后置isbeautybutton为true
-//     * 其余两个按钮出现，之后置isthetwoon为false
-//     */
-//    public void btn_onclickofbeauty(View view){
-//        backgroudforbrauty=(TextView)findViewById(R.id.backgroundforbeauty);
-//        highfraction=(Button)findViewById(R.id.highfraction);
-//        Stylemigration=(Button)findViewById(R.id.Stylemigration);
-//        backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
-//        addtext=(Button)findViewById(R.id.addtext);
-//        addaccessories=(Button)findViewById(R.id.addaccessories);
-//        addphotoframe=(Button)findViewById(R.id.addphotoframe);
-//        Home=(Button)findViewById(R.id.homebutton);
-//
-//        if(isbeautybutton){
-//            backgroudforadd.setVisibility(View.GONE);
-//            addtext.setVisibility(View.GONE);
-//            addaccessories.setVisibility(View.GONE);
-//            addphotoframe.setVisibility(View.GONE);
-//            isaddbutton=true;
-//            backgroudforbrauty.setVisibility(View.VISIBLE);
-//            highfraction.setVisibility(View.VISIBLE);
-//            Stylemigration.setVisibility(View.VISIBLE);
-//            isbeautybutton=false;
-//            Home.setVisibility(View.GONE);
-//            isthetwoon=true;
-//        }
-//        else{
-//            backgroudforbrauty.setVisibility(View.GONE);
-//            highfraction.setVisibility(View.GONE);
-//            Stylemigration.setVisibility(View.GONE);
-//            isbeautybutton=true;
-//            Home.setVisibility(View.VISIBLE);
-//            isthetwoon=false;
-//            imageView_background.setImageBitmap(fuzzyPhotoBmp);
-//            imageView.setImageURI(null);
-//
-//        }
-//
-//    }
-//
-//    /**
-//     * 当点击add按钮时，
-//     * 如果isaddbutton=true，
-//     * beauty相关的控件消失在屏幕上，之后置isbeautybutton为true
-//     * add相关的控件显示在屏幕上，之后置isaddbutton为false
-//     *
-//     * 如果isaddbutton=false，add相关的控件不显示在屏幕上，之后置isaddbutton为true
-//     */
-//
-//    public void btn_onclickofadd(View view){
-//        backgroudforadd=(TextView)findViewById(R.id.backgroundforadd);
-//        addtext=(Button)findViewById(R.id.addtext);
-//        addaccessories=(Button)findViewById(R.id.addaccessories);
-//        addphotoframe=(Button)findViewById(R.id.addphotoframe);
-//        backgroudforbrauty=(TextView)findViewById(R.id.backgroundforbeauty);
-//        highfraction=(Button)findViewById(R.id.highfraction);
-//        Stylemigration=(Button)findViewById(R.id.Stylemigration);
-//        Home=(Button)findViewById(R.id.homebutton);
-//
-//        if(isaddbutton){
-//            backgroudforbrauty.setVisibility(View.GONE);
-//            highfraction.setVisibility(View.GONE);
-//            Stylemigration.setVisibility(View.GONE);
-//            isbeautybutton=true;
-//            backgroudforadd.setVisibility(View.VISIBLE);
-//            addtext.setVisibility(View.VISIBLE);
-//            addaccessories.setVisibility(View.VISIBLE);
-//            addphotoframe.setVisibility(View.VISIBLE);
-//            isaddbutton=false;
-//            Home.setVisibility(View.GONE);
-//            isthetwoon=true;
-//
-//        }
-//        else{
-//            backgroudforadd.setVisibility(View.GONE);
-//            addtext.setVisibility(View.GONE);
-//            addaccessories.setVisibility(View.GONE);
-//            addphotoframe.setVisibility(View.GONE);
-//            isaddbutton=true;
-//            Home.setVisibility(View.VISIBLE);
-//            isthetwoon=false;
-//        }
-//    }
 }

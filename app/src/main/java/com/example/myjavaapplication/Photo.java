@@ -216,4 +216,11 @@ public class Photo {
         return outBitmap;
     }
 
+    public static Bitmap getFuzzyBitmapFromUri(Context context, ContentResolver contentResolver, Uri uri){
+        Bitmap bitmap = Photo.getBitmapFromUri(context, contentResolver, uri);
+        bitmap = Photo.scaleBitmap(bitmap,0.2f);
+        Bitmap fuzzyPhotoBmp = FastBlur.doBlur(bitmap, 20, false);
+        return fuzzyPhotoBmp;
+    }
+
 }
