@@ -5,50 +5,85 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <ImageView-->
+<!--        android:id="@+id/imageResult"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:adjustViewBounds="true"-->
+<!--        android:baselineAligned="false"-->
+<!--        android:maxWidth="512pt"-->
+<!--        android:maxHeight="712pt"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/save_result"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.543"-->
+<!--        tools:srcCompat="@tools:sample/avatars" />-->
+
     <ImageView
-        android:id="@+id/imageResult"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:baselineAligned="false"
-        android:maxWidth="512pt"
-        android:maxHeight="512pt"
-        android:scaleType="fitCenter"
+        android:id="@+id/background_result"
+        android:fadingEdge="vertical"
+        android:foregroundGravity="fill_vertical"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@android:color/background_dark"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:visibility="visible" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:id="@+id/share_result"
+        android:visibility="gone"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/ic_share"
+        android:onClick="SharePhoto"
+        app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
+        app:layout_constraintEnd_toStartOf="@+id/save_result"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/save_result"
+        android:visibility="gone"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/ic_save"
+        android:onClick="SavePhoto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/wallpaper_result"
+        android:visibility="gone"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:background="@drawable/ic_phone"
+        android:onClick="SetWallpaperClick"
+        app:layout_constraintBaseline_toBaselineOf="@+id/save_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/save_result" />
+
+    <Button
+        android:id="@+id/close_result"
+        android:visibility="gone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="share"
+        android:background="@drawable/ic_close"
+        android:onClick="close_click"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="36dp"
-        android:text="save"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="36dp"
-        android:text="Background"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

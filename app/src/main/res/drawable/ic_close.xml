@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="30dp"
+    android:height="30dp"
+    android:viewportWidth="720"
+    android:viewportHeight="720">
+    <path
+        android:name="圆角矩形 1"
+        android:pathData="m694.7 -0c-4.2 0 -8.4 1.6 -11.6 4.9l-671.3 685.4c-6.4 6.5 -6.4 17.1 0 23.6l1.2 1.2c3.2 3.3 7.4 4.9 11.6 4.9c4.2 0 8.4 -1.6 11.6 -4.9l671.3 -685.4c6.4 -6.5 6.4 -17.1 0 -23.6l-1.2 -1.2c-3.2 -3.3 -7.4 -4.9 -11.6 -4.9z"
+        android:fillColor="#fff" />
+    <path
+        android:name="圆角矩形 2"
+        android:pathData="m24.2 -0c-4.2 0 -8.4 1.6 -11.6 4.9l-1.2 1.2c-6.4 6.5 -6.4 17.1 0 23.6l671.3 685.4c3.2 3.3 7.4 4.9 11.6 4.9c4.2 0 8.4 -1.6 11.6 -4.9l1.2 -1.2c6.4 -6.5 6.4 -17.1 0 -23.6l-671.3 -685.4c-3.2 -3.3 -7.4 -4.9 -11.6 -4.9z"
+        android:fillColor="#fff" />
+</vector>
