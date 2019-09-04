@@ -95,8 +95,10 @@ public class PictureProcessActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         setIntent(intent);
         Intent intent1 = getIntent();
-        imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
-        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+        if(intent1.getStringExtra("extra_uri_process")!=null){
+            imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
+            fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+        }
         RestoreOrigin();
     }
 
@@ -266,6 +268,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         backgroudforButton.setVisibility(View.GONE);
         buttonSelect = ButtonSelectType.None;
         SelectPhotoAppear("imageView_origin");
+        SetButtonColor(buttonSelect);
     }
 
     private void SetButtonColor(ButtonSelectType button) {
