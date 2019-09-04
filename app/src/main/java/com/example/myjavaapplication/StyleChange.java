@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -56,7 +57,8 @@ public class StyleChange extends AppCompatActivity {
 
     public void VincentClick(View view) {
         //TODO传输数据
-
+        Context context = getApplicationContext();
+        ServerCommunication.Upload(getApplicationContext(),imageUri);
         //TODO获取数据
         Intent intent = new Intent(StyleChange.this,PictureProcessActivity.class);
         intent.putExtra("extar_uri_process",imageUri.toString());
