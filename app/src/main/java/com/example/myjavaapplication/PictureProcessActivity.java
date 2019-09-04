@@ -89,11 +89,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         imageView_origin.setImageURI(imageUri);
     }
 
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
         Intent intent1 = getIntent();
-        imageUri = Uri.parse(intent1.getStringExtra("extar_uri_process"));
+        imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
         fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         RestoreOrigin();
     }
@@ -148,6 +149,19 @@ public class PictureProcessActivity extends AppCompatActivity {
         addtext = (Button) findViewById(R.id.addtext);
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
+        /**
+         * addphotoframe 的跳转函数
+         * 需要修改放置位置
+         */
+        addphotoframe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PictureProcessActivity.this, AddPhotoFrameActivity.class);
+                intent.putExtra("extra_uri_process", imageUri.toString());
+                startActivity(intent);
+            }
+        });
+
 
         homeButton = (Button) findViewById(R.id.homebutton);
         doneButton = (Button) findViewById(R.id.done_button);
