@@ -100,12 +100,14 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="357dp"
-            android:layout_height="177dp"
+            android:layout_width="337dp"
+            android:layout_height="147dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="32dp"
+            android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_title" />
