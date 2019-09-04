@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,17 +44,21 @@ public class PictureProcessActivity extends AppCompatActivity {
     private Button Edit_Saturation;
     private Button Edit_Contrast;
     private Button Edit_Brightness;
+    private TextView Edit_text;
+
 
     //点击AI按钮弹出界面所需的4个变量
     private Button highfraction;
     private Button Stylemigration;
     private Button AI;
+    private TextView AI_text;
 
     //点击添加按钮弹出界面所需的5个变量
     private Button addtext;
     private Button addaccessories;
     private Button addphotoframe;
     private Button add;
+    private TextView add_text;
 
     //其余的home和done按钮
     private Button homeButton;
@@ -144,14 +149,19 @@ public class PictureProcessActivity extends AppCompatActivity {
         Edit_Brightness = (Button) findViewById(R.id.brightness);
         Edit_Contrast = (Button) findViewById(R.id.contrast);
         Edit_Saturation = (Button) findViewById(R.id.saturation);
+        Edit_text = (TextView)findViewById(R.id.edit_textview);
+
 
         highfraction = (Button) findViewById(R.id.highfraction);
         Stylemigration = (Button) findViewById(R.id.Stylemigration);
         AI = (Button) findViewById(R.id.AIclcik);
+        AI_text = (TextView)findViewById(R.id.ai_textview);
 
         addtext = (Button) findViewById(R.id.addtext);
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
+        add_text = (TextView)findViewById(R.id.add_textview);
+
         /**
          * addphotoframe 的跳转函数
          * 需要修改放置位置
@@ -165,10 +175,8 @@ public class PictureProcessActivity extends AppCompatActivity {
             }
         });
 
-
         homeButton = (Button) findViewById(R.id.homebutton);
         doneButton = (Button) findViewById(R.id.done_button);
-
     }
 
     /*
@@ -398,7 +406,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         AnimationView.fade(Edit_Saturation, visibility);
         AnimationView.fade(Edit_Contrast, visibility);
         AnimationView.fade(Edit_Brightness, visibility);
-
+        AnimationView.fade(Edit_text,visibility);
 //        Edit_Scale.setVisibility(visibility);
 //        Edit_Rotate.setVisibility(visibility);
 //        Edit_Saturation.setVisibility(visibility);
@@ -410,6 +418,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         AnimationView.fade(addaccessories, visibility);
         AnimationView.fade(addphotoframe, visibility);
         AnimationView.fade(addtext, visibility);
+        AnimationView.fade(add_text,visibility);
 //        addaccessories.setVisibility(visibility);
 //        addphotoframe.setVisibility(visibility);
 //        addtext.setVisibility(visibility);
@@ -420,7 +429,7 @@ public class PictureProcessActivity extends AppCompatActivity {
 //        Stylemigration.setVisibility(visibility);
         AnimationView.fade(highfraction, visibility);
         AnimationView.fade(Stylemigration, visibility);
-
+        AnimationView.fade(AI_text,visibility);
 //        Timer timer = new Timer();
 //        TimerTask timerTask = new TimerTask() {
 //            @Override

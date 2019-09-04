@@ -18,4 +18,6 @@
     <string name="feedback">反馈</string>
     <string name="send">发送</string>
     <string name="edit">编辑</string>
+    <string name="AI">AI</string>
+    <string name="add">添加</string>
 </resources>
