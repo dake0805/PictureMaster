@@ -63,22 +63,24 @@
 
         <Button
             android:id="@+id/done_button"
-            android:layout_width="38dp"
-            android:layout_height="34dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_finish"
+            android:drawableTop="@drawable/ic_finish"
             android:onClick="DoneClick"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/homebutton"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/ic_home"
+            android:drawableTop="@drawable/ic_home"
             android:onClick="HomeClick"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -96,10 +98,11 @@
 
         <Button
             android:id="@+id/highfraction"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/ic_enlarge"
+            android:drawableTop="@drawable/ic_enlarge"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Stylemigration"
@@ -107,9 +110,10 @@
 
         <Button
             android:id="@+id/Stylemigration"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_filter"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_filter"
             android:onClick="AiEdit1_StyleChange"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/highfraction"
@@ -130,10 +134,11 @@
 
         <Button
             android:id="@+id/addphotoframe"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/ic_frame"
+            android:drawableTop="@drawable/ic_frame"
             android:gravity="center"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -142,19 +147,22 @@
 
         <Button
             android:id="@+id/addtext"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_text"
-            android:visibility="gone"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_text"
             android:onClick="Add_Text"
+            android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/addphotoframe"
             app:layout_constraintEnd_toStartOf="@+id/addphotoframe"
             app:layout_constraintStart_toStartOf="parent" />
+
         <Button
             android:id="@+id/addaccessories"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_decorate"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_decorate"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/addphotoframe"
             app:layout_constraintEnd_toEndOf="parent"
@@ -177,9 +185,10 @@
 
             <Button
                 android:id="@+id/Editclick"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="@drawable/ic_edit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_edit"
                 android:onClick="EditClick"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/AIclcik"
@@ -188,12 +197,13 @@
 
             <Button
                 android:id="@+id/AIclcik"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/ic_ai"
+                android:drawableTop="@drawable/ic_ai"
                 android:onClick="AiClick"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -202,9 +212,10 @@
 
             <Button
                 android:id="@+id/addMenu"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="@drawable/ic_add"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_add"
                 android:onClick="AddClick"
                 app:layout_constraintBaseline_toBaselineOf="@+id/AIclcik"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -225,66 +236,76 @@
 
         <Button
             android:id="@+id/saturation"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_saturation"
             android:onClick="Edit4_saturation"
-            android:background="@drawable/ic_saturation"
+            android:text="饱和度"
+            android:textColor="#FFFFFF"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/brightness"
-            />
+            app:layout_constraintStart_toEndOf="@+id/brightness" />
 
         <Button
             android:id="@+id/rotate"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_rotate"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_rotate"
             android:onClick="Edit2_rotate"
+            android:text="旋转"
+            android:textColor="#FFFFFF"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/scale"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/contrast"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_compare"
             android:onClick="Edit5_contrasts"
-            android:background="@drawable/ic_compare"
+            android:text="对比度"
+            android:textColor="#FFFFFF"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
             app:layout_constraintEnd_toStartOf="@+id/brightness"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/brightness"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:drawableTop="@drawable/ic_light"
             android:gravity="center"
             android:onClick="Edit3_brightness"
-            android:background="@drawable/ic_light"
+            android:text="亮度"
+            android:textColor="#FFFFFF"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/scale"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:background="@drawable/ic_cut"
+            android:drawableTop="@drawable/ic_cut"
             android:onClick="Edit1_scale"
+            android:text="裁剪"
+            android:textColor="#FFFFFF"
             android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/rotate"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contrast"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/contrast" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
