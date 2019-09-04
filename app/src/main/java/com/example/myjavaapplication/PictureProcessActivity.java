@@ -4,20 +4,14 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
@@ -273,23 +267,26 @@ public class PictureProcessActivity extends AppCompatActivity {
     }
 
     private void SetButtonColor(ButtonSelectType button) {
-        Button edit = findViewById(R.id.edit);
-        Button ai = findViewById(R.id.ai);
-        Button add = findViewById(R.id.addMenu);
+        Button edit = findViewById(R.id.Editclick);
+        Button ai = findViewById(R.id.AIclcik);
+        Button add = findViewById(R.id.addMain);
 
+        ColorStateList color = ColorStateList.valueOf(Color.parseColor("#ff9708"));
         edit.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
         ai.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
         add.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
 
         switch (button) {
             case Edit:
-                edit.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ff9708")));
+                edit.setCompoundDrawableTintList(color);
                 break;
             case Ai:
-                ai.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ff9708")));
+                ai.setCompoundDrawableTintList(color);
                 break;
             case Add:
-                add.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ff9708")));
+                add.setCompoundDrawableTintList(color);
+                break;
+            case None:
                 break;
         }
     }
@@ -299,6 +296,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         switch (buttonSelect) {
             case Ai:
             case Add:
+                SetButtonColor(ButtonSelectType.Edit);
                 AiGroupSetVisibility(View.GONE);
                 AddGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.VISIBLE);
@@ -306,6 +304,8 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_background");
                 break;
             case Edit:
+                SetButtonColor(ButtonSelectType.None);
+
                 EditGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
@@ -313,6 +313,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Edit);
                 EditGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
@@ -322,10 +323,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
     }
 
+
     public void AiClick(View view) {
         switch (buttonSelect) {
             case Edit:
             case Add:
+                SetButtonColor(ButtonSelectType.Ai);
                 AddGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.GONE);
                 AiGroupSetVisibility(View.VISIBLE);
@@ -334,12 +337,14 @@ public class PictureProcessActivity extends AppCompatActivity {
                 break;
             case Ai:
                 AiGroupSetVisibility(View.GONE);
+                SetButtonColor(ButtonSelectType.None);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
                 buttonSelect = ButtonSelectType.None;
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Ai);
                 AiGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
@@ -353,6 +358,8 @@ public class PictureProcessActivity extends AppCompatActivity {
         switch (buttonSelect) {
             case Edit:
             case Ai:
+                SetButtonColor(ButtonSelectType.Add);
+
                 AiGroupSetVisibility(View.GONE);
                 EditGroupSetVisibility(View.GONE);
                 AddGroupSetVisibility(View.VISIBLE);
@@ -360,6 +367,8 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_background");
                 break;
             case Add:
+                SetButtonColor(ButtonSelectType.None);
+
                 AddGroupSetVisibility(View.GONE);
                 OtherButtonGroupSetVisibility(View.VISIBLE);
                 backgroudforButton.setVisibility(View.GONE);
@@ -367,6 +376,7 @@ public class PictureProcessActivity extends AppCompatActivity {
                 SelectPhotoAppear("imageView_origin");
                 break;
             case None:
+                SetButtonColor(ButtonSelectType.Add);
                 AddGroupSetVisibility(View.VISIBLE);
                 OtherButtonGroupSetVisibility(View.GONE);
                 backgroudforButton.setVisibility(View.VISIBLE);
