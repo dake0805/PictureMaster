@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -111,6 +112,12 @@ public class Settings extends AppCompatActivity {
         });
         AlertDialog b = builder.create();
         b.show();
+    }
+
+    public void language_Click(View view) {
+        Intent intent = new Intent(Settings.this, language_setting.class);
+        startActivity(intent);
+
     }
 
 }
