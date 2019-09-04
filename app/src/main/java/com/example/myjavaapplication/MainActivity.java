@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 /**
  * to do
  * 存储空间权限申请
@@ -92,14 +92,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         imageView=findViewById(R.id.background);
         imageView.setImageResource(R.drawable.p1);
-        btn = (Button)findViewById(R.id.button7);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView about= (TextView)findViewById(R.id.textView2);
-                about.setVisibility(View.VISIBLE);
-            }
-        });
         //cropImage = findViewById(R.id.imageView);
         //GifLoadingView mGifLoadingView = new GifLoadingView();
     }
@@ -112,6 +104,12 @@ public class MainActivity extends AppCompatActivity{
     public void settings(View v){
         Intent settings = new Intent(MainActivity.this,Settings.class);
         startActivity(settings);
+    }
+
+    //Button FeedBack
+    private void feedback(View view) {
+        Intent feedback = new Intent(MainActivity.this, FeedBackActivity.class);
+        startActivity(feedback);
     }
     //TODO 按钮的图片设置与排版
     //Button SELECT

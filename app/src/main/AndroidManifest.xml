@@ -51,6 +51,9 @@
     <activity android:name=".Settings">
 
     </activity>
+        <activity android:name=".FeedBackActivity">
+
+    </activity>
         <activity
         android:name="com.yalantis.ucrop.UCropActivity"
         android:screenOrientation="portrait"
