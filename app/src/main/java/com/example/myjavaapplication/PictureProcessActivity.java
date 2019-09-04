@@ -1,7 +1,10 @@
 package com.example.myjavaapplication;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
@@ -267,7 +272,30 @@ public class PictureProcessActivity extends AppCompatActivity {
         SelectPhotoAppear("imageView_origin");
     }
 
+    private void SetButtonColor(ButtonSelectType button) {
+        Button edit = findViewById(R.id.edit);
+        Button ai = findViewById(R.id.ai);
+        Button add = findViewById(R.id.addMenu);
+
+        edit.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+        ai.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+        add.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+
+        switch (button) {
+            case Edit:
+                edit.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ff9708")));
+                break;
+            case Ai:
+                ai.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ff9708")));
+                break;
+            case Add:
+                add.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ff9708")));
+                break;
+        }
+    }
+
     public void EditClick(View view) {
+
         switch (buttonSelect) {
             case Ai:
             case Add:
