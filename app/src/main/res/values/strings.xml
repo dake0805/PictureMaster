@@ -14,4 +14,7 @@
     <string name="highResolution">超分辨率</string>
     <string name="addText">添加文字</string>
     <string name="setFrame">设置边框</string>
+    <string name="setting">设置</string>
+    <string name="feedback">反馈</string>
+    <string name="send">发送</string>
 </resources>
