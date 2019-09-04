@@ -96,8 +96,8 @@
 
         <Button
             android:id="@+id/highfraction"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/ic_enlarge"
             android:visibility="gone"
