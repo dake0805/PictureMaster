@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".language_setting">
 
     <androidx.appcompat.widget.Toolbar
@@ -33,41 +34,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
+        android:divider="@drawable/divider"
         android:orientation="vertical"
+        android:showDividers="middle"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/zhcn"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="简体中文 (zh_CN)"
+            android:layout_height="72dp"
+            android:layout_marginEnd="0dp"
+            android:text="@string/zhcn"
+            android:textAllCaps="false"
             android:textSize="18sp" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@android:color/darker_gray"  />
 
         <Button
             android:id="@+id/zhhk"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="繁體中文 (zh_HK)"
+            android:layout_height="72dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:text="@string/zhhk"
+            android:textAllCaps="false"
             android:textSize="18sp" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@android:color/darker_gray" />
 
         <Button
             android:id="@+id/enus"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="English (en_US)"
+            android:layout_height="72dp"
+            android:layout_margin="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:text="@string/enus"
+            android:textAllCaps="false"
             android:textSize="18sp" />
 
     </LinearLayout>
