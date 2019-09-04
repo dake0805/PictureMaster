@@ -10,45 +10,46 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-
 public class Settings extends AppCompatActivity {
 
-    private Button btn1;
+    private Button setting_about;
 
-    private Button btn2;
+    private Button setting_contact;
 
-    private Button btn3;
+    private Button setting_feedback;
 
     protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_settings);
-        btn1 = (Button) findViewById(R.id.setting_about);
-        btn2 = (Button) findViewById(R.id.setting_contact);
-        btn3 = (Button) findViewById(R.id.setting_feedback);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setTitle("保存照片");
-                builder.setMessage("是否确定要存储照片");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
+        setting_about = (Button) findViewById(R.id.setting_about);
+        setting_contact = (Button) findViewById(R.id.setting_contact);
+        setting_feedback = (Button) findViewById(R.id.setting_feedback);
 
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
+//        setting_about.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//                builder.setTitle("保存照片");
+//                builder.setMessage("是否确定要存储照片");
+//                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
+//
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//
+//                    }
+//                });
+//                builder.setNegativeButton("", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//                    }
+//                });
+//                AlertDialog b = builder.create();
+//                b.show();
+//            }
+//        });
 
-                    }
-                });
-                builder.setNegativeButton("", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                    }
-                });
-                AlertDialog b = builder.create();
-                b.show();
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
+
+        setting_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -61,13 +62,27 @@ public class Settings extends AppCompatActivity {
                 okCancelDialog.show();
             }
         });
-        btn3.setOnClickListener(new View.OnClickListener() {
+
+        setting_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent feedback = new Intent(Settings.this, FeedBackActivity.class);
                 startActivity(feedback);
             }
         });
+    }
+
+    public void about_Clcik(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("关于我们");
+        builder.setMessage("testtest");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+            }
+        });
+        AlertDialog b = builder.create();
+        b.show();
     }
 
 }

@@ -51,29 +51,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         CheckPermission();
         imageView = findViewById(R.id.background);
         setBackground();
     }
-/*
-    public void startDrawer(View v){
-        //hrn测试用
-        final Button button1=(Button) findViewById(R.id.button5);
-        button1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this,Drawer.class);
-                startActivity(intent);
-                //Toast.makeText(MainActivity.this,"打开相册",Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-    }
-*/
-
 
     //检查权限
     private void CheckPermission() {
@@ -119,15 +100,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Button SETTINGS
+    public void settings(View v) {
+        Intent settings = new Intent(MainActivity.this, Settings.class);
+        startActivity(settings);
+    }
 
     @Override
     protected void onResume(){
         super.onResume();
-    }
-    //Button SETTINGS
-    public void settings(View v){
-        Intent settings = new Intent(MainActivity.this,Settings.class);
-        startActivity(settings);
     }
 
     //Button FeedBack
@@ -146,10 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Button CAMERA
     public void cameraShotPhoto(View view) {
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (intent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(intent, CAMERA_PICTURE);
-//        }
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -244,7 +221,5 @@ public class MainActivity extends AppCompatActivity {
         photoFile = image;
         return image;
     }
-
-
 }
 
