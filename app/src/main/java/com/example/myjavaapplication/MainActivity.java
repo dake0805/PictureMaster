@@ -15,7 +15,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 
@@ -42,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
 
-    //TODO 页面跳转问题，是否清除
-    //TODO 编辑照片会自动保存
-
+    private Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,36 +98,43 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 imageView.setImageResource(R.drawable.p1);
                 break;
-            case 2:
-                imageView.setImageResource(R.drawable.p2);
+            case 2:imageView.setImageResource(R.drawable.p2);
                 break;
-            case 3:
-                imageView.setImageResource(R.drawable.p3);
+            case 3:imageView.setImageResource(R.drawable.p3);
                 break;
-            case 4:
-                imageView.setImageResource(R.drawable.p4);
+            case 4:imageView.setImageResource(R.drawable.p4);
                 break;
-            case 5:
-                imageView.setImageResource(R.drawable.p5);
+            case 5:imageView.setImageResource(R.drawable.p5);
                 break;
-            case 6:
-                imageView.setImageResource(R.drawable.p6);
+            case 6:imageView.setImageResource(R.drawable.p6);
                 break;
-            case 7:
-                imageView.setImageResource(R.drawable.p7);
+            case 7:imageView.setImageResource(R.drawable.p7);
                 break;
-            case 8:
-                imageView.setImageResource(R.drawable.p8);
+            case 8:imageView.setImageResource(R.drawable.p8);
                 break;
-            case 9:
-                imageView.setImageResource(R.drawable.p9);
+            case 9:imageView.setImageResource(R.drawable.p9);
                 break;
-            case 10:
-                imageView.setImageResource(R.drawable.p10);
+            case 10:imageView.setImageResource(R.drawable.p10);
                 break;
         }
     }
 
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+    }
+    //Button SETTINGS
+    public void settings(View v){
+        Intent settings = new Intent(MainActivity.this,Settings.class);
+        startActivity(settings);
+    }
+
+    //Button FeedBack
+    private void feedback(View view) {
+        Intent feedback = new Intent(MainActivity.this, FeedBackActivity.class);
+        startActivity(feedback);
+    }
     //TODO 按钮的图片设置与排版
     //Button SELECT
     public void selectPhoto(View view) {
@@ -141,8 +150,6 @@ public class MainActivity extends AppCompatActivity {
 //        if (intent.resolveActivity(getPackageManager()) != null) {
 //            startActivityForResult(intent, CAMERA_PICTURE);
 //        }
-        //test hrn
-
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
