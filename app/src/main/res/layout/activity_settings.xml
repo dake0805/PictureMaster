@@ -7,7 +7,7 @@
     android:background="#FFFFFF">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/toolbar_setting"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -65,9 +65,24 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_setting" />
 
-<!--    <TextView-->
+    <Button
+        android:id="@+id/setting_contact3"
+        style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="220dp"
+        android:elevation="0dp"
+        android:onClick="language_Click"
+        android:text="language"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_setting" />
+
+    <!--    <TextView-->
 <!--        android:id="@+id/textView2"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

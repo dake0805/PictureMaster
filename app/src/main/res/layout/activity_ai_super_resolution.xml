@@ -4,11 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Drawer">
+    tools:context=".AiSuperResolution">
 
+    <Button
+        android:id="@+id/startSuperResolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="269dp"
+        tools:layout_editor_absoluteY="423dp" />
+
+    <ImageView
+        android:id="@+id/superResolutionPic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/superResolution_toolbar2"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/drawer_toolbar"
+        android:id="@+id/superResolution_toolbar2"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -23,40 +41,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/addText"
+            android:text="@string/highResolution"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="192dp"
             tools:layout_editor_absoluteY="18dp" />
     </androidx.appcompat.widget.Toolbar>
-
-    <com.example.myjavaapplication.view.MyRelativeLayout
-        android:id="@+id/add_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:baselineAligned="false"
-        android:maxWidth="512pt"
-
-        android:maxHeight="512pt"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/drawer_finshed"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="64dp"
-        android:layout_height="56dp"
-
-        android:elevation="16dp"
-        android:text="@string/finish"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/drawer_toolbar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

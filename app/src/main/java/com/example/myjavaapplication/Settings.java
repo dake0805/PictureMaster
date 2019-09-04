@@ -2,21 +2,14 @@ package com.example.myjavaapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
 
@@ -29,6 +22,18 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_settings);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_setting);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();//返回
+            }
+        });
+
         setting_about = (Button) findViewById(R.id.setting_about);
         setting_contact = (Button) findViewById(R.id.setting_contact);
         setting_feedback = (Button) findViewById(R.id.setting_feedback);
@@ -80,7 +85,7 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    public void contact_Click(View view){
+    public void contact_Click(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("联系我们");
         String message = "Email:nebula225@protonmail.com\nQQ:645745123\nTel:13679285813";
@@ -94,7 +99,7 @@ public class Settings extends AppCompatActivity {
         b.show();
     }
 
-    public void about_Clcik(View view){
+    public void about_Clcik(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("关于我们");
         String message = "PAIM® for android®  Trademarks Apple, App Store, Mac App Store, iBookstore, iPhone, and iPad are registered trademarks or service marks of Apple Inc. All other brand names, product names or trademarks belong to their respective holders.  Third-Party Software Credits and Attributions  AFNetworking, 2.5.3 Copyright 2013-2015, AFNetworking https://github.com/AFNetworking/AFNetworking/blob/master/LICENSE  UICKeyChainStore, 1.1.0 Copyright 2011 kishikawa katsumi https://github.com/kishikawakatsumi/UICKeyChainStore/blob/master/LICENSE  ReactiveCocoa, 2.4.2 Copyright 2012 - 2014, GitHub, Inc. https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/LICENSE.md  SMPageControl, 1.2 Copyright (C) 2012 by Spaceman Labs (http://www.spacemanlabs.com) https://github.com/Spaceman-Labs/SMPageControl/blob/master/LICENSE  DB5 Copyright (c) 2013 Q Branch LLC (http://qbranch.co/) https://github.com/quartermaster/DB5/blob/master/LICENSE  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.";
@@ -107,6 +112,12 @@ public class Settings extends AppCompatActivity {
         });
         AlertDialog b = builder.create();
         b.show();
+    }
+
+    public void language_Click(View view) {
+        Intent intent = new Intent(Settings.this, language_setting.class);
+        startActivity(intent);
+
     }
 
 }
