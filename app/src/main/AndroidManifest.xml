@@ -46,9 +46,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings"/>
+        <activity
+            android:name=".Settings"
+            android:label="" />
 
-        <activity android:name=".FeedBackActivity"/>
+        <activity android:name=".FeedBackActivity" />
 
         <activity android:name=".TextEdit" />
 
