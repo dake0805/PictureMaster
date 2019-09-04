@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".language_setting"></activity>
+        <activity android:name=".AiSuperResolution"></activity>
+        <activity android:name=".language_setting" />
 
         <uses-library
             android:name="org.apache.http.legacy"
