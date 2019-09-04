@@ -2,53 +2,50 @@ package com.example.myjavaapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.yalantis.ucrop.UCrop;
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-public class Settings extends AppCompatActivity{
 
-private Button btn1;
+public class Settings extends AppCompatActivity {
 
-private Button btn2;
+    private Button btn1;
 
-private Button btn3;
+    private Button btn2;
 
-    protected void onCreate(Bundle savaInstanceState){
+    private Button btn3;
+
+    protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_settings);
-        btn1 = (Button)findViewById(R.id.button7);
-        btn2 = (Button)findViewById(R.id.button10);
-        btn3 = (Button)findViewById(R.id.button11) ;
+        btn1 = (Button) findViewById(R.id.setting_about);
+        btn2 = (Button) findViewById(R.id.setting_contact);
+        btn3 = (Button) findViewById(R.id.setting_feedback);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView about= (TextView)findViewById(R.id.textView2);
-                if(about.getVisibility()==View.VISIBLE) {
-                    about.setVisibility(View.INVISIBLE);
-                }
-                else about.setVisibility(View.VISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setTitle("保存照片");
+                builder.setMessage("是否确定要存储照片");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
+
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+                builder.setNegativeButton("", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                });
+                AlertDialog b = builder.create();
+                b.show();
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
@@ -73,4 +70,4 @@ private Button btn3;
         });
     }
 
-    }
+}
