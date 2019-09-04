@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:elevation="0dp">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -22,7 +21,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:elevation="16dp"
             android:text="@string/setting"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
@@ -34,11 +32,8 @@
         android:id="@+id/setting_feedback"
         style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
         android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:elevation="0dp"
+        android:layout_height="wrap_content"
         android:text="Feedback"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setting_contact" />
@@ -65,20 +60,21 @@
         android:layout_marginTop="20dp"
         android:elevation="0dp"
         android:text="Contact Us"
+        android:onClick="contact_Click"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="0dp"
-        android:text='PAIM® for android®  Trademarks Apple, App Store, Mac App Store, iBookstore, iPhone, and iPad are registered trademarks or service marks of Apple Inc. All other brand names, product names or trademarks belong to their respective holders.  Third-Party Software Credits and Attributions  AFNetworking, 2.5.3 Copyright 2013-2015, AFNetworking https://github.com/AFNetworking/AFNetworking/blob/master/LICENSE  UICKeyChainStore, 1.1.0 Copyright 2011 kishikawa katsumi https://github.com/kishikawakatsumi/UICKeyChainStore/blob/master/LICENSE  ReactiveCocoa, 2.4.2 Copyright 2012 - 2014, GitHub, Inc. https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/LICENSE.md  SMPageControl, 1.2 Copyright (C) 2012 by Spaceman Labs (http://www.spacemanlabs.com) https://github.com/Spaceman-Labs/SMPageControl/blob/master/LICENSE  DB5 Copyright (c) 2013 Q Branch LLC (http://qbranch.co/) https://github.com/quartermaster/DB5/blob/master/LICENSE  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.'
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="232dp" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:elevation="0dp"-->
+<!--        android:text='PAIM® for android®  Trademarks Apple, App Store, Mac App Store, iBookstore, iPhone, and iPad are registered trademarks or service marks of Apple Inc. All other brand names, product names or trademarks belong to their respective holders.  Third-Party Software Credits and Attributions  AFNetworking, 2.5.3 Copyright 2013-2015, AFNetworking https://github.com/AFNetworking/AFNetworking/blob/master/LICENSE  UICKeyChainStore, 1.1.0 Copyright 2011 kishikawa katsumi https://github.com/kishikawakatsumi/UICKeyChainStore/blob/master/LICENSE  ReactiveCocoa, 2.4.2 Copyright 2012 - 2014, GitHub, Inc. https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/LICENSE.md  SMPageControl, 1.2 Copyright (C) 2012 by Spaceman Labs (http://www.spacemanlabs.com) https://github.com/Spaceman-Labs/SMPageControl/blob/master/LICENSE  DB5 Copyright (c) 2013 Q Branch LLC (http://qbranch.co/) https://github.com/quartermaster/DB5/blob/master/LICENSE  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.'-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        tools:layout_editor_absoluteY="232dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,48 +53,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/up"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/done_button"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/baseline_check_white_48dp"
-            android:onClick="DoneClick"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/homebutton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:drawableTop="@drawable/ic_home"
-            android:onClick="HomeClick"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ai"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="128dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/ai_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/highfraction"
@@ -137,6 +114,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/add_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/addphotoframe"
@@ -182,6 +171,107 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/addphotoframe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/addphotoframe" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/edit_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/saturation"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_saturation"
+            android:drawablePadding="8dp"
+            android:onClick="Edit4_saturation"
+            android:text="@string/saturation"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/brightness" />
+
+        <Button
+            android:id="@+id/rotate"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_rotate"
+            android:drawablePadding="8dp"
+            android:onClick="Edit2_rotate"
+            android:text="@string/rotate"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/scale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/contrast"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_compare"
+            android:drawablePadding="8dp"
+            android:onClick="Edit5_contrasts"
+            android:text="@string/contrast"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
+            app:layout_constraintEnd_toStartOf="@+id/brightness"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/brightness"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:drawableTop="@drawable/ic_light"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:onClick="Edit3_brightness"
+            android:text="@string/brightness"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/scale"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:drawableTop="@drawable/ic_cut"
+            android:drawablePadding="8dp"
+            android:onClick="Edit1_scale"
+            android:text="@string/scale"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/rotate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contrast" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -246,91 +336,37 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/edit"
+        android:id="@+id/up"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/saturation"
+            android:id="@+id/done_button"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_saturation"
-            android:drawablePadding="8dp"
-            android:onClick="Edit4_saturation"
-            android:text="@string/saturation"
-            android:textColor="#FFFFFF"
-            android:visibility="gone"
-            app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/baseline_check_white_48dp"
+            android:onClick="DoneClick"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/brightness" />
-
-        <Button
-            android:id="@+id/rotate"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_rotate"
-            android:drawablePadding="8dp"
-            android:onClick="Edit2_rotate"
-            android:text="@string/rotate"
-            android:textColor="#FFFFFF"
-            android:visibility="gone"
-            app:layout_constraintBaseline_toBaselineOf="@+id/scale"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/contrast"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_compare"
-            android:drawablePadding="8dp"
-            android:onClick="Edit5_contrasts"
-            android:text="@string/contrast"
-            android:textColor="#FFFFFF"
-            android:visibility="gone"
-            app:layout_constraintBaseline_toBaselineOf="@+id/brightness"
-            app:layout_constraintEnd_toStartOf="@+id/brightness"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/brightness"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:drawableTop="@drawable/ic_light"
-            android:drawablePadding="8dp"
-            android:gravity="center"
-            android:onClick="Edit3_brightness"
-            android:text="@string/brightness"
-            android:textColor="#FFFFFF"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/scale"
+            android:id="@+id/homebutton"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:drawableTop="@drawable/ic_cut"
-            android:drawablePadding="8dp"
-            android:onClick="Edit1_scale"
-            android:text="@string/scale"
-            android:textColor="#FFFFFF"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/rotate"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:drawableTop="@drawable/ic_home"
+            android:onClick="HomeClick"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contrast" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
