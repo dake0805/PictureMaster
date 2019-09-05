@@ -21,6 +21,7 @@ import static android.graphics.Shader.TileMode.CLAMP;
 public class AddPhotoFrameActivity extends Activity {
     private Button RoundBut;
     private Button CircleBut;
+    private Button ConfirmBut;
     private Uri imageUri;
     private Bitmap bitmap;
     private ImageView imageView;
@@ -36,6 +37,7 @@ public class AddPhotoFrameActivity extends Activity {
         setContentView(R.layout.activity_addphotoframe);
         RoundBut = (Button) findViewById(R.id.RoundBut);
         CircleBut = (Button) findViewById(R.id.CircleBut);
+        ConfirmBut = (Button) findViewById(R.id.ConfirmBut);
         imageView = (ImageView) findViewById(R.id.imageview_addframe);
 
         final Intent intent = getIntent();
@@ -50,23 +52,18 @@ public class AddPhotoFrameActivity extends Activity {
                 double rad = Math.sqrt(outWidth ^ 2 + outHeight ^ 2);
                 radius = new Double(rad).intValue();
                 imageView.setImageURI(imageUri);
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
+        // 加边框并显示
         RoundBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bitmap backBitmap = getRoundBitmapByShader(bitmap, outWidth, outHeight, radius, 5);
                 AddFrame_Finish_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), backBitmap, null, null));
                 imageView.setImageURI(AddFrame_Finish_uri);
-                //传回去
-                Intent intent = new Intent(AddPhotoFrameActivity.this, PictureProcessActivity.class);
-                intent.putExtra("extra_uri_process", AddFrame_Finish_uri.toString());
-                startActivity(intent);
             }
         });
 
@@ -76,6 +73,12 @@ public class AddPhotoFrameActivity extends Activity {
                 Bitmap backBitmap = getCircleBitmapByShader(bitmap, outWidth, outHeight, 1);
                 AddFrame_Finish_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), backBitmap, null, null));
                 imageView.setImageURI(AddFrame_Finish_uri);
+            }
+        });
+
+        ConfirmBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 //传回去
                 Intent intent = new Intent(AddPhotoFrameActivity.this, PictureProcessActivity.class);
                 intent.putExtra("extra_uri_process", AddFrame_Finish_uri.toString());
