@@ -289,7 +289,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         Button ai = findViewById(R.id.AIclcik);
         Button add = findViewById(R.id.addMain);
 
-        ColorStateList color = ColorStateList.valueOf(Color.parseColor("#ff9708"));
+        ColorStateList color = ColorStateList.valueOf(Color.parseColor("#008577"));
         edit.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
         ai.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
         add.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));

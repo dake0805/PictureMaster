@@ -25,6 +25,8 @@ public class ColorTagImageView extends ImageView {
             Color.parseColor("#ec7e65"),
             Color.parseColor("#ffffff"),
             Color.parseColor("#000000"),
+            Color.parseColor("#000000"),
+            Color.parseColor("#000000"),
     };
 
     public OnColorTagChanges getListener() {

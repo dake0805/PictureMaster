@@ -7,6 +7,16 @@
     android:background="#1F1F1F"
     android:orientation="vertical">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/background_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/imageView_process"
         android:layout_width="match_parent"
@@ -299,15 +309,6 @@
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="421dp"
-                android:layout_height="140dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_wallpaper" />
 
             <Button
                 android:id="@+id/Editclick"

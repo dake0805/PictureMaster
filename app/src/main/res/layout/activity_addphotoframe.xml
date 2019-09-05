@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_frame"
@@ -39,37 +40,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_frame"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_frame"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/RoundBut"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/圆形相框"
+        android:layout_marginBottom="16dp"
+        android:drawableTop="@drawable/ic_rounded_rectangle"
+        android:drawablePadding="8dp"
+        android:text="@string/圆角相框"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/CircleBut"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/CircleBut"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/圆角相框"
+        android:layout_marginBottom="16dp"
+        android:drawableTop="@drawable/ic_circle"
+        android:drawablePadding="8dp"
+        android:text="@string/圆形相框"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/RoundBut" />
 
     <Button
         android:id="@+id/ConfirmBut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Confirm"
-        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/baseline_check_white_48dp"
+        android:elevation="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
