@@ -65,15 +65,29 @@ public class StyleChange extends AppCompatActivity {
     }
 
 
-    public void VincentClick(View view) throws Exception {
-        StyleChangeClick("CycleGAN_Monet");
-//        ServerCommunication.Upload(getApplicationContext(), imageUri,"CartoonGAN_Hayao");
-//        String fileName = Photo.getName(getApplicationContext(),imageUri);
-//        downloadPic(fileName,"CartoonGAN_Hayao");
-//        Thread.sleep(500);
-//        Toast.makeText(getApplicationContext(), "上传成功，正在下载······", Toast.LENGTH_SHORT).show();
+    public void VangoghClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Vangogh");
     }
 
+    public void HayaoClick(View view) throws Exception {
+        StyleChangeClick("CartoonGAN_Hayao");
+    }
+
+    public void HosodaClick(View view) throws Exception {
+        StyleChangeClick("CartoonGAN_Hosoda");
+    }
+
+    public void CezanneClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Cezanne");
+    }
+
+    public void MonetClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Monet");
+    }
+
+    public void UkiyoeClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Ukiyoe");
+    }
 
     private void StyleChangeClick(String type) throws Exception {
         ServerCommunication.Upload(getApplicationContext(), imageUri, type);

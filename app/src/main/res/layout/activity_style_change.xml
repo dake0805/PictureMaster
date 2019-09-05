@@ -23,12 +23,70 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/hayao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingTop="16dp"
+                android:onClick="HayaoClick">
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/hayao" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/imageView11"
+                    android:layout_alignBottom="@+id/imageView11"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Hayao Miyazaki"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/hosoda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingTop="16dp"
+                android:onClick="HosodaClick">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/hosoda" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/imageView7"
+                    android:layout_alignBottom="@+id/imageView7"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Mamoru Hosoda"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/vangogh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:onClick="VincentClick">
+                android:onClick="VangoghClick">
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -56,7 +114,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                android:onClick="MonetClick">
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -85,7 +144,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                android:onClick="CezanneClick">
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -113,7 +173,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                android:onClick="UkiyoeClick">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -136,62 +197,6 @@
 
             </RelativeLayout>
 
-
-            <RelativeLayout
-                android:id="@+id/hayao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp">
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/hayao" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/imageView11"
-                    android:layout_alignBottom="@+id/imageView11"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Hayao Miyazaki"
-                    android:textColor="#FFFFFF"
-                    android:textSize="36sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/hosoda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp">
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/hosoda" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/imageView7"
-                    android:layout_alignBottom="@+id/imageView7"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Mamoru Hosoda"
-                    android:textColor="#FFFFFF"
-                    android:textSize="36sp" />
-            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/style_change_end"
