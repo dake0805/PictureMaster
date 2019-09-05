@@ -25,4 +25,9 @@
     <string name="zhcn">简体中文 (zh_CN)</string>
     <string name="zhhk">繁體中文 (zh_HK)</string>
     <string name="finish">完成</string>
+    <string name="圆角相框">圆角相框</string>
+    <string name="圆形相框">圆形相框</string>
+    <string name="ContactUs">联系我们</string>
+
+    <string name="About">关于</string>
 </resources>
