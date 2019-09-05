@@ -29,58 +29,60 @@
             tools:layout_editor_absoluteY="18dp" />
     </androidx.appcompat.widget.Toolbar>
 
-    <Button
-        android:id="@+id/setting_feedback"
-        style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Feedback"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:divider="@drawable/divider"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:showDividers="middle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_contact" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/setting_about"
-        style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:elevation="0dp"
-        android:text="About"
-        android:onClick="about_Clcik"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_feedback" />
+        <Button
+            android:id="@+id/setting_contact"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:elevation="0dp"
+            android:onClick="contact_Click"
+            android:text="@string/ContactUs"
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/setting_contact"
-        style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="20dp"
-        android:elevation="0dp"
-        android:text="Contact Us"
-        android:onClick="contact_Click"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_setting" />
+        <Button
+            android:id="@+id/setting_contact3"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:elevation="0dp"
+            android:onClick="language_Click"
+            android:text="@string/language"
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/setting_contact3"
-        style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="220dp"
-        android:elevation="0dp"
-        android:onClick="language_Click"
-        android:text="language"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_setting" />
+        <Button
+            android:id="@+id/setting_feedback"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:text="@string/feedback"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/setting_about"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:elevation="0dp"
+            android:onClick="about_Clcik"
+            android:text="@string/About"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <!--    <TextView-->
 <!--        android:id="@+id/textView2"-->
