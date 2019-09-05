@@ -107,7 +107,7 @@ public class PictureProcessActivity extends AppCompatActivity {
 //        RestoreOrigin();
         setIntent(intent);
         Intent intent1 = getIntent();
-        imageUri = Uri.parse(intent1.getStringExtra("extar_uri_process"));
+        imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
         fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         RestoreOrigin();
     }
