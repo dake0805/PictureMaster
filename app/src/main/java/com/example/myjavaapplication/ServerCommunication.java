@@ -138,8 +138,8 @@ public class ServerCommunication {
             needAdd = "fake";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_vangogh_pretrained/test_latest/images/";
         }
-        picName = picName.replaceFirst(".png", "_" + needAdd + ".png");
         picName = picName.replaceFirst(".jpg", "_" + needAdd + ".jpg");
+        picName = picName.replaceFirst(".png", "_" + needAdd + ".jpg");
 
         path = path + picName;
         final String processPath = path;
