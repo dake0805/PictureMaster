@@ -97,13 +97,18 @@ public class PictureProcessActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+//        super.onNewIntent(intent);
+//        setIntent(intent);
+//        Intent intent1 = getIntent();
+//        if (intent1.getStringExtra("extra_uri_process") != null) {
+//            imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
+//            fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
+//        }
+//        RestoreOrigin();
         setIntent(intent);
         Intent intent1 = getIntent();
-        if(intent1.getStringExtra("extra_uri_process")!=null){
-            imageUri = Uri.parse(intent1.getStringExtra("extra_uri_process"));
-            fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
-        }
+        imageUri = Uri.parse(intent1.getStringExtra("extar_uri_process"));
+        fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         RestoreOrigin();
     }
 
@@ -149,18 +154,18 @@ public class PictureProcessActivity extends AppCompatActivity {
         Edit_Brightness = (Button) findViewById(R.id.brightness);
         Edit_Contrast = (Button) findViewById(R.id.contrast);
         Edit_Saturation = (Button) findViewById(R.id.saturation);
-        Edit_text = (TextView)findViewById(R.id.edit_textview);
+        Edit_text = (TextView) findViewById(R.id.edit_textview);
 
 
         highfraction = (Button) findViewById(R.id.highfraction);
         Stylemigration = (Button) findViewById(R.id.Stylemigration);
         AI = (Button) findViewById(R.id.AIclcik);
-        AI_text = (TextView)findViewById(R.id.ai_textview);
+        AI_text = (TextView) findViewById(R.id.ai_textview);
 
         addtext = (Button) findViewById(R.id.addtext);
         addaccessories = (Button) findViewById(R.id.addaccessories);
         addphotoframe = (Button) findViewById(R.id.addphotoframe);
-        add_text = (TextView)findViewById(R.id.add_textview);
+        add_text = (TextView) findViewById(R.id.add_textview);
 
         /**
          * addphotoframe 的跳转函数
@@ -406,7 +411,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         AnimationView.fade(Edit_Saturation, visibility);
         AnimationView.fade(Edit_Contrast, visibility);
         AnimationView.fade(Edit_Brightness, visibility);
-        AnimationView.fade(Edit_text,visibility);
+        AnimationView.fade(Edit_text, visibility);
 //        Edit_Scale.setVisibility(visibility);
 //        Edit_Rotate.setVisibility(visibility);
 //        Edit_Saturation.setVisibility(visibility);
@@ -418,7 +423,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         AnimationView.fade(addaccessories, visibility);
         AnimationView.fade(addphotoframe, visibility);
         AnimationView.fade(addtext, visibility);
-        AnimationView.fade(add_text,visibility);
+        AnimationView.fade(add_text, visibility);
 //        addaccessories.setVisibility(visibility);
 //        addphotoframe.setVisibility(visibility);
 //        addtext.setVisibility(visibility);
@@ -429,7 +434,7 @@ public class PictureProcessActivity extends AppCompatActivity {
 //        Stylemigration.setVisibility(visibility);
         AnimationView.fade(highfraction, visibility);
         AnimationView.fade(Stylemigration, visibility);
-        AnimationView.fade(AI_text,visibility);
+        AnimationView.fade(AI_text, visibility);
 //        Timer timer = new Timer();
 //        TimerTask timerTask = new TimerTask() {
 //            @Override
@@ -457,6 +462,14 @@ public class PictureProcessActivity extends AppCompatActivity {
             imageView_origin.setImageURI(imageUri);
             imageView_background.setVisibility(View.GONE);
         }
+    }
+
+    public void Add_Decorate(View view) {
+        Intent intent = new Intent(PictureProcessActivity.this, AddDecorate.class);
+        intent.putExtra("extra_decoradd", imageUri.toString());
+        //  intent.putExtra("Height",imageView.getHeight());
+        //   intent.putExtra("Height",imageView.getWidth());
+        startActivity(intent);
     }
 
 }

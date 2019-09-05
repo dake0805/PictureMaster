@@ -176,6 +176,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/ic_decorate"
             android:drawablePadding="8dp"
+            android:onClick="Add_Decorate"
             android:text="@string/addaccessories"
             android:textColor="#FFFFFF"
             android:visibility="gone"
