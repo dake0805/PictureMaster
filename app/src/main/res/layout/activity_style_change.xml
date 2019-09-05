@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingTop="16dp"
                 android:onClick="HayaoClick">
@@ -56,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingTop="16dp"
                 android:onClick="HosodaClick">
@@ -85,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:onClick="VangoghClick">
 
@@ -113,6 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingTop="16dp"
                 android:onClick="MonetClick">
@@ -143,6 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingTop="16dp"
                 android:onClick="CezanneClick">
@@ -172,6 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingTop="16dp"
                 android:onClick="UkiyoeClick">
