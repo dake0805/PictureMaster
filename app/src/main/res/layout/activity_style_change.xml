@@ -85,6 +85,7 @@
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:srcCompat="@drawable/style_change3" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -126,6 +127,7 @@
                     android:adjustViewBounds="true"
                     app:srcCompat="@drawable/style_change3" />
             </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 
