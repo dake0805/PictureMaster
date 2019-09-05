@@ -24,7 +24,11 @@ import java.io.IOException;
 //该类用于图片处理可能需要用到的函数
 public class Photo {
 
-
+    public static String getName(final Context context,final Uri uri){
+        String path = getPath(context,uri);
+        File tmpFile = new File(path);
+        return tmpFile.getName();
+    }
 
     //根据图片的uri获取path
     @SuppressLint("NewApi")

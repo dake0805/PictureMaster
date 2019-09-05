@@ -125,22 +125,22 @@ public class PictureProcessActivity extends AppCompatActivity {
         RestoreOrigin();
     }
 
-//    @SuppressLint("HandlerLeak")
-//    public void testDownlaod() throws InterruptedException {
-//        ServerCommunication serverCommunication = new ServerCommunication();
-//        serverCommunication.setHandler(new Handler(){
-//            @Override
-//            public void handleMessage(Message msg) {
-//                if (msg.what == ServerCommunication.CHANGE_UI) {
-//                    Bitmap bitmap = (Bitmap) msg.obj;
-//                    imageView_origin.setImageBitmap(bitmap);
-//                } else if (msg.what == ServerCommunication.ERROR) {
-//                    //throw new Exception("download error");
-//                }
-//            }
-//        });
-//        serverCommunication.Download();
-//    }
+    @SuppressLint("HandlerLeak")
+    public void testDownlaod() throws InterruptedException {
+        ServerCommunication serverCommunication = new ServerCommunication();
+        serverCommunication.setHandler(new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == ServerCommunication.CHANGE_UI) {
+                    Bitmap bitmap = (Bitmap) msg.obj;
+                    imageView_origin.setImageBitmap(bitmap);
+                } else if (msg.what == ServerCommunication.ERROR) {
+                    //throw new Exception("download error");
+                }
+            }
+        });
+        serverCommunication.Download("testtest","test");
+    }
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

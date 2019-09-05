@@ -65,8 +65,9 @@ public class StyleChange extends AppCompatActivity {
 
 
     public void VincentClick(View view) throws Exception {
-        ServerCommunication.Upload(getApplicationContext(), imageUri);
-        showWaitingDialog();
+        ServerCommunication.Upload(getApplicationContext(), imageUri,"CartoonGAN_Hayao");
+        String fileName = Photo.getName(getApplicationContext(),imageUri);
+        downloadPic(fileName,"CartoonGAN_Hayao");
     }
 
     private void showWaitingDialog() {
@@ -104,7 +105,6 @@ public class StyleChange extends AppCompatActivity {
                 Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
                 intent.putExtra("extra_uri_process", getServerUri.toString());
                 startActivity(intent);
-
             }
         });
     }
@@ -112,13 +112,17 @@ public class StyleChange extends AppCompatActivity {
     @SuppressLint("HandlerLeak")
     public void downloadPic(String picName, String type) throws InterruptedException {
         ServerCommunication serverCommunication = new ServerCommunication();
-        serverCommunication.setHandler(new Handler() {
+        serverCommunication.setHandler(new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == ServerCommunication.CHANGE_UI) {
                     Bitmap bitmap = (Bitmap) msg.obj;
                     try {
                         getServerUri = bitMapToUri(bitmap);
+                        Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
+                        intent.putExtra("extra_uri_process", getServerUri.toString());
+                        System.out.println("111");
+                        startActivity(intent);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

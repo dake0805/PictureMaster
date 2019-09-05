@@ -12,6 +12,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -40,7 +41,7 @@ public class ServerCommunication {
     }
 
 
-    public static void Upload(Context context, Uri Uri) throws Exception {
+    public static void Upload(Context context, Uri Uri,String type) throws Exception {
         Uri uri = Uri;
         String Url = "http://192.168.188.106:8080/PictureMasterServer_war/PictureMasterServlet";
 
@@ -55,7 +56,7 @@ public class ServerCommunication {
         File testFile = new File(path);
         final Map<String, Object> paramMap = new HashMap<String, Object>(); //文本数据全部添加到Map里
 //        paramMap.put("file", testFile);
-        paramMap.put("text", "CartoonGAN_Hayao");
+        paramMap.put("text", type);
 //        if(testFile!=null) {
 //            HttpConnectionUtil.doPostPicture(Url, paramMap, testFile);
 //        }
@@ -111,7 +112,19 @@ public class ServerCommunication {
 
     public void Download(String picName,String type) {
 //        final  String path ="http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/" + picName +"_" + type +".jpg";
-        final String path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/IMG_20190817_193807_Hayao.jpg";
+        String needType = null;
+        if(type.equals("ESRGAN")){
+            needType = "esrgan";
+        }else if(type.equals("CartoonGAN_Hayao")){
+            needType = "Hayao";
+        }else if (type.equals("CartoonGAN_Hosoda")){
+            needType = "Hosoda";
+        }
+        picName = picName.replaceFirst(".png","_"+needType+".png");
+        picName = picName.replaceFirst(".jpg","_"+needType+".jpg");
+        String path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
+        path = path+picName;
+        final String processPath = path;
         System.out.println("test1y");
         if (TextUtils.isEmpty(path)) {
 
@@ -123,7 +136,7 @@ public class ServerCommunication {
                 public void run() {
                     System.out.println("testest");
                     try {
-                        URL url = new URL(path);
+                        URL url = new URL(processPath);
                         connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
                         connection.setConnectTimeout(5000);
