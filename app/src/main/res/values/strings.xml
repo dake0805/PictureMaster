@@ -30,4 +30,6 @@
     <string name="ContactUs">联系我们</string>
 
     <string name="About">关于</string>
+    <string name="sr_start">开始</string>
+    <string name="sr_detail">超分辨率技术（Super-Resolution, SR）是指利用ESRGAN神经网络算法，能够在单一图像超分辨率中生成逼真的纹理。在一些称为“光学SR”的SR技术中，系统的衍射极限被超越；而在其他所谓的“几何SR”中，数位感光元件的分辨率因而提高。超分辨率成像技术用于一般图像处理中。</string>
 </resources>
