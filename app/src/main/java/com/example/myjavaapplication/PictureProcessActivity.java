@@ -1,11 +1,14 @@
 package com.example.myjavaapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,6 +96,16 @@ public class PictureProcessActivity extends AppCompatActivity {
         imageUri = Uri.parse(intent.getStringExtra("extra_uri_origin"));
         fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), imageUri);
         imageView_origin.setImageURI(imageUri);
+        try {
+            testDownlaod();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        try {
+//            ServerCommunication.Upload(getApplicationContext(),imageUri);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -106,6 +119,24 @@ public class PictureProcessActivity extends AppCompatActivity {
         }
         RestoreOrigin();
     }
+
+    @SuppressLint("HandlerLeak")
+    public void testDownlaod() throws InterruptedException {
+        ServerCommunication serverCommunication = new ServerCommunication();
+        serverCommunication.setHandler(new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == ServerCommunication.CHANGE_UI) {
+                    Bitmap bitmap = (Bitmap) msg.obj;
+                    imageView_origin.setImageBitmap(bitmap);
+                } else if (msg.what == ServerCommunication.ERROR) {
+                    //throw new Exception("download error");
+                }
+            }
+        });
+        serverCommunication.Download();
+    }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

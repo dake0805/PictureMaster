@@ -55,7 +55,7 @@ public class StyleChange extends AppCompatActivity {
     }
 
 
-    public void VincentClick(View view) {
+    public void VincentClick(View view) throws Exception {
         //TODO传输数据
         Context context = getApplicationContext();
         ServerCommunication.Upload(getApplicationContext(),imageUri);
