@@ -28,9 +28,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:elevation="16dp"
-                android:foreground="?attr/selectableItemBackground"
-               
-                android:onClick="HayaoClick">
+                android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
                     android:id="@+id/imageView11"
@@ -47,6 +45,7 @@
                     android:layout_alignBottom="@+id/imageView11"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
+                    android:gravity="right"
                     android:text="Hayao Miyazaki"
                     android:textColor="#FFFFFF"
                     android:textSize="36sp" />
@@ -59,8 +58,7 @@
                 android:clickable="true"
                 android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp"
-                android:onClick="HosodaClick">
+                android:paddingTop="16dp">
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -90,7 +88,8 @@
                 android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:onClick="VincentClick"
-               
+                android:paddingTop="16dp">
+
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
@@ -118,8 +117,7 @@
                 android:clickable="true"
                 android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp"
-                android:onClick="MonetClick">
+                android:paddingTop="16dp">
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -149,8 +147,7 @@
                 android:clickable="true"
                 android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp"
-                android:onClick="CezanneClick">
+                android:paddingTop="16dp">
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -179,8 +176,7 @@
                 android:clickable="true"
                 android:elevation="16dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:paddingTop="16dp"
-                android:onClick="UkiyoeClick">
+                android:paddingTop="16dp">
 
                 <ImageView
                     android:id="@+id/imageView4"

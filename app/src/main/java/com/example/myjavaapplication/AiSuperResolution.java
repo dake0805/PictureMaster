@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -19,8 +18,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AiSuperResolution extends AppCompatActivity {
 
@@ -57,14 +54,13 @@ public class AiSuperResolution extends AppCompatActivity {
     public void SuperResolutionClick(View view) throws Exception {
         ServerCommunication.Upload(getApplicationContext(), imageUri, "ESRGAN");
         String fileName = Photo.getName(getApplicationContext(), imageUri);
-
-        downloadPic(getApplication(),fileName, "ESRGAN");
+        downloadPic(fileName, "ESRGAN");
         Thread.sleep(500);
         Toast.makeText(getApplicationContext(), "上传成功，正在下载······", Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("HandlerLeak")
-    public void downloadPic(Context context, String picName, String type) throws InterruptedException {
+    public void downloadPic(String picName, String type) throws InterruptedException {
         ServerCommunication serverCommunication = new ServerCommunication();
         serverCommunication.setHandler(new Handler() {
             @Override
@@ -89,15 +85,8 @@ public class AiSuperResolution extends AppCompatActivity {
 
     public Uri bitMapToUri(Bitmap bitmap) throws IOException {
         Uri finishUri;
-        Date day=new Date();
 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        String tmpName = df.format(day);
-
-
-
-        File finishFile = new File(getCacheDir(), tmpName+".jpg");
+        File finishFile = new File(getCacheDir(), "tmp_SR.jpg");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         byte[] bitmapData = bytes.toByteArray();
