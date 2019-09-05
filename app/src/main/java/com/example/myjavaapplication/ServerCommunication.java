@@ -112,17 +112,34 @@ public class ServerCommunication {
 
     public void Download(String picName,String type) {
 //        final  String path ="http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/" + picName +"_" + type +".jpg";
-        String needType = null;
+        String needAdd = null;
+        String path = null;
+        http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/Death-Valley-Sunset-Dunes_fake.png
         if(type.equals("ESRGAN")){
-            needType = "esrgan";
+            needAdd = "esrgan";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
         }else if(type.equals("CartoonGAN_Hayao")){
-            needType = "Hayao";
+            needAdd = "Hayao";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
         }else if (type.equals("CartoonGAN_Hosoda")){
-            needType = "Hosoda";
+            needAdd = "Hosoda";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
+        }else if(type.equals("CycleGAN_Cezanne")){
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/";
+        }else if(type.equals("CycleGAN_Monet")){
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_monet_pretrained/test_latest/images/";
+        }else if(type.equals("CycleGAN_Ukiyoe")){
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_ukiyoe_pretrained/test_latest/images/";
+        }else if(type.equals("CycleGAN_Vangogh")){
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_vangogh_pretrained/test_latest/images/";
         }
-        picName = picName.replaceFirst(".png","_"+needType+".png");
-        picName = picName.replaceFirst(".jpg","_"+needType+".jpg");
-        String path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
+        picName = picName.replaceFirst(".png","_"+needAdd+".png");
+        picName = picName.replaceFirst(".jpg","_"+needAdd+".jpg");
+
         path = path+picName;
         final String processPath = path;
         System.out.println("test1y");
