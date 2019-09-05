@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:text="@string/setting"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="192dp"
             tools:layout_editor_absoluteY="18dp" />
     </androidx.appcompat.widget.Toolbar>
