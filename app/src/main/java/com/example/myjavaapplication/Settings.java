@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -93,11 +94,14 @@ public class Settings extends AppCompatActivity {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
+
             }
         });
         AlertDialog b = builder.create();
         b.show();
     }
+
+
 
     public void about_Clcik(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

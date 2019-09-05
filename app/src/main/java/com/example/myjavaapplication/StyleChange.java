@@ -31,7 +31,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StyleChange extends AppCompatActivity {
 
@@ -65,61 +67,37 @@ public class StyleChange extends AppCompatActivity {
     }
 
 
-    public void VincentClick(View view) throws Exception {
-        StyleChangeClick("CartoonGAN_Hayao");
-//        ServerCommunication.Upload(getApplicationContext(), imageUri,"CartoonGAN_Hayao");
-//        String fileName = Photo.getName(getApplicationContext(),imageUri);
-//        downloadPic(fileName,"CartoonGAN_Hayao");
-//        Thread.sleep(500);
-//        Toast.makeText(getApplicationContext(), "上传成功，正在下载······", Toast.LENGTH_SHORT).show();
+    public void VangoghClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Vangogh");
     }
 
+    public void HayaoClick(View view) throws Exception {
+        StyleChangeClick("CartoonGAN_Hayao");
+    }
+
+    public void HosodaClick(View view) throws Exception {
+        StyleChangeClick("CartoonGAN_Hosoda");
+    }
+
+    public void CezanneClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Cezanne");
+    }
+
+    public void MonetClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Monet");
+    }
+
+    public void UkiyoeClick(View view) throws Exception {
+        StyleChangeClick("CycleGAN_Ukiyoe");
+    }
 
     private void StyleChangeClick(String type) throws Exception {
-        ServerCommunication.Upload(getApplicationContext(), imageUri, "CartoonGAN_Hayao");
+        ServerCommunication.Upload(getApplicationContext(), imageUri, type);
         String fileName = Photo.getName(getApplicationContext(), imageUri);
-        downloadPic(fileName, "CartoonGAN_Hayao");
+        downloadPic(fileName, type);
         Thread.sleep(500);
         Toast.makeText(getApplicationContext(), "上传成功，正在下载······", Toast.LENGTH_SHORT).show();
     }
-//    private void showWaitingDialog() {
-//        /* 等待Dialog具有屏蔽其他控件的交互能力
-//         * @setCancelable 为使屏幕不可点击，设置为不可取消(false)
-//         * 下载等事件完成后，主动调用函数关闭该Dialog
-//         */
-//        final ProgressDialog waitingDialog =
-//                new ProgressDialog(StyleChange.this);
-//        waitingDialog.setTitle(R.string.ai);
-//        waitingDialog.setMessage("等待中...");
-//        waitingDialog.setCancelable(false);
-//        waitingDialog.show();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                waitingDialog.cancel();
-//            }
-//        }).start();
-//
-//        waitingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-//
-//            @Override
-//            public void onCancel(DialogInterface dialog) {
-//                try {
-//                    downloadPic("test","test");
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
-//                intent.putExtra("extra_uri_process", getServerUri.toString());
-//                startActivity(intent);
-//            }
-//        });
-//    }
 
     @SuppressLint("HandlerLeak")
     public void downloadPic(String picName, String type) throws InterruptedException {
@@ -133,7 +111,6 @@ public class StyleChange extends AppCompatActivity {
                         getServerUri = bitMapToUri(bitmap);
                         Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
                         intent.putExtra("extra_uri_process", getServerUri.toString());
-                        System.out.println("111");
                         startActivity(intent);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -149,7 +126,10 @@ public class StyleChange extends AppCompatActivity {
     public Uri bitMapToUri(Bitmap bitmap) throws IOException {
         Uri finishUri;
 
-        File finishFile = new File(getCacheDir(), "tmp_styleChange.jpg");
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String tmpName = df.format(day);
+        File finishFile = new File(getCacheDir(), tmpName+".jpg");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         byte[] bitmapData = bytes.toByteArray();

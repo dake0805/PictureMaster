@@ -35,13 +35,14 @@ public class ServerCommunication {
 
     protected static final int CHANGE_UI = 1;//下载成功
     protected static final int ERROR = 2;//下载出错
+    protected static final int PICNAME =3;
 
     public ServerCommunication() {
 
     }
 
 
-    public static void Upload(Context context, Uri Uri,String type) throws Exception {
+    public static void Upload(Context context, Uri Uri, String type) throws Exception {
         Uri uri = Uri;
         String Url = "http://192.168.188.106:8080/PictureMasterServer_war/PictureMasterServlet";
 
@@ -110,20 +111,38 @@ public class ServerCommunication {
         this.handler = handler;
     }
 
-    public void Download(String picName,String type) {
+    public void Download(String picName, String type) {
 //        final  String path ="http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/" + picName +"_" + type +".jpg";
-        String needType = null;
-        if(type.equals("ESRGAN")){
-            needType = "esrgan";
-        }else if(type.equals("CartoonGAN_Hayao")){
-            needType = "Hayao";
-        }else if (type.equals("CartoonGAN_Hosoda")){
-            needType = "Hosoda";
+        String needAdd = null;
+        String path = null;
+        final String needSavePicname = picName;
+//192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/Death-Valley-Sunset-Dunes_fake.png
+        if (type.equals("ESRGAN")) {
+            needAdd = "esrgan";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
+        } else if (type.equals("CartoonGAN_Hayao")) {
+            needAdd = "Hayao";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
+        } else if (type.equals("CartoonGAN_Hosoda")) {
+            needAdd = "Hosoda";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
+        } else if (type.equals("CycleGAN_Cezanne")) {
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/";
+        } else if (type.equals("CycleGAN_Monet")) {
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_monet_pretrained/test_latest/images/";
+        } else if (type.equals("CycleGAN_Ukiyoe")) {
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_ukiyoe_pretrained/test_latest/images/";
+        } else if (type.equals("CycleGAN_Vangogh")) {
+            needAdd = "fake";
+            path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_vangogh_pretrained/test_latest/images/";
         }
-        picName = picName.replaceFirst(".png","_"+needType+".png");
-        picName = picName.replaceFirst(".jpg","_"+needType+".jpg");
-        String path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
-        path = path+picName;
+        picName = picName.replaceFirst(".jpg", "_" + needAdd + ".jpg");
+        picName = picName.replaceFirst(".png", "_" + needAdd + ".jpg");
+
+        path = path + picName;
         final String processPath = path;
         System.out.println("test1y");
         if (TextUtils.isEmpty(path)) {
@@ -148,6 +167,10 @@ public class ServerCommunication {
                             msg.what = CHANGE_UI;
                             msg.obj = bitmap;
                             handler.sendMessage(msg);
+//                            Message picmsg = new Message();
+//                            msg.what = PICNAME;
+//                            msg.obj = needSavePicname;
+//                            handler.sendMessage(picmsg);
                         } else {
                             Message msg = new Message();
                             msg.what = ERROR;
