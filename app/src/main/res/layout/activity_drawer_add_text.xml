@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F1F1F"
     tools:context=".Drawer">
 
 
@@ -31,6 +32,7 @@
             tools:layout_editor_absoluteY="18dp" />
     </androidx.appcompat.widget.Toolbar>
 
+
     <com.example.myjavaapplication.view.MyRelativeLayout
         android:id="@+id/add_photo"
         android:layout_width="wrap_content"
@@ -45,7 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <Button
         android:id="@+id/drawer_finshed"

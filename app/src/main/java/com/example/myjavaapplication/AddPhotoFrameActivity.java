@@ -2,6 +2,7 @@ package com.example.myjavaapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -36,6 +37,7 @@ public class AddPhotoFrameActivity extends AppCompatActivity {
     private int outWidth;
     private int outHeight;
     private int radius;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +82,23 @@ public class AddPhotoFrameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bitmap backBitmap = getRoundBitmapByShader(bitmap, outWidth, outHeight, radius, 5);
-                AddFrame_Finish_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), backBitmap, null, null));
+
+                BitmapToUri bitmapToUri = new BitmapToUri();
+                try {
+                    AddFrame_Finish_uri = bitmapToUri.BitmapToUri(backBitmap, AddPhotoFrameActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                imageView.setImageURI(null);
                 imageView.setImageURI(AddFrame_Finish_uri);
+
+                RoundBut = findViewById(R.id.RoundBut);
+                CircleBut = findViewById(R.id.CircleBut);
+                RoundBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
+                RoundBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#008577")));
+                CircleBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                CircleBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+
             }
         });
 
@@ -96,7 +113,16 @@ public class AddPhotoFrameActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                imageView.setImageURI(null);
                 imageView.setImageURI(AddFrame_Finish_uri);
+
+                RoundBut = findViewById(R.id.RoundBut);
+                CircleBut = findViewById(R.id.CircleBut);
+                RoundBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                RoundBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                CircleBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
+                CircleBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#008577")));
+
             }
         });
 
