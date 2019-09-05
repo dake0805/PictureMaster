@@ -41,7 +41,7 @@ public class ServerCommunication {
     }
 
 
-    public static void Upload(Context context, Uri Uri,String type) throws Exception {
+    public static void Upload(Context context, Uri Uri, String type) throws Exception {
         Uri uri = Uri;
         String Url = "http://192.168.188.106:8080/PictureMasterServer_war/PictureMasterServlet";
 
@@ -110,37 +110,38 @@ public class ServerCommunication {
         this.handler = handler;
     }
 
-    public void Download(String picName,String type) {
+    public void Download(String picName, String type) {
 //        final  String path ="http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/" + picName +"_" + type +".jpg";
         String needAdd = null;
         String path = null;
-        http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/Death-Valley-Sunset-Dunes_fake.png
-        if(type.equals("ESRGAN")){
+        http:
+//192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/Death-Valley-Sunset-Dunes_fake.png
+        if (type.equals("ESRGAN")) {
             needAdd = "esrgan";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
-        }else if(type.equals("CartoonGAN_Hayao")){
+        } else if (type.equals("CartoonGAN_Hayao")) {
             needAdd = "Hayao";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
-        }else if (type.equals("CartoonGAN_Hosoda")){
+        } else if (type.equals("CartoonGAN_Hosoda")) {
             needAdd = "Hosoda";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/";
-        }else if(type.equals("CycleGAN_Cezanne")){
+        } else if (type.equals("CycleGAN_Cezanne")) {
             needAdd = "fake";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/";
-        }else if(type.equals("CycleGAN_Monet")){
+        } else if (type.equals("CycleGAN_Monet")) {
             needAdd = "fake";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_monet_pretrained/test_latest/images/";
-        }else if(type.equals("CycleGAN_Ukiyoe")){
+        } else if (type.equals("CycleGAN_Ukiyoe")) {
             needAdd = "fake";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_ukiyoe_pretrained/test_latest/images/";
-        }else if(type.equals("CycleGAN_Vangogh")){
+        } else if (type.equals("CycleGAN_Vangogh")) {
             needAdd = "fake";
             path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_vangogh_pretrained/test_latest/images/";
         }
-        picName = picName.replaceFirst(".png","_"+needAdd+".png");
-        picName = picName.replaceFirst(".jpg","_"+needAdd+".jpg");
+        picName = picName.replaceFirst(".png", "_" + needAdd + ".png");
+        picName = picName.replaceFirst(".jpg", "_" + needAdd + ".jpg");
 
-        path = path+picName;
+        path = path + picName;
         final String processPath = path;
         System.out.println("test1y");
         if (TextUtils.isEmpty(path)) {
