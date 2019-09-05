@@ -1,28 +1,9 @@
 <resources>
     <string name="app_name">My Java Application</string>
     <string name="welcomepicyure" />
+    <string name="highfraction">high fraction</string>
     <string name="Stylemigration">Style migration</string>
     <string name="addtext">addtext</string>
     <string name="addphotoframe">addphotoframe</string>
-    <string name="addaccessories">添加饰品</string>
-    <string name="brightness">亮度</string>
-    <string name="contrast">对比度</string>
-    <string name="rotate">旋转</string>
-    <string name="scale">裁剪</string>
-    <string name="saturation">饱和度</string>
-    <string name="styleChange">风格迁移</string>
-    <string name="highResolution">超分辨率</string>
-    <string name="addText">添加文字</string>
-    <string name="setFrame">设置边框</string>
-    <string name="setting">设置</string>
-    <string name="feedback">反馈</string>
-    <string name="send">发送</string>
-    <string name="edit">基本编辑</string>
-    <string name="ai">AI美化</string>
-    <string name="add">添加元素</string>
-    <string name="language">语言</string>
-    <string name="enus">English (en_US)</string>
-    <string name="zhcn">简体中文 (zh_CN)</string>
-    <string name="zhhk">繁體中文 (zh_HK)</string>
-    <string name="finish">完成</string>
+    <string name="addaccessories">addaccessories</string>
 </resources>

@@ -7,29 +7,6 @@
     tools:context=".Drawer">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/drawer_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/addText"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="192dp"
-            tools:layout_editor_absoluteY="18dp" />
-    </androidx.appcompat.widget.Toolbar>
-
     <com.example.myjavaapplication.view.MyRelativeLayout
         android:id="@+id/add_photo"
         android:layout_width="wrap_content"
@@ -48,14 +25,13 @@
 
     <Button
         android:id="@+id/drawer_finshed"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="64dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="16dp"
+        android:text="完成"
 
-        android:elevation="16dp"
-        android:text="@string/finish"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/drawer_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

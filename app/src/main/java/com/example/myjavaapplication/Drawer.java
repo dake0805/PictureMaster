@@ -11,7 +11,6 @@ package com.example.myjavaapplication;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -53,18 +52,6 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-        Toolbar toolbar = findViewById(R.id.drawer_toolbar);
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();//返回
-            }
-        });
-
         //imageView = (ImageView)findViewById(R.id.photo);
         //Intent intent = getIntent();
 
@@ -75,10 +62,10 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
         //}
 
         //Button Button_AddText = (Button)findViewById(R.id.Edit_button);
-        Button Button_Finish = (Button) findViewById(R.id.drawer_finshed);
+        Button Button_Finsh = (Button) findViewById(R.id.drawer_finshed);
         //final EditText EditText_1 = (EditText)findViewById(R.id.Edit_Text1) ;
         //Button_AddText.setOnClickListener(this);
-        Button_Finish.setOnClickListener(this);
+        Button_Finsh.setOnClickListener(this);
 
 
         try {
@@ -131,8 +118,8 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
         int newWidth = displayMetrics.widthPixels;
         int newHeight = (int) Math.floor(rate * ((double) newWidth));
         //计算压缩的比率
-        float scaleWidth = (((float) newWidth) / width) * (dpi / 160.0f);
-        float scaleHeight = (((float) newHeight) / height) * (dpi / 160.0f);
+        float scaleWidth = (((float) newWidth) / width) * (dpi/160.0f);
+        float scaleHeight = (((float) newHeight) / height) * (dpi/160.0f);
 
 //获取想要缩放的matrix
         Matrix matrix = new Matrix();

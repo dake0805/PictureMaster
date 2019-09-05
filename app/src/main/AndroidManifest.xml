@@ -7,42 +7,31 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AiSuperResolution"></activity>
-        <activity android:name=".language_setting" />
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
+        <activity android:name=".Decorate_Choose"></activity>
         <activity
-            android:name=".StyleChange"
-            android:label="" />
-        <activity
-            android:name=".PicColorControlActivity"
-            android:label="" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".AddDecorate"
             android:launchMode="singleTask" />
+        <activity android:name=".StyleChange" />
+        <activity android:name=".PicColorControlActivity" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".PictureProcessActivity"
             android:launchMode="singleTask" />
         <activity android:name=".JointPhotoActivity" />
         <activity android:name=".PhotoResultActivity" />
-        <activity android:name=".AddPhotoFrameActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,14 +39,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Settings"
-            android:label="" />
-        <activity android:name=".FeedBackActivity" />
         <activity android:name=".TextEdit" />
         <activity
             android:name=".Drawer"
-            android:label=""
             android:launchMode="singleTask" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

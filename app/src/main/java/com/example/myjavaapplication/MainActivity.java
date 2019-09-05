@@ -15,11 +15,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 
@@ -28,7 +24,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,16 +42,36 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
 
-    private Button btn;
+    //TODO 页面跳转问题，是否清除
+    //TODO 编辑照片会自动保存
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         CheckPermission();
         imageView = findViewById(R.id.background);
         setBackground();
-//        LanguageUtil.changeAppLanguage(getApplicationContext(),Locale.ENGLISH);
     }
+/*
+    public void startDrawer(View v){
+        //hrn测试用
+        final Button button1=(Button) findViewById(R.id.button5);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,Drawer.class);
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this,"打开相册",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+*/
+
 
     //检查权限
     private void CheckPermission() {
@@ -65,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
         }
     }
 
@@ -80,43 +96,36 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 imageView.setImageResource(R.drawable.p1);
                 break;
-            case 2:imageView.setImageResource(R.drawable.p2);
+            case 2:
+                imageView.setImageResource(R.drawable.p2);
                 break;
-            case 3:imageView.setImageResource(R.drawable.p3);
+            case 3:
+                imageView.setImageResource(R.drawable.p3);
                 break;
-            case 4:imageView.setImageResource(R.drawable.p4);
+            case 4:
+                imageView.setImageResource(R.drawable.p4);
                 break;
-            case 5:imageView.setImageResource(R.drawable.p5);
+            case 5:
+                imageView.setImageResource(R.drawable.p5);
                 break;
-            case 6:imageView.setImageResource(R.drawable.p6);
+            case 6:
+                imageView.setImageResource(R.drawable.p6);
                 break;
-            case 7:imageView.setImageResource(R.drawable.p7);
+            case 7:
+                imageView.setImageResource(R.drawable.p7);
                 break;
-            case 8:imageView.setImageResource(R.drawable.p8);
+            case 8:
+                imageView.setImageResource(R.drawable.p8);
                 break;
-            case 9:imageView.setImageResource(R.drawable.p9);
+            case 9:
+                imageView.setImageResource(R.drawable.p9);
                 break;
-            case 10:imageView.setImageResource(R.drawable.p10);
+            case 10:
+                imageView.setImageResource(R.drawable.p10);
                 break;
         }
     }
 
-    //Button SETTINGS
-    public void settings(View v) {
-        Intent settings = new Intent(MainActivity.this, Settings.class);
-        startActivity(settings);
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-    }
-
-    //Button FeedBack
-    private void feedback(View view) {
-        Intent feedback = new Intent(MainActivity.this, FeedBackActivity.class);
-        startActivity(feedback);
-    }
     //TODO 按钮的图片设置与排版
     //Button SELECT
     public void selectPhoto(View view) {
@@ -128,6 +137,12 @@ public class MainActivity extends AppCompatActivity {
 
     //Button CAMERA
     public void cameraShotPhoto(View view) {
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivityForResult(intent, CAMERA_PICTURE);
+//        }
+        //test hrn
+
         Uri cameraPhoto;
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -222,5 +237,7 @@ public class MainActivity extends AppCompatActivity {
         photoFile = image;
         return image;
     }
+
+
 }
 
