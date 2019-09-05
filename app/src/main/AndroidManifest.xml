@@ -42,7 +42,9 @@
             android:launchMode="singleTask" />
         <activity android:name=".JointPhotoActivity" />
         <activity android:name=".PhotoResultActivity" />
-        <activity android:name=".AddPhotoFrameActivity" />
+        <activity
+            android:name=".AddPhotoFrameActivity"
+            android:label="" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,6 +69,7 @@
 
         <activity
             android:name=".AddDecorate"
+            android:label=""
             android:launchMode="singleTask" />
 
         <provider

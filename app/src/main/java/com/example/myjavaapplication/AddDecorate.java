@@ -2,16 +2,12 @@ package com.example.myjavaapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,18 +15,12 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.example.myjavaapplication.utils.ImageUtils;
 import com.example.myjavaapplication.view.*;
-import android.os.Bundle;
-import android.widget.Button;
 
 public class AddDecorate extends AppCompatActivity implements View.OnClickListener ,MyRelativeLayout.MyRelativeTouchCallBack {
 
@@ -43,7 +33,18 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_decorate);
 
-        Button Button_Finsh = (Button) findViewById(R.id.add_decorate_finshed);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_add_decorate);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();//返回
+            }
+        });
+
+        Button Button_Finsh = (Button) findViewById(R.id.add_decorate_finished);
         Button_Finsh.setOnClickListener(this);
 
 
@@ -112,7 +113,7 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
 
         switch (v.getId()){
 
-            case R.id.add_decorate_finshed:
+            case R.id.add_decorate_finished:
                 Intent intent = new Intent(AddDecorate.this, PictureProcessActivity.class);
 
                 Bitmap bitmap = ImageUtils.createViewBitmap(picture_dec, picture_dec.getWidth(), picture_dec.getHeight());

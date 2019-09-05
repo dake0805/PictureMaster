@@ -3,4 +3,7 @@
     <string name="app_name">My Java Application</string>
     <string name="add">Add</string>
     <string name="addText">Add Text</string>
+    <string name="About">About</string>
+    <string name="ContactUs">Content Us</string>
+    <string name="Stylemigration">Style migration</string>
 </resources>

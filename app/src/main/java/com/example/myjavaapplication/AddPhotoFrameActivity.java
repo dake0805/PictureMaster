@@ -16,9 +16,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import static android.graphics.Shader.TileMode.CLAMP;
 
-public class AddPhotoFrameActivity extends Activity {
+public class AddPhotoFrameActivity extends AppCompatActivity {
     private Button RoundBut;
     private Button CircleBut;
     private Button ConfirmBut;
@@ -39,6 +43,18 @@ public class AddPhotoFrameActivity extends Activity {
         CircleBut = (Button) findViewById(R.id.CircleBut);
         ConfirmBut = (Button) findViewById(R.id.ConfirmBut);
         imageView = (ImageView) findViewById(R.id.imageview_addframe);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_frame);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();//返回
+            }
+        });
 
         final Intent intent = getIntent();
 

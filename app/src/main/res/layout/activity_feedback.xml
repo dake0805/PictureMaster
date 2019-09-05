@@ -59,11 +59,9 @@
 
     <TextView
         android:id="@+id/feedback_quot"
-        android:layout_width="404dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="353dp"
+        android:layout_height="77dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
         android:text="What do you want to say about our application?"
         android:textAlignment="gravity"
         android:textSize="24sp"
