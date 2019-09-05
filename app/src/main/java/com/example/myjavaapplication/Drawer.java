@@ -175,8 +175,14 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
                 Intent intent = new Intent(Drawer.this, PictureProcessActivity.class);
 
                 Bitmap bitmap = ImageUtils.createViewBitmap(picture, picture.getWidth(), picture.getHeight());
-                Uri Text_edit_Finsh_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
-                intent.putExtra("extra_uri_process", Text_edit_Finsh_uri.toString());
+                Uri Text_edit_Finish_uri = null;
+                BitmapToUri bitmapToUri = new BitmapToUri();
+                try {
+                    Text_edit_Finish_uri = bitmapToUri.BitmapToUri(bitmap, Drawer.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                intent.putExtra("extra_uri_process", Text_edit_Finish_uri.toString());
 
                 startActivity(intent);
 
