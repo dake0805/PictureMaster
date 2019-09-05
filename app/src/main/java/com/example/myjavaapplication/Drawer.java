@@ -150,7 +150,7 @@ public class Drawer extends AppCompatActivity implements View.OnClickListener, M
     }
 
     public void onTextViewMovingDone() {
-        Toast.makeText(Drawer.this, "标签TextView滑动完毕！", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Drawer.this, "标签TextView滑动完毕！", Toast.LENGTH_SHORT).show();
     }
 
 
