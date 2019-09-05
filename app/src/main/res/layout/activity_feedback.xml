@@ -62,7 +62,7 @@
         android:layout_width="353dp"
         android:layout_height="77dp"
         android:layout_marginTop="16dp"
-        android:text="What do you want to say about our application?"
+        android:text="您好，欢迎您给我们提出使用中遇到的问题或建议！"
         android:textAlignment="gravity"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
