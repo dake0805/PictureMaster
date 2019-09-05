@@ -4,28 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F1F1F"
+    android:elevation="0dp"
     tools:context=".AiSuperResolution">
 
     <Button
         android:id="@+id/startSuperResolution"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="120dp"
+        android:layout_height="64dp"
         android:onClick="SuperResolutionClick"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="423dp" />
+        android:text="@string/sr_start"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/superResolutionPic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
-        android:onClick="SuperResolutionClick"
+        android:background="#00000000"
+        android:elevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/superResolution_toolbar2"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/sr"
+        tools:srcCompat="@drawable/sr" />
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/Widget.AppCompat.TextView.SpinnerItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#333232"
+        android:elevation="8dp"
+        android:text="@string/sr_detail"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/superResolutionPic" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/superResolution_toolbar2"
