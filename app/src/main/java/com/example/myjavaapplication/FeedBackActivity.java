@@ -55,9 +55,9 @@ public class FeedBackActivity extends AppCompatActivity {
         AlertDialog b = builder.create();
         b.show();
         String text = textView.getText().toString();
-        textView.clearComposingText();
+        textView.setText("");
         Intent data=new Intent(Intent.ACTION_SENDTO);
-        data.setData(Uri.parse("mailto:way.ping.li@gmail.com"));
+        data.setData(Uri.parse("mailto:1072505283@qq.com"));
         data.putExtra(Intent.EXTRA_SUBJECT, "反馈");
         data.putExtra(Intent.EXTRA_TEXT, text);
         startActivity(data);
