@@ -95,7 +95,9 @@ public class AddPhotoFrameActivity extends AppCompatActivity {
                 RoundBut = findViewById(R.id.RoundBut);
                 CircleBut = findViewById(R.id.CircleBut);
                 RoundBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
+                RoundBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#008577")));
                 CircleBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                CircleBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
 
             }
         });
@@ -117,7 +119,10 @@ public class AddPhotoFrameActivity extends AppCompatActivity {
                 RoundBut = findViewById(R.id.RoundBut);
                 CircleBut = findViewById(R.id.CircleBut);
                 RoundBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                RoundBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
                 CircleBut.setCompoundDrawableTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
+                CircleBut.setTextColor(ColorStateList.valueOf(Color.parseColor("#008577")));
+
             }
         });
 
