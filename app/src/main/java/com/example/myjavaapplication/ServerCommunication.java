@@ -109,7 +109,8 @@ public class ServerCommunication {
         this.handler = handler;
     }
 
-    public void Download() {
+    public void Download(String picName,String type) {
+//        final  String path ="http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/" + picName +"_" + type +".jpg";
         final String path = "http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/IMG_20190817_193807_Hayao.jpg";
         System.out.println("test1y");
         if (TextUtils.isEmpty(path)) {

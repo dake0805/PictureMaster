@@ -301,7 +301,6 @@ public class MyRelativeLayout extends RelativeLayout {
                 ptrID1 = INVALID_POINTER_ID;
                 break;
             case MotionEvent.ACTION_POINTER_UP:
-                Log.d("HHHH", "ACTION_UP_POINTER");
                 ptrID2 = INVALID_POINTER_ID;
                 if ( list != null && !list.isEmpty() ) {
                     updateTextViewParams(list.get(num), mAngle, scale);
