@@ -19,7 +19,7 @@ public class TextEdit extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_text_edit);
+        setContentView(R.layout.activity_text_edit_2);
 
         Button finshbotton = (Button)findViewById(R.id.Finsh_Button);
         finshbotton.setOnClickListener(this);
