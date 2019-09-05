@@ -4,6 +4,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,5 +54,12 @@ public class FeedBackActivity extends AppCompatActivity {
         });
         AlertDialog b = builder.create();
         b.show();
+        String text = textView.getText().toString();
+        textView.clearComposingText();
+        Intent data=new Intent(Intent.ACTION_SENDTO);
+        data.setData(Uri.parse("mailto:way.ping.li@gmail.com"));
+        data.putExtra(Intent.EXTRA_SUBJECT, "反馈");
+        data.putExtra(Intent.EXTRA_TEXT, text);
+        startActivity(data);
     }
 }

@@ -95,7 +95,6 @@ public class StyleChange extends AppCompatActivity {
                         getServerUri = bitMapToUri(bitmap);
                         Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
                         intent.putExtra("extra_uri_process", getServerUri.toString());
-                        System.out.println("111");
                         startActivity(intent);
                     } catch (IOException e) {
                         e.printStackTrace();
