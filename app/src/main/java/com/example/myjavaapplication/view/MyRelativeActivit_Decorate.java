@@ -95,6 +95,9 @@ public class MyRelativeActivit_Decorate extends RelativeLayout {
     private float currentX;
     private float currentY;
 
+    //控制字体大小
+    float maxsize=60;
+
     //记录当前设备的缩放倍数
     private double scaleTimes = 1;
 
@@ -265,7 +268,7 @@ public class MyRelativeActivit_Decorate extends RelativeLayout {
                         //处理旋转模块
                         mAngle = angleBetweenLines(fX, fY, sX, sY, nfX, nfY, nsX, nsY) + defaultAngle;
                         textView.setRotation(mAngle);
-/*
+
                         //处理缩放模块
                         float newDist = spacing(event, ptrID1, ptrID2);
                         scale = newDist / oldDist;
@@ -276,12 +279,11 @@ public class MyRelativeActivit_Decorate extends RelativeLayout {
                         if ( newDist < oldDist - 1 ) {
                             zoom_small(scale);
                             oldDist = newDist;
-                        }*/
+                        }
                     }
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                Log.d("HHHH", "ACTION_UP");
                 if ( onefinger ) {
                     if ( spacing(firstX, firstY, event.getX(), event.getY()) < 10 ) {
                         showDialog( true);
@@ -338,7 +340,7 @@ public class MyRelativeActivit_Decorate extends RelativeLayout {
                 mtextSize = DEFAULT_TEXTSIZE;
             }
 
-            String content="hhhhh";
+            String content="正";
             textView = new TextView(context);
             textView.setTag(System.currentTimeMillis());
             textView.setText(content);
@@ -445,21 +447,28 @@ public class MyRelativeActivit_Decorate extends RelativeLayout {
                                 //处理旋转模块
                                 mAngle = angleBetweenLines(mfX, mfY, msX, msY, nfX, nfY, nsX, nsY);
                                 textView.setRotation(mAngle);
-                                /*
+
                                 //处理缩放模块
                                 float newDist = spacing(event, mptrID1, mptrID2);
                                 scale = newDist / oldDist;
 
                                 if ( newDist > oldDist + 1 ) {
-                                    textView.setTextSize(textSize *= scale);
+
+                                    if(textSize>=maxsize){
+                                    }
+                                    else {
+                                        textView.setTextSize(textSize *= scale);
+                                    }
+
                                     oldDist = newDist;
                                 }
                                 if ( newDist < oldDist - 1 ) {
+
                                     textView.setTextSize(textSize *= scale);
                                     oldDist = newDist;
                                 }
 
-                                */
+
                                 //通知调用者我在旋转或者缩放
                                 if ( myRelativeTouchCallBack != null )
                                     myRelativeTouchCallBack.onTextViewMoving(textView);
@@ -532,6 +541,8 @@ public class MyRelativeActivit_Decorate extends RelativeLayout {
 
         /**
          * 需要重新写布局
+         *
+         * 重写2019.09.05
          *
          */
 

@@ -45,6 +45,7 @@ public class MyRelativeLayout extends RelativeLayout {
 
 
 
+
     private boolean flag = false;
     private boolean mflag = false;
     private boolean onefinger;
@@ -98,110 +99,114 @@ public class MyRelativeLayout extends RelativeLayout {
     private float currentX;
     private float currentY;
 
-    //记录当前设备的缩放倍数
-    private double scaleTimes = 1;
+
+             //
+            private float maxsize=100;
+
+            //记录当前设备的缩放倍数
+            private double scaleTimes = 1;
 
 
 
-    //构造MyRelativeTouchCallBack
-    public void setMyRelativeTouchCallBack(MyRelativeTouchCallBack myRelativeTouchCallBack) {
-        this.myRelativeTouchCallBack = myRelativeTouchCallBack;
-    }
+            //构造MyRelativeTouchCallBack
+            public void setMyRelativeTouchCallBack(MyRelativeTouchCallBack myRelativeTouchCallBack) {
+                this.myRelativeTouchCallBack = myRelativeTouchCallBack;
+            }
 
 
-    //接口
-    private MyRelativeTouchCallBack myRelativeTouchCallBack;
+            //接口
+            private MyRelativeTouchCallBack myRelativeTouchCallBack;
 
-    /**
-     * 处理View上的单击事件 用以添加TextView
-     */
-    //很多的构造函数
+            /**
+             * 处理View上的单击事件 用以添加TextView
+             */
+            //很多的构造函数
     public MyRelativeLayout(Context context) {
 
-        this(context, null, 0);
-    }
+                this(context, null, 0);
+            }
 
     public MyRelativeLayout(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
+                this(context, attrs, 0);
+            }
 
     public MyRelativeLayout(final Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
+                super(context, attrs, defStyleAttr);
+                this.context = context;
 
-        testScaleTimes();
+                testScaleTimes();
 
-        init();
-    }
+                init();
+            }
 
 
-    //计算缩放倍数
-    private void testScaleTimes() {
-        TextView tv = new TextView(context);
-        tv.setTextSize(1);
-        scaleTimes = tv.getTextSize();
-    }
+            //计算缩放倍数
+            private void testScaleTimes() {
+                TextView tv = new TextView(context);
+                tv.setTextSize(1);
+                scaleTimes = tv.getTextSize();
+            }
 
     @TargetApi( Build.VERSION_CODES.LOLLIPOP )
     public MyRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
+                super(context, attrs, defStyleAttr, defStyleRes);
+            }
 
 
-    //处理单击事件
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        mEvent = event;
-        if ( textSize == 0 && textView != null ) {
-            //获得字体大小
-            textSize = textView.getTextSize();
-        }
-
-        //实现多点触控
-        switch ( event.getAction() & MotionEvent.ACTION_MASK ) {
-
-            //当有一个指头落下，记录其位置
-            case MotionEvent.ACTION_DOWN:
-                Log.d("HHHH", "ACTION_DOWN");
-                //此时有一个手指头落点
-                onefinger = true;
-
-                //给第一个手指落点记录落点的位置
-                firstX = event.getX();
-                firstY = event.getY();
-
-                currentX = event.getX();
-                currentY = event.getY();
-
-                ptrID1 = event.getPointerId(event.getActionIndex());
-                if ( textView != null ) {
-                    //计算当前textView的位置和大小
-                    width = textView.getWidth();
-                    height = textView.getHeight();
-                    //左上角坐标
-                    startX = textView.getX();
-                    startY = textView.getY();
-
-
-                    //手机触摸的位置如果在控件上
-                    if ( event.getX() <= (startX + width)
-                            && event.getX() >= startX
-                            && event.getY() <= (startY + height)
-                            && event.getY() >= startY )
-                    {
-                        //计算手势在控件上的位置
-                        tv_width = event.getX() - startX;
-                        tv_height = event.getY() - startY;
-                        flag = true;
-                    } else {
-                        flag = false;
-                    }
+            //处理单击事件
+            @Override
+            public boolean onTouchEvent(MotionEvent event) {
+                mEvent = event;
+                if ( textSize == 0 && textView != null ) {
+                    //获得字体大小
+                    textSize = textView.getTextSize();
                 }
-                break;
+
+                //实现多点触控
+                switch ( event.getAction() & MotionEvent.ACTION_MASK ) {
+
+                    //当有一个指头落下，记录其位置
+                    case MotionEvent.ACTION_DOWN:
+                        Log.d("HHHH", "ACTION_DOWN");
+                        //此时有一个手指头落点
+                        onefinger = true;
+
+                        //给第一个手指落点记录落点的位置
+                        firstX = event.getX();
+                        firstY = event.getY();
+
+                        currentX = event.getX();
+                        currentY = event.getY();
+
+                        ptrID1 = event.getPointerId(event.getActionIndex());
+                        if ( textView != null ) {
+                            //计算当前textView的位置和大小
+                            width = textView.getWidth();
+                            height = textView.getHeight();
+                            //左上角坐标
+                            startX = textView.getX();
+                            startY = textView.getY();
+
+
+                            //手机触摸的位置如果在控件上
+                            if ( event.getX() <= (startX + width)
+                                    && event.getX() >= startX
+                                    && event.getY() <= (startY + height)
+                                    && event.getY() >= startY )
+                            {
+                                //计算手势在控件上的位置
+                                tv_width = event.getX() - startX;
+                                tv_height = event.getY() - startY;
+                                flag = true;
+                            } else {
+                                flag = false;
+                            }
+                        }
+                        break;
 
 
             case MotionEvent.ACTION_POINTER_DOWN:
-                //第二个手指头落点 早已经不是点击事件
+                //第二个手指头落点
                 onefinger = false;
 
                 Log.d("HHHH", "ACTION_DOWN_POINTER");
@@ -223,7 +228,6 @@ public class MyRelativeLayout extends RelativeLayout {
                         listDistance.add(spacing(getMidPiont(( int ) fX, ( int ) fY, ( int ) sX, ( int ) sY),
                                 listTvParams.get(i).getMidPoint()));
                     }
-//寻找最近的点
                     if ( list != null && !list.isEmpty() ) {
                         double min = listDistance.get(0);
                         num = 0;
@@ -270,7 +274,7 @@ public class MyRelativeLayout extends RelativeLayout {
                             oldDist = newDist;
                         }
                         if ( newDist < oldDist - 1 ) {
-                            zoom_small(scale);
+                            zoom(scale);
                             oldDist = newDist;
                         }
                     }
@@ -343,12 +347,13 @@ public class MyRelativeLayout extends RelativeLayout {
             textView.setText(content);
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             textView.setLayoutParams(params);
-            textView.setTextSize(mtextSize);
+
+            if(textView.getTextSize()<maxsize) {
+                textView.setTextSize(mtextSize);
+            }
+
             textView.setTextColor(color);
             textView.setRotation(rotate);
-            //
-            textView.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_new));
-            //
             textView.setX(x - textView.getWidth());
             textView.setY(y - textView.getHeight());
             textView.setOnTouchListener(new OnTouchListener() {
@@ -373,6 +378,8 @@ public class MyRelativeLayout extends RelativeLayout {
                             }
                             mflag = true;
                             break;
+
+
                         case MotionEvent.ACTION_POINTER_DOWN:
                             tvOneFinger = false;
                             isClick = false;
@@ -384,10 +391,8 @@ public class MyRelativeLayout extends RelativeLayout {
                             mfY = mEvent.getY(event.findPointerIndex(mptrID2));
 
                             mflag = false;
-//
                             mTv_widths = getMidPiont(( int ) mfX, ( int ) mfY, ( int ) msX, ( int ) msY).x - textView.getX();
                             mTv_heights = getMidPiont(( int ) mfX, ( int ) mfY, ( int ) msX, ( int ) msY).y - textView.getY();
-//
                             oldDist = spacing(event, mptrID1, mptrID2);
 
                             break;
@@ -405,7 +410,7 @@ public class MyRelativeLayout extends RelativeLayout {
                                 isClick = false;
                             }
 
-                            //旋转和缩放操作
+                            //旋转和w操作
                             if ( mptrID1 != INVALID_POINTER_ID && mptrID2 != INVALID_POINTER_ID ) {
                                 float nfX, nfY, nsX, nsY;
                                 nsX = mEvent.getX(event.findPointerIndex(mptrID1));
@@ -424,7 +429,10 @@ public class MyRelativeLayout extends RelativeLayout {
                                 scale = newDist / oldDist;
 
                                 if ( newDist > oldDist + 1 ) {
-                                    textView.setTextSize(textSize *= scale);
+
+                                    if(textSize<=maxsize){
+                                        textView.setTextSize(textSize *= scale);
+                                    }
                                     oldDist = newDist;
                                 }
                                 if ( newDist < oldDist - 1 ) {
@@ -544,7 +552,12 @@ public class MyRelativeLayout extends RelativeLayout {
             TextViewParams param = new TextViewParams();
             if ( tv.getTag().toString().equals(listTvParams.get(i).getTag()) ) {
                 param.setRotation(rotation);
-                param.setTextSize(( float ) (tv.getTextSize() / scaleTimes));
+
+                if(tv.getTextSize()<=maxsize) {
+                    param.setTextSize((float) (tv.getTextSize() / scaleTimes));
+                }
+
+
                 param.setMidPoint(getViewMidPoint(tv));
                 param.setScale(scale);
                 textSize = tv.getTextSize() / 2;
@@ -572,7 +585,11 @@ public class MyRelativeLayout extends RelativeLayout {
         if ( textView != null ) {
             tvParams = new TextViewParams();
             tvParams.setRotation(0);
-            tvParams.setTextSize(( float ) (textView.getTextSize() / scaleTimes));
+            //111111
+            if(tvParams.getTextSize()<=maxsize) {
+                tvParams.setTextSize((float) (textView.getTextSize() / scaleTimes));
+            }
+
             tvParams.setX(textView.getX());
             tvParams.setY(textView.getY());
             tvParams.setWidth(textView.getWidth());
@@ -688,19 +705,11 @@ public class MyRelativeLayout extends RelativeLayout {
 
     //缩放实现
     private void zoom(float f) {
-        float maxsize=60;
-        if(textSize>=maxsize){
-        }
-        else {
+        if(textSize<=maxsize){
             textView.setTextSize(textSize *= f);
         }
     }
 
-    //缩放实现
-    private void zoom_small(float f) {
-
-        textView.setTextSize(textSize *= f);
-    }
 
     /**
      * 计算两点之间的距离
