@@ -6,8 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,14 +58,47 @@ public class StyleChange extends AppCompatActivity {
 
 
     public void VincentClick(View view) {
-        //TODO传输数据
-        Context context = getApplicationContext();
-        ServerCommunication.Upload(getApplicationContext(),imageUri);
-        //TODO获取数据
-        Intent intent = new Intent(StyleChange.this,PictureProcessActivity.class);
-        intent.putExtra("extar_uri_process",imageUri.toString());
-        startActivity(intent);
+
+
+//        ProgressDialog progressdialog = new ProgressDialog(getApplicationContext());
+//        progressdialog.setMessage("Please Wait....");
+//        progressdialog.show();
+
+
+        showWaitingDialog();
+
+//        //TODO传输数据
+//        Context context = getApplicationContext();
+//        ServerCommunication.Upload(getApplicationContext(), imageUri);
+//        //TODO获取数据
+//        Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
+//        intent.putExtra("extar_uri_process", imageUri.toString());
+//        startActivity(intent);
     }
 
+    private void showWaitingDialog() {
+        /* 等待Dialog具有屏蔽其他控件的交互能力
+         * @setCancelable 为使屏幕不可点击，设置为不可取消(false)
+         * 下载等事件完成后，主动调用函数关闭该Dialog
+         */
+        final ProgressDialog waitingDialog =
+                new ProgressDialog(StyleChange.this);
+        waitingDialog.setTitle(R.string.ai);
+        waitingDialog.setMessage("等待中...");
+        waitingDialog.setCancelable(false);
+        waitingDialog.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // 1秒后窗口消失
+                waitingDialog.cancel();
+            }
+        }).start();
+    }
 
 }
