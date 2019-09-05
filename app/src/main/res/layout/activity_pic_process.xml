@@ -92,6 +92,7 @@
             android:drawableTop="@drawable/ic_enlarge"
             android:drawablePadding="8dp"
             android:text="@string/highResolution"
+            android:onClick="AiEdit2_SuperResolution"
             android:textColor="#FFFFFF"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

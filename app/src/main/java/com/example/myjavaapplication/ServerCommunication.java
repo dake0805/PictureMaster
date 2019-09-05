@@ -56,7 +56,7 @@ public class ServerCommunication {
         File testFile = new File(path);
         final Map<String, Object> paramMap = new HashMap<String, Object>(); //文本数据全部添加到Map里
 //        paramMap.put("file", testFile);
-        paramMap.put("text", type);
+//        paramMap.put("text", type);
 //        if(testFile!=null) {
 //            HttpConnectionUtil.doPostPicture(Url, paramMap, testFile);
 //        }
@@ -71,7 +71,7 @@ public class ServerCommunication {
         try {
 //            param.put("Content-Type","multipart/form-data");
             param.put("file", testFile);
-            param.put("convert_type", "CartoonGAN_Hayao");
+            param.put("convert_type", type);
             httpClient.post(Url, param, new AsyncHttpResponseHandler() {
                 @Override
                 public void onStart() {
