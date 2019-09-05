@@ -14,6 +14,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +25,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -30,6 +36,7 @@ public class StyleChange extends AppCompatActivity {
 
     private Uri imageUri;
     private Bitmap bitmap;
+    private Uri getServerUri;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -54,27 +61,12 @@ public class StyleChange extends AppCompatActivity {
                 finish();//返回
             }
         });
-
     }
 
 
-    public void VincentClick(View view) {
-
-
-//        ProgressDialog progressdialog = new ProgressDialog(getApplicationContext());
-//        progressdialog.setMessage("Please Wait....");
-//        progressdialog.show();
-
-
+    public void VincentClick(View view) throws Exception {
+        ServerCommunication.Upload(getApplicationContext(), imageUri);
         showWaitingDialog();
-
-//        //TODO传输数据
-//        Context context = getApplicationContext();
-//        ServerCommunication.Upload(getApplicationContext(), imageUri);
-//        //TODO获取数据
-//        Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
-//        intent.putExtra("extar_uri_process", imageUri.toString());
-//        startActivity(intent);
     }
 
     private void showWaitingDialog() {
@@ -92,13 +84,11 @@ public class StyleChange extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
                 waitingDialog.cancel();
-
             }
         }).start();
 
@@ -106,14 +96,54 @@ public class StyleChange extends AppCompatActivity {
 
             @Override
             public void onCancel(DialogInterface dialog) {
+                try {
+                    downloadPic("test","test");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
-                intent.putExtra("extra_uri_process", imageUri.toString());
+                intent.putExtra("extra_uri_process", getServerUri.toString());
                 startActivity(intent);
 
             }
         });
-
-
     }
 
+    @SuppressLint("HandlerLeak")
+    public void downloadPic(String picName, String type) throws InterruptedException {
+        ServerCommunication serverCommunication = new ServerCommunication();
+        serverCommunication.setHandler(new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == ServerCommunication.CHANGE_UI) {
+                    Bitmap bitmap = (Bitmap) msg.obj;
+                    try {
+                        getServerUri = bitMapToUri(bitmap);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else if (msg.what == ServerCommunication.ERROR) {
+                    //throw new Exception("download error");
+                }
+            }
+        });
+        serverCommunication.Download(picName,type);
+    }
+
+    public Uri bitMapToUri(Bitmap bitmap) throws IOException {
+        Uri finishUri;
+
+        File finishFile = new File(getCacheDir(), "tmp_styleChange.jpg");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        byte[] bitmapData = bytes.toByteArray();
+
+        FileOutputStream fileOutputStream = new FileOutputStream(finishFile);
+        fileOutputStream.write(bitmapData);
+        fileOutputStream.flush();
+        fileOutputStream.close();
+
+        finishUri = Uri.fromFile(finishFile);
+        return finishUri;
+    }
 }

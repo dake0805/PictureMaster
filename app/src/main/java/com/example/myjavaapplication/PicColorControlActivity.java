@@ -28,7 +28,6 @@ import java.io.IOException;
 
 public class PicColorControlActivity extends AppCompatActivity {
 
-
     private ImageView imageView;
     private Uri imageUri;
     private Bitmap bitmap;
