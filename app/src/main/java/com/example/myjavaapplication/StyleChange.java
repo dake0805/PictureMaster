@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -91,14 +92,28 @@ public class StyleChange extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                // 1秒后窗口消失
+
                 waitingDialog.cancel();
+
             }
         }).start();
+
+        waitingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
+                intent.putExtra("extra_uri_process", imageUri.toString());
+                startActivity(intent);
+
+            }
+        });
+
+
     }
 
 }
