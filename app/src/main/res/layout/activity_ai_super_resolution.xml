@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AiSuperResolution">
 
-    <Button
-        android:id="@+id/startSuperResolution"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:onClick="SuperResolutionClick"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="423dp" />
-
     <ImageView
         android:id="@+id/superResolutionPic"
         android:layout_width="0dp"
@@ -25,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/superResolution_toolbar2"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        app:srcCompat="@drawable/sr" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/superResolution_toolbar2"
