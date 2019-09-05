@@ -35,6 +35,7 @@ public class ServerCommunication {
 
     protected static final int CHANGE_UI = 1;//下载成功
     protected static final int ERROR = 2;//下载出错
+    protected static final int PICNAME =3;
 
     public ServerCommunication() {
 
@@ -114,7 +115,7 @@ public class ServerCommunication {
 //        final  String path ="http://192.168.188.106:8080/PictureMasterServer_war/output_imgs/" + picName +"_" + type +".jpg";
         String needAdd = null;
         String path = null;
-        http:
+        final String needSavePicname = picName;
 //192.168.188.106:8080/PictureMasterServer_war/output_imgs/style_cezanne_pretrained/test_latest/images/Death-Valley-Sunset-Dunes_fake.png
         if (type.equals("ESRGAN")) {
             needAdd = "esrgan";
@@ -166,6 +167,10 @@ public class ServerCommunication {
                             msg.what = CHANGE_UI;
                             msg.obj = bitmap;
                             handler.sendMessage(msg);
+//                            Message picmsg = new Message();
+//                            msg.what = PICNAME;
+//                            msg.obj = needSavePicname;
+//                            handler.sendMessage(picmsg);
                         } else {
                             Message msg = new Message();
                             msg.what = ERROR;

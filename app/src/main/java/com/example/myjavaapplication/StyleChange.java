@@ -31,7 +31,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StyleChange extends AppCompatActivity {
 
@@ -124,7 +126,10 @@ public class StyleChange extends AppCompatActivity {
     public Uri bitMapToUri(Bitmap bitmap) throws IOException {
         Uri finishUri;
 
-        File finishFile = new File(getCacheDir(), "tmp_styleChange.jpg");
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String tmpName = df.format(day);
+        File finishFile = new File(getCacheDir(), tmpName+".jpg");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         byte[] bitmapData = bytes.toByteArray();
