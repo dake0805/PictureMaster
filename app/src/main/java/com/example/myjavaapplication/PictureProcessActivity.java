@@ -251,6 +251,12 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void AiEdit2_SuperResolution(View view){
+        Intent intent = new Intent(this, AiSuperResolution.class);
+        intent.putExtra("super_resolution_pic", imageUri.toString());
+        startActivity(intent);
+    }
+
     public void EditProcess(EditMethod editMethod) {
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "scale.jpg"));
 

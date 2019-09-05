@@ -24,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -65,54 +66,65 @@ public class StyleChange extends AppCompatActivity {
 
 
     public void VincentClick(View view) throws Exception {
-        ServerCommunication.Upload(getApplicationContext(), imageUri,"CartoonGAN_Hayao");
-        String fileName = Photo.getName(getApplicationContext(),imageUri);
-        downloadPic(fileName,"CartoonGAN_Hayao");
+        StyleChangeClick("CartoonGAN_Hayao");
+//        ServerCommunication.Upload(getApplicationContext(), imageUri,"CartoonGAN_Hayao");
+//        String fileName = Photo.getName(getApplicationContext(),imageUri);
+//        downloadPic(fileName,"CartoonGAN_Hayao");
+//        Thread.sleep(500);
+//        Toast.makeText(getApplicationContext(), "上传成功，正在下载······", Toast.LENGTH_SHORT).show();
     }
 
-    private void showWaitingDialog() {
-        /* 等待Dialog具有屏蔽其他控件的交互能力
-         * @setCancelable 为使屏幕不可点击，设置为不可取消(false)
-         * 下载等事件完成后，主动调用函数关闭该Dialog
-         */
-        final ProgressDialog waitingDialog =
-                new ProgressDialog(StyleChange.this);
-        waitingDialog.setTitle(R.string.ai);
-        waitingDialog.setMessage("等待中...");
-        waitingDialog.setCancelable(false);
-        waitingDialog.show();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                waitingDialog.cancel();
-            }
-        }).start();
 
-        waitingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                try {
-                    downloadPic("test","test");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
-                intent.putExtra("extra_uri_process", getServerUri.toString());
-                startActivity(intent);
-            }
-        });
+    private void StyleChangeClick(String type) throws Exception {
+        ServerCommunication.Upload(getApplicationContext(), imageUri, "CartoonGAN_Hayao");
+        String fileName = Photo.getName(getApplicationContext(), imageUri);
+        downloadPic(fileName, "CartoonGAN_Hayao");
+        Thread.sleep(500);
+        Toast.makeText(getApplicationContext(), "上传成功，正在下载······", Toast.LENGTH_SHORT).show();
     }
+//    private void showWaitingDialog() {
+//        /* 等待Dialog具有屏蔽其他控件的交互能力
+//         * @setCancelable 为使屏幕不可点击，设置为不可取消(false)
+//         * 下载等事件完成后，主动调用函数关闭该Dialog
+//         */
+//        final ProgressDialog waitingDialog =
+//                new ProgressDialog(StyleChange.this);
+//        waitingDialog.setTitle(R.string.ai);
+//        waitingDialog.setMessage("等待中...");
+//        waitingDialog.setCancelable(false);
+//        waitingDialog.show();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                waitingDialog.cancel();
+//            }
+//        }).start();
+//
+//        waitingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//
+//            @Override
+//            public void onCancel(DialogInterface dialog) {
+//                try {
+//                    downloadPic("test","test");
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Intent intent = new Intent(StyleChange.this, PictureProcessActivity.class);
+//                intent.putExtra("extra_uri_process", getServerUri.toString());
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     @SuppressLint("HandlerLeak")
     public void downloadPic(String picName, String type) throws InterruptedException {
         ServerCommunication serverCommunication = new ServerCommunication();
-        serverCommunication.setHandler(new Handler(){
+        serverCommunication.setHandler(new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == ServerCommunication.CHANGE_UI) {
@@ -131,7 +143,7 @@ public class StyleChange extends AppCompatActivity {
                 }
             }
         });
-        serverCommunication.Download(picName,type);
+        serverCommunication.Download(picName, type);
     }
 
     public Uri bitMapToUri(Bitmap bitmap) throws IOException {
