@@ -51,7 +51,7 @@ public class AiSuperResolution extends AppCompatActivity {
         });
     }
 
-    private void SuperResolutionClick(View view) throws Exception {
+    public void SuperResolutionClick(View view) throws Exception {
         ServerCommunication.Upload(getApplicationContext(), imageUri, "ESRGAN");
         String fileName = Photo.getName(getApplicationContext(), imageUri);
         downloadPic(fileName, "ESRGAN");
