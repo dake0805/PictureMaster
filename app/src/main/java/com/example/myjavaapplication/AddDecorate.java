@@ -22,7 +22,7 @@ import java.io.*;
 import com.example.myjavaapplication.utils.ImageUtils;
 import com.example.myjavaapplication.view.*;
 
-public class AddDecorate extends AppCompatActivity implements View.OnClickListener ,MyRelativeLayout.MyRelativeTouchCallBack {
+public class AddDecorate extends AppCompatActivity implements View.OnClickListener, MyRelativeLayout.MyRelativeTouchCallBack {
 
 
     MyRelativeActivit_Decorate picture_dec;
@@ -44,8 +44,8 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-        Button Button_Finsh = (Button) findViewById(R.id.add_decorate_finished);
-        Button_Finsh.setOnClickListener(this);
+        Button Button_Finish = (Button) findViewById(R.id.add_decorate_finished);
+        Button_Finish.setOnClickListener(this);
 
 
         try {
@@ -56,7 +56,7 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    public void into() throws FileNotFoundException{
+    public void into() throws FileNotFoundException {
 
         Intent intent = getIntent();
         imagUri = Uri.parse(intent.getStringExtra("extra_decoradd"));
@@ -65,7 +65,7 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
 
             Bitmap back = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imagUri);
 
-            picture_dec =  findViewById(R.id.add_decorate_photo);
+            picture_dec = findViewById(R.id.add_decorate_photo);
             back = ChangeSize(back);
 
 
@@ -93,8 +93,8 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
         int newHeight = (int) Math.floor(rate * ((double) newWidth));
 
         //计算压缩的比率
-        float scaleWidth = (((float) newWidth) / width) * (dpi/160.0f);
-        float scaleHeight = (((float) newHeight) / height) * (dpi/160.0f);
+        float scaleWidth = (((float) newWidth) / width) * (dpi / 160.0f);
+        float scaleHeight = (((float) newHeight) / height) * (dpi / 160.0f);
 
         //获取想要缩放的matrix
         Matrix matrix = new Matrix();
@@ -107,30 +107,32 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
     }
 
 
+    public void onClick(View v) {
 
-
-    public void onClick(View v){
-
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.add_decorate_finished:
                 Intent intent = new Intent(AddDecorate.this, PictureProcessActivity.class);
 
                 Bitmap bitmap = ImageUtils.createViewBitmap(picture_dec, picture_dec.getWidth(), picture_dec.getHeight());
-                Uri Text_edit_Finsh_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
-                intent.putExtra("extra_uri_process", Text_edit_Finsh_uri.toString());
+
+                BitmapToUri bitmapToUri = new BitmapToUri();
+                Uri Text_edit_Finish_uri = null;
+                try {
+                    Text_edit_Finish_uri = bitmapToUri.BitmapToUri(bitmap, AddDecorate.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                intent.putExtra("extra_uri_process", Text_edit_Finish_uri.toString());
 
                 startActivity(intent);
 
                 break;
 
 
-                default:
+            default:
 
         }
-
-
-
     }
 
     //实现继承的三个函数
@@ -153,8 +155,6 @@ public class AddDecorate extends AppCompatActivity implements View.OnClickListen
     public ComponentName getCallingActivity() {
         return super.getCallingActivity();
     }
-
-
 
 
 }
