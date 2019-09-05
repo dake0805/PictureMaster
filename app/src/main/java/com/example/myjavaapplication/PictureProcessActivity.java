@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -142,6 +143,19 @@ public class PictureProcessActivity extends AppCompatActivity {
         serverCommunication.Download("testtest","test");
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { //按下的如果是BACK，同时没有重复
+            if(buttonSelect !=ButtonSelectType.None){
+                buttonSelect = ButtonSelectType.None;
+                RestoreOrigin();
+                return true;
+            }
+            else {
+//                finish();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
