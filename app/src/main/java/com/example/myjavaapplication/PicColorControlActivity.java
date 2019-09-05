@@ -245,17 +245,9 @@ public class PicColorControlActivity extends AppCompatActivity {
 
         Uri finishUri;
 
-        File finishFile = new File(getCacheDir(), "tmp_brightness.jpg");
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        byte[] bitmapData = bytes.toByteArray();
+        BitmapToUri bitmapToUri = new BitmapToUri();
+        finishUri = bitmapToUri.BitmapToUri(bitmap, PicColorControlActivity.this);
 
-        FileOutputStream fileOutputStream = new FileOutputStream(finishFile);
-        fileOutputStream.write(bitmapData);
-        fileOutputStream.flush();
-        fileOutputStream.close();
-
-        finishUri = Uri.fromFile(finishFile);
 
         imageView.setImageURI(null);
         imageView.setImageURI(finishUri);

@@ -15,25 +15,26 @@
 
         <EditText
             android:id="@+id/Edit_Text1"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_width="322dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="24dp"
             android:gravity="center"
-            android:hint="Picture\nMaster "
+            android:hint="Picture Master "
             android:inputType="textNoSuggestions"
             android:maxLength="15"
             android:maxLines="3"
             app:layout_constraintBottom_toTopOf="@+id/color_tag"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.example.myjavaapplication.view.ColorTagImageView
 
             android:id="@+id/color_tag"
-            android:layout_width="256dp"
+            android:layout_width="320dp"
             android:layout_height="32dp"
 
-            android:layout_marginBottom="256dp"
+            android:layout_marginBottom="64dp"
             android:background="@mipmap/colortag"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,7 @@
             android:id="@+id/Finsh_Button"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="完成"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

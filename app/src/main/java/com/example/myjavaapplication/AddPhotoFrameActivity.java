@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.IOException;
+
 import static android.graphics.Shader.TileMode.CLAMP;
 
 public class AddPhotoFrameActivity extends AppCompatActivity {
@@ -87,7 +89,13 @@ public class AddPhotoFrameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bitmap backBitmap = getCircleBitmapByShader(bitmap, outWidth, outHeight, 1);
-                AddFrame_Finish_uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), backBitmap, null, null));
+
+                BitmapToUri bitmapToUri = new BitmapToUri();
+                try {
+                    AddFrame_Finish_uri = bitmapToUri.BitmapToUri(backBitmap, AddPhotoFrameActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 imageView.setImageURI(AddFrame_Finish_uri);
             }
         });
