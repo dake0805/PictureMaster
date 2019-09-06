@@ -37,7 +37,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.example.myjavaapplication.view.ColorTagImageView
+        <com.nwpu.paim.view.ColorTagImageView
 
             android:id="@+id/color_tag"
             android:layout_width="0dp"

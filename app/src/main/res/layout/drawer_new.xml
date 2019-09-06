@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="完成" />
 
-    <com.example.myjavaapplication.view.MyRelativeLayout
+    <com.nwpu.paim.view.MyRelativeLayout
         android:id="@+id/add_photo"
         android:layout_width="58dp"
         android:layout_height="237dp"
@@ -29,7 +29,7 @@
 
         >
 
-    </com.example.myjavaapplication.view.MyRelativeLayout>
+    </com.nwpu.paim.view.MyRelativeLayout>
 
 
 

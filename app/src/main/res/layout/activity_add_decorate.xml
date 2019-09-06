@@ -32,7 +32,7 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <com.example.myjavaapplication.view.MyRelativeActivit_Decorate
+    <com.nwpu.paim.view.MyRelativeActivit_Decorate
         android:id="@+id/add_decorate_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

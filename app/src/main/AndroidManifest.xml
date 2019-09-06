@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myjavaapplication">
+    package="com.nwpu.paim">
 
     <application
         android:allowBackup="true"
@@ -13,31 +13,31 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".AiSuperResolution"
+            android:name="com.nwpu.paim.AiSuperResolution"
             android:label="">
 
         </activity>
-        <activity android:name=".language_setting" />
+        <activity android:name="com.nwpu.paim.language_setting" />
 
         <activity
-            android:name=".StyleChange"
+            android:name="com.nwpu.paim.StyleChange"
             android:label="" />
 
         <activity
-            android:name=".PicColorControlActivity"
+            android:name="com.nwpu.paim.PicColorControlActivity"
             android:label="" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.nwpu.paim.MainActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".PictureProcessActivity"
+            android:name="com.nwpu.paim.PictureProcessActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".JointPhotoActivity" />
-        <activity android:name=".PhotoResultActivity" />
+        <activity android:name="com.nwpu.paim.JointPhotoActivity" />
+        <activity android:name="com.nwpu.paim.PhotoResultActivity" />
         <activity
-            android:name=".AddPhotoFrameActivity"
+            android:name="com.nwpu.paim.AddPhotoFrameActivity"
             android:label="" />
-        <activity android:name=".WelcomeActivity">
+        <activity android:name="com.nwpu.paim.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,29 +45,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Settings"
+            android:name="com.nwpu.paim.Settings"
             android:label="" />
         <activity
-            android:name=".FeedBackActivity"
+            android:name="com.nwpu.paim.FeedBackActivity"
             android:label="" />
-        <activity android:name=".TextEdit" />
+        <activity android:name="com.nwpu.paim.TextEdit" />
         <activity
-            android:name=".Drawer"
+            android:name="com.nwpu.paim.Drawer"
             android:label=""
             android:launchMode="singleTask" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Decorate_Choose" />
+        <activity android:name="com.nwpu.paim.Decorate_Choose" />
         <activity
-            android:name=".AddDecorate"
+            android:name="com.nwpu.paim.AddDecorate"
             android:label=""
             android:launchMode="singleTask" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.myjavaapplication"
+            android:authorities="com.nwpu.paim"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
