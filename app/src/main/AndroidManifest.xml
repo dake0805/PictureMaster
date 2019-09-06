@@ -47,7 +47,9 @@
         <activity
             android:name=".Settings"
             android:label="" />
-        <activity android:name=".FeedBackActivity" />
+        <activity
+            android:name=".FeedBackActivity"
+            android:label="" />
         <activity android:name=".TextEdit" />
         <activity
             android:name=".Drawer"
@@ -81,6 +83,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

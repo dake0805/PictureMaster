@@ -2,6 +2,7 @@ package com.example.myjavaapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,10 +20,23 @@ public class FeedBackActivity extends AppCompatActivity {
 
     public TextView textView;
 
-    protected void onCreate(Bundle savaInstanceState){
+    protected void onCreate(Bundle savaInstanceState) {
         super.onCreate(savaInstanceState);
         setContentView(R.layout.activity_feedback);
-        feedback_accept_btn = (Button)findViewById(R.id.feedback_accept);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.feedBack_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();//返回
+            }
+        });
+
+
+        feedback_accept_btn = (Button) findViewById(R.id.feedback_accept);
 //        feedback_accept_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -39,11 +53,11 @@ public class FeedBackActivity extends AppCompatActivity {
 //        });
     }
 
-    public void FeedbackClick(View view){
+    public void FeedbackClick(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("联系我们");
         builder.setMessage("你已经成功发送");
-        final TextView textView = (TextView)findViewById(R.id.editText2);
+        final TextView textView = (TextView) findViewById(R.id.editText2);
         textView.setVisibility(View.GONE);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {  //这个是设置确定按钮
 
@@ -56,7 +70,7 @@ public class FeedBackActivity extends AppCompatActivity {
         b.show();
         String text = textView.getText().toString();
         textView.setText("");
-        Intent data=new Intent(Intent.ACTION_SENDTO);
+        Intent data = new Intent(Intent.ACTION_SENDTO);
         data.setData(Uri.parse("mailto:1072505283@qq.com"));
         data.putExtra(Intent.EXTRA_SUBJECT, "反馈");
         data.putExtra(Intent.EXTRA_TEXT, text);

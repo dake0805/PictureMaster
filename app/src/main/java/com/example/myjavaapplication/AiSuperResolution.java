@@ -18,6 +18,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AiSuperResolution extends AppCompatActivity {
 
@@ -86,7 +88,10 @@ public class AiSuperResolution extends AppCompatActivity {
     public Uri bitMapToUri(Bitmap bitmap) throws IOException {
         Uri finishUri;
 
-        File finishFile = new File(getCacheDir(), "tmp_SR.jpg");
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String tmpName = df.format(day);
+        File finishFile = new File(getCacheDir(), tmpName+".jpg");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         byte[] bitmapData = bytes.toByteArray();

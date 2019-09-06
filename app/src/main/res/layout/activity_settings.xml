@@ -53,17 +53,6 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/setting_contact3"
-            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:elevation="0dp"
-            android:onClick="language_Click"
-            android:text="@string/language"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <Button
             android:id="@+id/setting_feedback"
             style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
             android:layout_width="match_parent"

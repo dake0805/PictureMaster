@@ -129,7 +129,7 @@ public class PictureProcessActivity extends AppCompatActivity {
     @SuppressLint("HandlerLeak")
     public void testDownlaod() throws InterruptedException {
         ServerCommunication serverCommunication = new ServerCommunication();
-        serverCommunication.setHandler(new Handler(){
+        serverCommunication.setHandler(new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == ServerCommunication.CHANGE_UI) {
@@ -140,18 +140,17 @@ public class PictureProcessActivity extends AppCompatActivity {
                 }
             }
         });
-        serverCommunication.Download("testtest","test");
+        serverCommunication.Download("testtest", "test");
     }
 
     //避免在已有状态时回到初始页面，捕捉back
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { //按下的如果是BACK，同时没有重复
-            if(buttonSelect !=ButtonSelectType.None){
+            if (buttonSelect != ButtonSelectType.None) {
                 buttonSelect = ButtonSelectType.None;
                 RestoreOrigin();
                 return true;
-            }
-            else {
+            } else {
 //                finish();
             }
         }
@@ -266,7 +265,7 @@ public class PictureProcessActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void AiEdit2_SuperResolution(View view){
+    public void AiEdit2_SuperResolution(View view) {
         Intent intent = new Intent(this, AiSuperResolution.class);
         intent.putExtra("super_resolution_pic", imageUri.toString());
         startActivity(intent);
@@ -511,6 +510,7 @@ public class PictureProcessActivity extends AppCompatActivity {
             imageView_origin.setVisibility(View.GONE);
         } else if (SelectPic == "imageView_origin") {
             imageView_origin.setVisibility(View.VISIBLE);
+            imageView_origin.setImageURI(null);
             imageView_origin.setImageURI(imageUri);
             imageView_background.setVisibility(View.GONE);
         }

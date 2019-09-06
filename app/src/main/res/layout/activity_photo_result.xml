@@ -52,15 +52,15 @@
 
     <Button
         android:id="@+id/save_result"
-        android:visibility="gone"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/ic_save"
         android:onClick="SavePhoto"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/wallpaper_result"
