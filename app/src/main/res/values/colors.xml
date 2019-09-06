@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#1F1F1F</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="ucrop_color_toolbar">#008577</color>
-    <color name="ucrop_color_statusbar">#00574B</color>
+    <color name="ucrop_color_toolbar">#1F1F1F</color>
+    <color name="ucrop_color_statusbar">#0F0F0F</color>
     <color name="ucrop_color_toolbar_widget">#FFFFFF</color>
 
     <color name="ucrop_color_widget_active">#f5f5f5</color>

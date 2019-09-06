@@ -22,8 +22,10 @@
 
         <EditText
             android:id="@+id/Edit_Text1"
-            android:layout_width="322dp"
+            android:layout_width="0dp"
             android:layout_height="56dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:hint="Picture Master "
@@ -38,9 +40,11 @@
         <com.example.myjavaapplication.view.ColorTagImageView
 
             android:id="@+id/color_tag"
-            android:layout_width="320dp"
+            android:layout_width="0dp"
             android:layout_height="32dp"
 
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="64dp"
             android:background="@mipmap/colortag"
             app:layout_constraintBottom_toBottomOf="parent"

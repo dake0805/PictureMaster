@@ -7,9 +7,21 @@
 
     <Button
         android:id="@+id/Finsh_Button_dec"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="取消" />
+        android:text="取消"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/drawer_finshed"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/baseline_check_white_48dp"
+        android:elevation="16dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

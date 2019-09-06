@@ -4,20 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F1F1F"
+    android:elevation="0dp"
     tools:context=".AiSuperResolution">
 
-    <ImageView
-        android:id="@+id/superResolutionPic"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:adjustViewBounds="true"
-        android:onClick="SuperResolutionClick"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="#0C0B0B"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/superResolution_toolbar2"
-        tools:srcCompat="@tools:sample/avatars"
-        app:srcCompat="@drawable/sr" />
+        app:layout_constraintTop_toBottomOf="@+id/superResolution_toolbar2">
+
+        <ImageView
+            android:id="@+id/superResolutionPic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:elevation="9dp"
+            android:onClick="SuperResolutionClick"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sr"
+            tools:srcCompat="@drawable/sr" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/sr_detail"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/superResolutionPic" />
+
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="144dp"
+            android:layout_height="64dp"
+            android:onClick="SuperResolutionClick"
+            android:text="@string/sr_start"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/superResolution_toolbar2"

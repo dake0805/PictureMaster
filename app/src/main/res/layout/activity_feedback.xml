@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
+        android:id="@+id/feedBack_toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -62,11 +62,11 @@
         android:layout_width="353dp"
         android:layout_height="77dp"
         android:layout_marginTop="16dp"
-        android:text="What do you want to say about our application?"
+        android:text="您好，欢迎您给我们提出使用中遇到的问题或建议！"
         android:textAlignment="gravity"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+        app:layout_constraintTop_toBottomOf="@+id/feedBack_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

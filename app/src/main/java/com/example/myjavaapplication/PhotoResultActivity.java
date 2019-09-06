@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -51,19 +52,19 @@ public class PhotoResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         BlidView();
         ViewAnimationAppear();
-        if(intent.getStringExtra("extra_resultUri")!=null){
+        if (intent.getStringExtra("extra_resultUri") != null) {
             originImageUri = Uri.parse(intent.getStringExtra("extra_resultUri"));
-            fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(),this.getContentResolver(),originImageUri);
+            fuzzyPhotoBmp = Photo.getFuzzyBitmapFromUri(getApplicationContext(), this.getContentResolver(), originImageUri);
             imageView_background.setImageBitmap(fuzzyPhotoBmp);
         }
     }
 
     private void ViewAnimationAppear() {
         long duration = 1800;
-        AnimationView.fadeIn(saveButton,0,1,duration);
-        AnimationView.fadeIn(shareButton,0,1,duration);
-        AnimationView.fadeIn(wallpaperButton,0,1,duration);
-        AnimationView.fadeIn(closeButton,0,1,duration);
+        AnimationView.fadeIn(saveButton, 0, 1, duration);
+        AnimationView.fadeIn(shareButton, 0, 1, duration);
+        AnimationView.fadeIn(wallpaperButton, 0, 1, duration);
+        AnimationView.fadeIn(closeButton, 0, 1, duration);
     }
 
     private void BlidView() {
@@ -78,10 +79,31 @@ public class PhotoResultActivity extends AppCompatActivity {
         finish();
     }
 
+//    //share button 绑定
+//    public void SharePhoto(View view) {
+//        if (originImageUri != null) {
+//            //   Log.d("uri",imageUri.toString());
+//            Intent shareIntent = new Intent();
+//            shareIntent.setAction(Intent.ACTION_SEND);
+//            shareIntent.putExtra(Intent.EXTRA_STREAM, originImageUri);
+//            shareIntent.setType("image/*");
+//            startActivity(Intent.createChooser(shareIntent, "分享到"));
+//        } else {
+//            Log.d("test", "uri not exit");
+//        }
+//
+//    }
+
     //share button 绑定
     public void SharePhoto(View view) {
         if (originImageUri != null) {
             //   Log.d("uri",imageUri.toString());
+            if (!originImageUri.toString().contains("content://")) {
+                File tmpFile = new File(originImageUri.getPath());
+                originImageUri = FileProvider.getUriForFile(this,
+                        "com.example.myjavaapplication",
+                        tmpFile);
+            }
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.putExtra(Intent.EXTRA_STREAM, originImageUri);
@@ -92,6 +114,7 @@ public class PhotoResultActivity extends AppCompatActivity {
         }
 
     }
+
 
     //set wallpaper button 绑定
     public void SetWallpaperClick(View view) {
